@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Mic, MicOff, MessageCircle, Trash2, Volume2 } from 'lucide-react';
+import { Send, Mic, MicOff, MessageCircle, Trash2, Volume2, VolumeX } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
@@ -19,9 +19,11 @@ const ChatBot = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState<'hi' | 'en'>('hi');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null);
+  const synthRef = useRef<SpeechSynthesis | null>(null);
   const { toast } = useToast();
 
   const scrollToBottom = () => {
@@ -39,6 +41,18 @@ const ChatBot = () => {
       const settings = JSON.parse(savedSettings);
       setCurrentLanguage(settings.language || 'hi');
     }
+
+    // Initialize speech synthesis
+    if ('speechSynthesis' in window) {
+      synthRef.current = window.speechSynthesis;
+    }
+
+    return () => {
+      // Cleanup speech synthesis
+      if (synthRef.current) {
+        synthRef.current.cancel();
+      }
+    };
   }, []);
 
   const handleSend = async () => {
@@ -73,6 +87,11 @@ const ChatBot = () => {
       };
 
       setMessages(prev => [...prev, assistantMessage]);
+
+      // Auto-speak the response
+      if (synthRef.current && !isSpeaking) {
+        speakResponse(response.response);
+      }
 
       // Show status for offline responses
       if (!response.isAI && !aiService.hasApiKey()) {
@@ -191,18 +210,90 @@ const ChatBot = () => {
   };
 
   const speakResponse = (text: string) => {
-    if ('speechSynthesis' in window) {
+    if (!synthRef.current) {
+      toast({
+        title: "🔊 Speaker Not Available",
+        description: "Text-to-speech is not supported on this browser.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Stop any ongoing speech
+    synthRef.current.cancel();
+
+    try {
       const utterance = new SpeechSynthesisUtterance(text);
+      
+      // Configure voice settings
       utterance.lang = currentLanguage === 'hi' ? 'hi-IN' : 'en-US';
-      utterance.rate = 0.9;
+      utterance.rate = 0.8; // Slower for better comprehension
       utterance.pitch = 1;
-      speechSynthesis.speak(utterance);
+      utterance.volume = 0.9;
+
+      // Try to find appropriate voice
+      const voices = synthRef.current.getVoices();
+      const preferredVoice = voices.find(voice => 
+        voice.lang.startsWith(currentLanguage === 'hi' ? 'hi' : 'en')
+      );
+      
+      if (preferredVoice) {
+        utterance.voice = preferredVoice;
+      }
+
+      utterance.onstart = () => {
+        setIsSpeaking(true);
+        toast({
+          title: "🔊 Speaking...",
+          description: "Tap the speaker icon to stop",
+          variant: "default"
+        });
+      };
+
+      utterance.onend = () => {
+        setIsSpeaking(false);
+      };
+
+      utterance.onerror = (error) => {
+        console.error('Speech synthesis error:', error);
+        setIsSpeaking(false);
+        toast({
+          title: "🔊 Speaker Error",
+          description: "Could not play the response. Please try again.",
+          variant: "destructive"
+        });
+      };
+
+      synthRef.current.speak(utterance);
+    } catch (error) {
+      console.error('Speech synthesis setup error:', error);
+      toast({
+        title: "🔊 Speaker Setup Failed",
+        description: "Could not initialize text-to-speech. Please try again.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const stopSpeaking = () => {
+    if (synthRef.current && isSpeaking) {
+      synthRef.current.cancel();
+      setIsSpeaking(false);
+      toast({
+        title: "🔇 Speech Stopped",
+        description: "Playback has been stopped.",
+        variant: "default"
+      });
     }
   };
 
   const clearChat = () => {
     setMessages([]);
     setInput('');
+    if (synthRef.current) {
+      synthRef.current.cancel();
+      setIsSpeaking(false);
+    }
     toast({
       title: "🗑️ Chat Cleared",
       description: "All messages have been removed.",
@@ -211,8 +302,8 @@ const ChatBot = () => {
   };
 
   const quickSuggestions = currentLanguage === 'hi' 
-    ? ['व्यापार कैसे शुरू करें?', 'लोन कैसे मिलेगा?', 'मार्केटिंग टिप्स']
-    : ['How to start business?', 'Get business loan?', 'Marketing tips'];
+    ? ['व्यापार कैसे शुरू करें?', 'लोन कैसे मिलेगा?', 'मार्केटिंग टिप्स', 'सरकारी योजनाएं']
+    : ['How to start business?', 'Get business loan?', 'Marketing tips', 'Government schemes'];
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-b from-orange-50 to-yellow-50">
@@ -230,13 +321,25 @@ const ChatBot = () => {
                 {aiService.hasApiKey() ? (
                   <Badge className="bg-green-100 text-green-700 text-xs">AI Active</Badge>
                 ) : (
-                  <Badge variant="outline" className="bg-yellow-100 text-yellow-700 text-xs">Offline Mode</Badge>
+                  <Badge variant="outline" className="bg-yellow-100 text-yellow-700 text-xs">Enhanced Database</Badge>
                 )}
               </p>
             </div>
           </div>
           
-          <div className="flex space-x-2">
+          <div className="flex items-center space-x-2">
+            {/* Speaker control */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={isSpeaking ? stopSpeaking : undefined}
+              className={`${isSpeaking ? 'text-red-500 animate-pulse' : 'text-gray-500'}`}
+              disabled={!isSpeaking}
+            >
+              {isSpeaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+            </Button>
+            
+            {/* Language toggles */}
             <Button
               variant={currentLanguage === 'hi' ? 'default' : 'outline'}
               size="sm"
@@ -269,8 +372,8 @@ const ChatBot = () => {
             </h2>
             <p className="text-gray-600 mb-4">
               {currentLanguage === 'hi' 
-                ? 'व्यापार के बारे में कोई भी सवाल पूछें'
-                : 'Ask me any business question'}
+                ? 'व्यापार के बारे में कोई भी सवाल पूछें - अब ज्यादा जानकारी के साथ!'
+                : 'Ask me any business question - now with enhanced database!'}
             </p>
             <div className="flex flex-wrap gap-2 justify-center">
               {quickSuggestions.map((suggestion, index) => (
@@ -301,14 +404,17 @@ const ChatBot = () => {
                 <div className="flex items-start justify-between">
                   <p className="text-sm whitespace-pre-wrap flex-1">{message.content}</p>
                   {message.role === 'assistant' && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="ml-2 p-1 h-6 w-6"
-                      onClick={() => speakResponse(message.content)}
-                    >
-                      <Volume2 className="w-3 h-3" />
-                    </Button>
+                    <div className="flex space-x-1 ml-2">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="p-1 h-6 w-6"
+                        onClick={() => speakResponse(message.content)}
+                        disabled={isSpeaking}
+                      >
+                        <Volume2 className="w-3 h-3" />
+                      </Button>
+                    </div>
                   )}
                 </div>
                 <p className={`text-xs mt-2 ${
@@ -388,7 +494,8 @@ const ChatBot = () => {
         <div className="flex justify-between items-center">
           <div className="text-xs text-gray-500">
             🎤 Voice: {currentLanguage === 'hi' ? 'Hindi' : 'English'} | 
-            🤖 AI: {aiService.hasApiKey() ? 'Active' : 'Add API key in Settings'}
+            🔊 Speaker: {isSpeaking ? 'Playing...' : 'Ready'} |
+            🤖 AI: {aiService.hasApiKey() ? 'Active' : 'Enhanced Database Mode'}
           </div>
           
           {messages.length > 0 && (
