@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { Key, Smartphone, Bell, Globe, Sparkles, Shield, Eye, EyeOff } from 'lucide-react';
+import { Key, Smartphone, Bell, Globe, Sparkles, Shield, Eye, EyeOff, AlertCircle, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { aiService } from '@/utils/aiService';
 
@@ -17,7 +17,7 @@ const Settings = () => {
   const [notifications, setNotifications] = useState(true);
   const [language, setLanguage] = useState('hi');
   const [voiceEnabled, setVoiceEnabled] = useState(true);
-  const [offlineMode, setOfflineMode] = useState(false);
+  const [isTestingApiKey, setIsTestingApiKey] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -32,7 +32,6 @@ const Settings = () => {
       setNotifications(settings.notifications ?? true);
       setLanguage(settings.language ?? 'hi');
       setVoiceEnabled(settings.voiceEnabled ?? true);
-      setOfflineMode(settings.offlineMode ?? false);
     }
   }, []);
 
@@ -40,28 +39,18 @@ const Settings = () => {
     const settings = {
       notifications,
       language,
-      voiceEnabled,
-      offlineMode
+      voiceEnabled
     };
     localStorage.setItem('sakhi_settings', JSON.stringify(settings));
     
     if (apiKey.trim()) {
       aiService.setApiKey(apiKey.trim());
+      localStorage.setItem('openai_api_key', apiKey.trim());
     }
 
     toast({
-      title: "Settings Saved",
+      title: "✅ Settings Saved",
       description: "Your preferences have been saved successfully.",
-      variant: "default"
-    });
-  };
-
-  const clearApiKey = () => {
-    setApiKey('');
-    localStorage.removeItem('openai_api_key');
-    toast({
-      title: "API Key Removed",
-      description: "AI features will use offline mode.",
       variant: "default"
     });
   };
@@ -69,36 +58,32 @@ const Settings = () => {
   const testApiKey = async () => {
     if (!apiKey.trim()) {
       toast({
-        title: "No API Key",
-        description: "Please enter an API key to test.",
+        title: "❌ No API Key",
+        description: "Please enter your OpenAI API key first.",
         variant: "destructive"
       });
       return;
     }
 
+    setIsTestingApiKey(true);
     try {
-      const tempService = new (class extends Object {
-        async testConnection(key: string) {
-          const response = await fetch('https://api.openai.com/v1/models', {
-            headers: {
-              'Authorization': `Bearer ${key}`
-            }
-          });
-          return response.ok;
+      const response = await fetch('https://api.openai.com/v1/models', {
+        headers: {
+          'Authorization': `Bearer ${apiKey.trim()}`
         }
-      })();
+      });
       
-      const isValid = await tempService.testConnection(apiKey);
-      
-      if (isValid) {
+      if (response.ok) {
+        aiService.setApiKey(apiKey.trim());
+        localStorage.setItem('openai_api_key', apiKey.trim());
         toast({
-          title: "API Key Valid",
-          description: "Connection to OpenAI successful!",
+          title: "✅ API Key Valid!",
+          description: "Successfully connected to OpenAI. AI features are now active!",
           variant: "default"
         });
       } else {
         toast({
-          title: "Invalid API Key",
+          title: "❌ Invalid API Key",
           description: "Please check your API key and try again.",
           variant: "destructive"
         });
@@ -106,15 +91,27 @@ const Settings = () => {
     } catch (error) {
       console.error('API test error:', error);
       toast({
-        title: "Connection Error",
+        title: "🌐 Connection Error",
         description: "Could not verify API key. Check your internet connection.",
         variant: "destructive"
       });
+    } finally {
+      setIsTestingApiKey(false);
     }
   };
 
+  const clearApiKey = () => {
+    setApiKey('');
+    localStorage.removeItem('openai_api_key');
+    toast({
+      title: "🗑️ API Key Removed",
+      description: "AI features will use offline mode now.",
+      variant: "default"
+    });
+  };
+
   return (
-    <div className="p-4 space-y-6 bg-gradient-to-b from-blue-50 to-indigo-50 min-h-screen">
+    <div className="p-4 space-y-6 bg-gradient-to-b from-orange-50 to-yellow-50 min-h-screen">
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-800 mb-2">
           ⚙️ सेटिंग्स - Settings
@@ -122,32 +119,49 @@ const Settings = () => {
         <p className="text-gray-600">Configure your SakhiCopilot experience</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* AI Configuration */}
-        <Card className="border-blue-200">
+      <div className="space-y-6">
+        {/* API Configuration */}
+        <Card className="border-orange-200">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <Sparkles className="w-5 h-5 text-blue-500" />
-              <span>AI Configuration</span>
-              {aiService.hasApiKey() && (
-                <Badge variant="outline" className="bg-green-100 text-green-700 border-green-200">
+              <Sparkles className="w-5 h-5 text-orange-500" />
+              <span>🤖 OpenAI API Configuration</span>
+              {aiService.hasApiKey() ? (
+                <Badge className="bg-green-100 text-green-700 border-green-200">
+                  <CheckCircle className="w-3 h-3 mr-1" />
                   Active
+                </Badge>
+              ) : (
+                <Badge variant="destructive">
+                  <AlertCircle className="w-3 h-3 mr-1" />
+                  Not Set
                 </Badge>
               )}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
+            <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
+              <h4 className="font-semibold text-orange-800 mb-2">📋 How to get your API Key:</h4>
+              <ol className="text-sm text-orange-700 space-y-1 list-decimal list-inside">
+                <li>Visit <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium">OpenAI Platform</a></li>
+                <li>Sign up or login to your account</li>
+                <li>Click "Create new secret key"</li>
+                <li>Copy the key and paste it below</li>
+                <li>Save settings to activate AI features</li>
+              </ol>
+            </div>
+
             <div>
-              <Label htmlFor="apiKey">OpenAI API Key</Label>
-              <div className="flex space-x-2 mt-1">
+              <Label htmlFor="apiKey" className="text-base font-medium">🔑 OpenAI API Key</Label>
+              <div className="flex space-x-2 mt-2">
                 <div className="relative flex-1">
                   <Input
                     id="apiKey"
                     type={showApiKey ? "text" : "password"}
                     value={apiKey}
                     onChange={(e) => setApiKey(e.target.value)}
-                    placeholder="sk-..."
-                    className="border-blue-200 focus:border-blue-400 pr-10"
+                    placeholder="sk-proj-..."
+                    className="border-orange-200 focus:border-orange-400 pr-10 font-mono text-sm"
                   />
                   <Button
                     type="button"
@@ -164,54 +178,55 @@ const Settings = () => {
                   </Button>
                 </div>
               </div>
-              <p className="text-sm text-gray-600 mt-1">
-                Get your API key from <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">OpenAI Platform</a>
-              </p>
             </div>
 
             <div className="flex space-x-2">
               <Button
                 onClick={testApiKey}
+                disabled={isTestingApiKey}
                 variant="outline"
-                size="sm"
-                className="flex-1 border-blue-200"
+                className="flex-1 border-orange-200 hover:bg-orange-50"
               >
                 <Key className="w-4 h-4 mr-2" />
-                Test Key
+                {isTestingApiKey ? 'Testing...' : 'Test & Save Key'}
               </Button>
               <Button
                 onClick={clearApiKey}
                 variant="outline"
-                size="sm"
                 className="flex-1 border-red-200 text-red-600 hover:bg-red-50"
               >
                 Clear Key
               </Button>
             </div>
 
-            <div className="bg-blue-50 p-3 rounded-lg">
-              <h4 className="font-medium text-blue-800 mb-2">AI Status</h4>
+            <div className={`p-3 rounded-lg border ${aiService.hasApiKey() ? 'bg-green-50 border-green-200' : 'bg-yellow-50 border-yellow-200'}`}>
+              <h4 className={`font-medium mb-2 ${aiService.hasApiKey() ? 'text-green-800' : 'text-yellow-800'}`}>
+                🤖 AI Status
+              </h4>
               {aiService.hasApiKey() ? (
                 <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="text-sm text-green-700">AI-powered responses enabled</span>
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm text-green-700 font-medium">AI-powered responses enabled ✨</span>
                 </div>
               ) : (
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                  <span className="text-sm text-orange-700">Using offline responses</span>
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <span className="text-sm text-yellow-700">Using basic offline responses</span>
+                  </div>
+                  <p className="text-xs text-yellow-600">Add your OpenAI API key above to unlock full AI capabilities</p>
                 </div>
               )}
             </div>
           </CardContent>
         </Card>
 
-        {/* App Preferences */}
-        <Card className="border-blue-200">
+        {/* Voice & Language Settings */}
+        <Card className="border-orange-200">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <Smartphone className="w-5 h-5 text-blue-500" />
-              <span>App Preferences</span>
+              <Smartphone className="w-5 h-5 text-orange-500" />
+              <span>🗣️ Voice & Language Settings</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -237,10 +252,10 @@ const Settings = () => {
               <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
-                className="border border-blue-200 rounded-md px-3 py-1 focus:border-blue-400 focus:outline-none"
+                className="border border-orange-200 rounded-md px-3 py-2 focus:border-orange-400 focus:outline-none bg-white"
               >
-                <option value="hi">हिंदी - Hindi</option>
-                <option value="en">English</option>
+                <option value="hi">🇮🇳 हिंदी - Hindi</option>
+                <option value="en">🇬🇧 English</option>
               </select>
             </div>
 
@@ -258,69 +273,55 @@ const Settings = () => {
               />
             </div>
 
-            <Separator />
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Shield className="w-4 h-4 text-gray-500" />
-                <Label htmlFor="offline">Offline Mode</Label>
+            <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
+              <h4 className="font-medium text-orange-800 mb-2">🎤 Voice Recognition Support</h4>
+              <div className="space-y-1 text-sm text-orange-700">
+                <div className="flex items-center space-x-2">
+                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                  <span>Hindi (हिंदी) - hi-IN</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                  <span>English - en-US</span>
+                </div>
+                <p className="text-xs text-orange-600 mt-2">
+                  Microphone access required for voice input
+                </p>
               </div>
-              <Switch
-                id="offline"
-                checked={offlineMode}
-                onCheckedChange={setOfflineMode}
-              />
             </div>
+          </CardContent>
+        </Card>
 
-            <div className="bg-blue-50 p-3 rounded-lg">
-              <h4 className="font-medium text-blue-800 mb-2">Privacy & Data</h4>
-              <p className="text-sm text-blue-700">
-                Your data is stored locally on your device. API keys are encrypted and never shared.
-              </p>
+        {/* Privacy & Data */}
+        <Card className="border-orange-200">
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <Shield className="w-5 h-5 text-orange-500" />
+              <span>🔒 Privacy & Data</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <h4 className="font-medium text-blue-800 mb-2">🛡️ Your Data is Safe</h4>
+              <ul className="text-sm text-blue-700 space-y-1 list-disc list-inside">
+                <li>API keys stored locally on your device only</li>
+                <li>No personal data sent to our servers</li>
+                <li>Chat history stays on your device</li>
+                <li>Voice data processed locally when possible</li>
+              </ul>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* About Section */}
-      <Card className="border-blue-200">
-        <CardHeader>
-          <CardTitle>About SakhiCopilot</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-gradient-to-r from-orange-400 to-red-400 rounded-full flex items-center justify-center mx-auto mb-2">
-                <Sparkles className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-semibold">AI-Powered</h3>
-              <p className="text-sm text-gray-600">Smart business advice using OpenAI GPT</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center mx-auto mb-2">
-                <Globe className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-semibold">Multilingual</h3>
-              <p className="text-sm text-gray-600">Supports Hindi, English, and local dialects</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-2">
-                <Shield className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="font-semibold">Secure</h3>
-              <p className="text-sm text-gray-600">Privacy-focused with local data storage</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Save Button */}
-      <div className="flex justify-center">
+      <div className="flex justify-center pb-8">
         <Button
           onClick={saveSettings}
-          className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 px-8"
+          className="bg-gradient-to-r from-orange-400 to-yellow-400 hover:from-orange-500 hover:to-yellow-500 px-8 py-3 text-white font-semibold text-lg"
+          size="lg"
         >
-          Save Settings
+          💾 Save All Settings
         </Button>
       </div>
     </div>
