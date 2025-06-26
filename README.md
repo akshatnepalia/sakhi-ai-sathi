@@ -5,7 +5,7 @@ A comprehensive business assistance application built with React and TypeScript.
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/0dbccb87-c37e-459d-80b9-a5e3a7d3c5a6
+**URL**: https://your-domain.com/sakhicopilot
 
 ## Features
 
@@ -13,22 +13,16 @@ A comprehensive business assistance application built with React and TypeScript.
 - **Voice Recognition**: Support for Hindi and English voice input
 - **Text-to-Speech**: Audio responses in multiple languages
 - **Poster Generator**: Create business posters and marketing materials
-- **Settings Management**: Customize language, voice, and API preferences
+- **Settings Management**: Customize language, voice, and preferences
 - **Comprehensive Database**: Extensive business knowledge base covering various topics
 
 ## How to run this project
 
 There are several ways to run and edit this application.
 
-**Use Lovable**
+**Local Development**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0dbccb87-c37e-459d-80b9-a5e3a7d3c5a6) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+If you want to work locally using your own IDE, you can clone this repo and start development.
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -36,10 +30,10 @@ Follow these steps:
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+git clone https://github.com/yourusername/sakhicopilot.git
 
 # Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+cd sakhicopilot
 
 # Step 3: Install the necessary dependencies.
 npm i
@@ -85,13 +79,13 @@ This project is built with:
 
 You can deploy this project using any static site hosting service like Vercel, Netlify, or GitHub Pages.
 
-Simply open [Lovable](https://lovable.dev/projects/0dbccb87-c37e-459d-80b9-a5e3a7d3c5a6) and click on Share -> Publish for easy deployment.
+For easy deployment:
+1. Build the project: `npm run build`
+2. Deploy the `dist` folder to your hosting service
 
 ## Custom Domain
 
-You can connect a custom domain by navigating to Project > Settings > Domains and clicking Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+You can connect a custom domain through your hosting provider's domain settings.
 
 ## Contributing
 
