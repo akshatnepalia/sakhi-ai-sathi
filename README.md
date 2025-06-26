@@ -5,7 +5,7 @@ A comprehensive business assistance application built with React and TypeScript.
 
 ## Project info
 
-**URL**: https://your-domain.com/sakhicopilot
+**URL**: https://yourusername.github.io/sakhicopilot
 
 ## Features
 
@@ -77,15 +77,24 @@ This project is built with:
 
 ## Deployment
 
-You can deploy this project using any static site hosting service like Vercel, Netlify, or GitHub Pages.
+You can deploy this project using GitHub Pages for free:
 
-For easy deployment:
-1. Build the project: `npm run build`
-2. Deploy the `dist` folder to your hosting service
+1. Go to your repository settings
+2. Navigate to "Pages" section
+3. Select "Deploy from a branch" and choose "main"
+4. Your app will be available at `https://yourusername.github.io/sakhicopilot`
+
+Alternative deployment options:
+- **Vercel**: Connect your GitHub repo for automatic deployments
+- **Netlify**: Drag and drop the `dist` folder after running `npm run build`
+- **GitHub Pages**: Enable in repository settings for free hosting
 
 ## Custom Domain
 
-You can connect a custom domain through your hosting provider's domain settings.
+For GitHub Pages, you can connect a custom domain:
+1. Go to repository Settings > Pages
+2. Add your custom domain in the "Custom domain" field
+3. Create a CNAME file in your repository root with your domain
 
 ## Contributing
 
