@@ -5,7 +5,7 @@ A comprehensive business assistance application built with React and TypeScript.
 
 ## Project info
 
-**URL**: https://yourusername.github.io/sakhicopilot
+**URL**: https://your-github-username.github.io/sakhicopilot
 
 ## Features
 
@@ -30,7 +30,7 @@ Follow these steps:
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
-git clone https://github.com/yourusername/sakhicopilot.git
+git clone https://github.com/your-github-username/sakhicopilot.git
 
 # Step 2: Navigate to the project directory.
 cd sakhicopilot
@@ -82,7 +82,7 @@ You can deploy this project using GitHub Pages for free:
 1. Go to your repository settings
 2. Navigate to "Pages" section
 3. Select "Deploy from a branch" and choose "main"
-4. Your app will be available at `https://yourusername.github.io/sakhicopilot`
+4. Your app will be available at `https://your-github-username.github.io/sakhicopilot`
 
 Alternative deployment options:
 - **Vercel**: Connect your GitHub repo for automatic deployments
