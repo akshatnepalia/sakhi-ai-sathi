@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Mic, MicOff, MessageCircle, Trash2, Volume2, VolumeX } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -35,20 +34,17 @@ const ChatBot = () => {
   }, [messages]);
 
   useEffect(() => {
-    // Load language preference
     const savedSettings = localStorage.getItem('sakhi_settings');
     if (savedSettings) {
       const settings = JSON.parse(savedSettings);
       setCurrentLanguage(settings.language || 'hi');
     }
 
-    // Initialize speech synthesis
     if ('speechSynthesis' in window) {
       synthRef.current = window.speechSynthesis;
     }
 
     return () => {
-      // Cleanup speech synthesis
       if (synthRef.current) {
         synthRef.current.cancel();
       }
@@ -58,11 +54,10 @@ const ChatBot = () => {
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
-    // Check if API key is available
     if (!aiService.hasApiKey()) {
       toast({
-        title: "❌ OpenAI API Key Missing",
-        description: "Please add your API key in Settings to get AI-powered responses.",
+        title: "❌ Enhanced Features Unavailable",
+        description: "Please add your API key in Settings to get enhanced responses.",
         variant: "destructive"
       });
     }
@@ -88,16 +83,14 @@ const ChatBot = () => {
 
       setMessages(prev => [...prev, assistantMessage]);
 
-      // Auto-speak the response
       if (synthRef.current && !isSpeaking) {
         speakResponse(response.response);
       }
 
-      // Show status for offline responses
       if (!response.isAI && !aiService.hasApiKey()) {
         toast({
-          title: "📱 Offline Mode",
-          description: "Add your OpenAI API key in Settings for smarter AI responses.",
+          title: "📱 Database Mode",
+          description: "Add your API key in Settings for enhanced responses.",
           variant: "default"
         });
       }
@@ -114,7 +107,6 @@ const ChatBot = () => {
   };
 
   const handleVoiceInput = () => {
-    // Check for speech recognition support
     const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
     
     if (!SpeechRecognition) {
@@ -127,7 +119,6 @@ const ChatBot = () => {
     }
 
     if (isListening) {
-      // Stop listening
       if (recognitionRef.current) {
         recognitionRef.current.stop();
       }
@@ -138,7 +129,6 @@ const ChatBot = () => {
       const recognition = new SpeechRecognition();
       recognitionRef.current = recognition;
       
-      // Configure recognition for both languages
       recognition.lang = currentLanguage === 'hi' ? 'hi-IN' : 'en-US';
       recognition.continuous = false;
       recognition.interimResults = false;
@@ -219,19 +209,16 @@ const ChatBot = () => {
       return;
     }
 
-    // Stop any ongoing speech
     synthRef.current.cancel();
 
     try {
       const utterance = new SpeechSynthesisUtterance(text);
       
-      // Configure voice settings
       utterance.lang = currentLanguage === 'hi' ? 'hi-IN' : 'en-US';
-      utterance.rate = 0.8; // Slower for better comprehension
+      utterance.rate = 0.8;
       utterance.pitch = 1;
       utterance.volume = 0.9;
 
-      // Try to find appropriate voice
       const voices = synthRef.current.getVoices();
       const preferredVoice = voices.find(voice => 
         voice.lang.startsWith(currentLanguage === 'hi' ? 'hi' : 'en')
@@ -317,18 +304,17 @@ const ChatBot = () => {
             <div>
               <h1 className="text-xl font-bold text-gray-800">SakhiCopilot</h1>
               <p className="text-sm text-gray-600 flex items-center space-x-2">
-                <span>Your AI Business Friend</span>
+                <span>Your Business Companion</span>
                 {aiService.hasApiKey() ? (
-                  <Badge className="bg-green-100 text-green-700 text-xs">AI Active</Badge>
+                  <Badge className="bg-green-100 text-green-700 text-xs">Enhanced Active</Badge>
                 ) : (
-                  <Badge variant="outline" className="bg-yellow-100 text-yellow-700 text-xs">Enhanced Database</Badge>
+                  <Badge variant="outline" className="bg-yellow-100 text-yellow-700 text-xs">Database Mode</Badge>
                 )}
               </p>
             </div>
           </div>
           
           <div className="flex items-center space-x-2">
-            {/* Speaker control */}
             <Button
               variant="ghost"
               size="sm"
@@ -339,7 +325,6 @@ const ChatBot = () => {
               {isSpeaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
             </Button>
             
-            {/* Language toggles */}
             <Button
               variant={currentLanguage === 'hi' ? 'default' : 'outline'}
               size="sm"
@@ -495,7 +480,7 @@ const ChatBot = () => {
           <div className="text-xs text-gray-500">
             🎤 Voice: {currentLanguage === 'hi' ? 'Hindi' : 'English'} | 
             🔊 Speaker: {isSpeaking ? 'Playing...' : 'Ready'} |
-            🤖 AI: {aiService.hasApiKey() ? 'Active' : 'Enhanced Database Mode'}
+            🤖 Mode: {aiService.hasApiKey() ? 'Enhanced' : 'Database'}
           </div>
           
           {messages.length > 0 && (

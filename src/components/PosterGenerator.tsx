@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -55,10 +54,8 @@ const PosterGenerator = () => {
     setIsGenerating(true);
 
     try {
-      // Generate AI content if available
       const content = await aiService.generatePosterContent(formData.businessType, formData.businessName);
       
-      // Create poster HTML
       const posterHTML = createPosterHTML(content);
       setGeneratedPoster(posterHTML);
 
@@ -229,7 +226,7 @@ const PosterGenerator = () => {
         <h1 className="text-3xl font-bold text-gray-800 mb-2">
           🎨 पोस्टर जेनरेटर - Poster Generator
         </h1>
-        <p className="text-gray-600">Create beautiful business posters with AI assistance</p>
+        <p className="text-gray-600">Create beautiful business posters with intelligent assistance</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

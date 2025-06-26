@@ -1,12 +1,24 @@
-# Welcome to your Lovable project
+
+# SakhiCopilot - Your Business Companion
+
+A comprehensive business assistance application built with React and TypeScript.
 
 ## Project info
 
 **URL**: https://lovable.dev/projects/0dbccb87-c37e-459d-80b9-a5e3a7d3c5a6
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Business Chat**: Interactive chat interface for business queries
+- **Voice Recognition**: Support for Hindi and English voice input
+- **Text-to-Speech**: Audio responses in multiple languages
+- **Poster Generator**: Create business posters and marketing materials
+- **Settings Management**: Customize language, voice, and API preferences
+- **Comprehensive Database**: Extensive business knowledge base covering various topics
+
+## How to run this project
+
+There are several ways to run and edit this application.
 
 **Use Lovable**
 
@@ -50,24 +62,41 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
+## Technologies Used
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **React** - Frontend framework
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Build tool and development server
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Component library
+- **Lucide React** - Icon library
+- **React Router** - Client-side routing
 
-## How can I deploy this project?
+## Architecture
 
-Simply open [Lovable](https://lovable.dev/projects/0dbccb87-c37e-459d-80b9-a5e3a7d3c5a6) and click on Share -> Publish.
+- **Components**: Modular React components for different features
+- **Utils**: Business logic and service utilities
+- **Hooks**: Custom React hooks for state management
+- **UI Components**: Reusable UI components built with shadcn/ui
 
-## Can I connect a custom domain to my Lovable project?
+## Deployment
 
-Yes, you can!
+You can deploy this project using any static site hosting service like Vercel, Netlify, or GitHub Pages.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Simply open [Lovable](https://lovable.dev/projects/0dbccb87-c37e-459d-80b9-a5e3a7d3c5a6) and click on Share -> Publish for easy deployment.
+
+## Custom Domain
+
+You can connect a custom domain by navigating to Project > Settings > Domains and clicking Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## Contributing
+
+Feel free to submit issues and enhancement requests!
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).

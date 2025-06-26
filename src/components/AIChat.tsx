@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Mic, MicOff, Bot, User, Sparkles, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -57,8 +56,8 @@ const AIChat = () => {
 
       if (!response.isAI) {
         toast({
-          title: "Offline Mode",
-          description: "Using offline responses. Add API key for AI-powered answers.",
+          title: "Database Mode",
+          description: "Using comprehensive business database. Add API key for enhanced responses.",
           variant: "default"
         });
       }
@@ -138,17 +137,17 @@ const AIChat = () => {
             <Bot className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h2 className="font-semibold text-gray-800">सखी AI - Sakhi AI</h2>
+            <h2 className="font-semibold text-gray-800">सखी - Sakhi Business Assistant</h2>
             <p className="text-sm text-gray-600">
               {aiService.hasApiKey() ? (
                 <span className="flex items-center">
                   <Sparkles className="w-4 h-4 mr-1 text-green-500" />
-                  AI Powered
+                  Enhanced Mode
                 </span>
               ) : (
                 <span className="flex items-center">
                   <Zap className="w-4 h-4 mr-1 text-orange-500" />
-                  Offline Mode
+                  Database Mode
                 </span>
               )}
             </p>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -78,7 +77,7 @@ const Settings = () => {
         localStorage.setItem('openai_api_key', apiKey.trim());
         toast({
           title: "✅ API Key Valid!",
-          description: "Successfully connected to OpenAI. AI features are now active!",
+          description: "Successfully connected to OpenAI. Enhanced features are now active!",
           variant: "default"
         });
       } else {
@@ -105,7 +104,7 @@ const Settings = () => {
     localStorage.removeItem('openai_api_key');
     toast({
       title: "🗑️ API Key Removed",
-      description: "AI features will use offline mode now.",
+      description: "Enhanced features will use database mode now.",
       variant: "default"
     });
   };
@@ -125,7 +124,7 @@ const Settings = () => {
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Sparkles className="w-5 h-5 text-orange-500" />
-              <span>🤖 OpenAI API Configuration</span>
+              <span>🤖 Enhanced Features Configuration</span>
               {aiService.hasApiKey() ? (
                 <Badge className="bg-green-100 text-green-700 border-green-200">
                   <CheckCircle className="w-3 h-3 mr-1" />
@@ -134,7 +133,7 @@ const Settings = () => {
               ) : (
                 <Badge variant="destructive">
                   <AlertCircle className="w-3 h-3 mr-1" />
-                  Not Set
+                  Database Mode
                 </Badge>
               )}
             </CardTitle>
@@ -147,7 +146,7 @@ const Settings = () => {
                 <li>Sign up or login to your account</li>
                 <li>Click "Create new secret key"</li>
                 <li>Copy the key and paste it below</li>
-                <li>Save settings to activate AI features</li>
+                <li>Save settings to activate enhanced features</li>
               </ol>
             </div>
 
@@ -201,20 +200,20 @@ const Settings = () => {
 
             <div className={`p-3 rounded-lg border ${aiService.hasApiKey() ? 'bg-green-50 border-green-200' : 'bg-yellow-50 border-yellow-200'}`}>
               <h4 className={`font-medium mb-2 ${aiService.hasApiKey() ? 'text-green-800' : 'text-yellow-800'}`}>
-                🤖 AI Status
+                🤖 System Status
               </h4>
               {aiService.hasApiKey() ? (
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm text-green-700 font-medium">AI-powered responses enabled ✨</span>
+                  <span className="text-sm text-green-700 font-medium">Enhanced responses enabled ✨</span>
                 </div>
               ) : (
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <span className="text-sm text-yellow-700">Using basic offline responses</span>
+                    <span className="text-sm text-yellow-700">Using comprehensive database mode</span>
                   </div>
-                  <p className="text-xs text-yellow-600">Add your OpenAI API key above to unlock full AI capabilities</p>
+                  <p className="text-xs text-yellow-600">Add your OpenAI API key above to unlock enhanced capabilities</p>
                 </div>
               )}
             </div>
@@ -305,7 +304,7 @@ const Settings = () => {
               <h4 className="font-medium text-blue-800 mb-2">🛡️ Your Data is Safe</h4>
               <ul className="text-sm text-blue-700 space-y-1 list-disc list-inside">
                 <li>API keys stored locally on your device only</li>
-                <li>No personal data sent to our servers</li>
+                <li>No personal data sent to external servers without your consent</li>
                 <li>Chat history stays on your device</li>
                 <li>Voice data processed locally when possible</li>
               </ul>
