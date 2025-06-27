@@ -5,7 +5,7 @@ A comprehensive business assistance application built with React and TypeScript.
 
 ## Project info
 
-https://sakhi-ai-sathi.vercel.app/
+https://sakhicopilot.vercel.app/
 
 ## Features
 
@@ -116,7 +116,7 @@ After deploying with any service above, you'll get a live URL like:
 This project is hackathon-ready:
 - ✅ **Live Demo**: Deploy in minutes with Vercel/Netlify
 - ✅ **Responsive Design**: Works on all devices
-- ✅ **AI Integration**: Smart business assistance
+- ✅ **Smart Business Assistant**: Intelligent business assistance system
 - ✅ **Voice Features**: Modern voice input/output
 - ✅ **Bilingual Support**: Hindi and English
 - ✅ **Professional UI**: Built with modern design principles
