@@ -5,7 +5,7 @@ A comprehensive business assistance application built with React and TypeScript.
 
 ## Project info
 
-**Live Demo**: *Deploy to get your live URL - see deployment section below*
+https://sakhi-ai-sathi.vercel.app/
 
 ## Features
 
