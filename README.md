@@ -1,11 +1,10 @@
-
 # SakhiCopilot - Your Business Companion
 
 A comprehensive business assistance application built with React and TypeScript.
 
 ## Project info
 
-https://sakhicopilot.vercel.app/
+https://sakhi-ai-sathi.vercel.app/
 
 ## Features
 
