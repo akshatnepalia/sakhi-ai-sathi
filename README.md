@@ -5,7 +5,7 @@ A comprehensive business assistance application built with React and TypeScript.
 
 ## Project info
 
-**Live Demo**: https://sakhicopilot.vercel.app
+**Live Demo**: *Deploy to get your live URL - see deployment section below*
 
 ## Features
 
@@ -79,7 +79,7 @@ This project is built with:
 
 ### Quick Deploy with Vercel (Recommended for Hackathons)
 
-1. **Connect to GitHub**: First, push your code to a GitHub repository
+1. **Push to GitHub**: First, push your code to a GitHub repository
 2. **Deploy on Vercel**:
    - Go to [vercel.com](https://vercel.com)
    - Sign up with your GitHub account
@@ -90,15 +90,37 @@ This project is built with:
 
 ### Alternative Deployment Options
 
+**Netlify** (Quick & Easy):
+1. Build your project: `npm run build`
+2. Go to [netlify.com](https://netlify.com)
+3. Drag and drop the `dist` folder
+4. Get instant live URL: `https://random-name.netlify.app`
+
 **GitHub Pages** (Free):
 1. Go to your repository settings
 2. Navigate to "Pages" section
 3. Select "Deploy from a branch" and choose "main"
-4. Your app will be available at `https://your-username.github.io/sakhicopilot`
+4. Your app will be available at `https://your-username.github.io/repository-name`
 
-**Netlify** (Alternative):
-- Drag and drop the `dist` folder after running `npm run build`
-- Or connect your GitHub repo for automatic deployments
+### Getting Your Live Demo URL
+
+After deploying with any service above, you'll get a live URL like:
+- Vercel: `https://your-project-name.vercel.app`
+- Netlify: `https://your-app-name.netlify.app`
+- GitHub Pages: `https://username.github.io/repository-name`
+
+**Update this README** with your actual live URL once deployed!
+
+## Perfect for Hackathons
+
+This project is hackathon-ready:
+- ✅ **Live Demo**: Deploy in minutes with Vercel/Netlify
+- ✅ **Responsive Design**: Works on all devices
+- ✅ **AI Integration**: Smart business assistance
+- ✅ **Voice Features**: Modern voice input/output
+- ✅ **Bilingual Support**: Hindi and English
+- ✅ **Professional UI**: Built with modern design principles
+- ✅ **Open Source**: Full code available on GitHub
 
 ## Custom Domain
 
@@ -109,20 +131,15 @@ For production or professional presentations, you can connect a custom domain:
 2. Click "Domains" tab
 3. Add your custom domain
 
+**For Netlify**:
+1. Go to your site dashboard
+2. Click "Domain settings"
+3. Add custom domain
+
 **For GitHub Pages**:
 1. Go to repository Settings > Pages
 2. Add your custom domain in the "Custom domain" field
 3. Create a CNAME file in your repository root with your domain
-
-## Perfect for Hackathons
-
-This project is hackathon-ready:
-- ✅ **Live Demo**: Instant deployment with Vercel
-- ✅ **Responsive Design**: Works on all devices
-- ✅ **AI Integration**: Smart business assistance
-- ✅ **Voice Features**: Modern voice input/output
-- ✅ **Bilingual Support**: Hindi and English
-- ✅ **Professional UI**: Built with modern design principles
 
 ## Contributing
 
