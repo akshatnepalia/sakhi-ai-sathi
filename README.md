@@ -5,7 +5,7 @@ A comprehensive business assistance application built with React and TypeScript.
 
 ## Project info
 
-**URL**: https://your-github-username.github.io/sakhicopilot
+**Live Demo**: https://sakhicopilot.vercel.app
 
 ## Features
 
@@ -30,7 +30,7 @@ Follow these steps:
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
-git clone https://github.com/your-github-username/sakhicopilot.git
+git clone <your-repository-url>
 
 # Step 2: Navigate to the project directory.
 cd sakhicopilot
@@ -77,24 +77,52 @@ This project is built with:
 
 ## Deployment
 
-You can deploy this project using GitHub Pages for free:
+### Quick Deploy with Vercel (Recommended for Hackathons)
 
+1. **Connect to GitHub**: First, push your code to a GitHub repository
+2. **Deploy on Vercel**:
+   - Go to [vercel.com](https://vercel.com)
+   - Sign up with your GitHub account
+   - Click "New Project"
+   - Import your repository
+   - Deploy automatically!
+   - Your app will be live at: `https://your-project-name.vercel.app`
+
+### Alternative Deployment Options
+
+**GitHub Pages** (Free):
 1. Go to your repository settings
 2. Navigate to "Pages" section
 3. Select "Deploy from a branch" and choose "main"
-4. Your app will be available at `https://your-github-username.github.io/sakhicopilot`
+4. Your app will be available at `https://your-username.github.io/sakhicopilot`
 
-Alternative deployment options:
-- **Vercel**: Connect your GitHub repo for automatic deployments
-- **Netlify**: Drag and drop the `dist` folder after running `npm run build`
-- **GitHub Pages**: Enable in repository settings for free hosting
+**Netlify** (Alternative):
+- Drag and drop the `dist` folder after running `npm run build`
+- Or connect your GitHub repo for automatic deployments
 
 ## Custom Domain
 
-For GitHub Pages, you can connect a custom domain:
+For production or professional presentations, you can connect a custom domain:
+
+**For Vercel**:
+1. Go to your project dashboard on Vercel
+2. Click "Domains" tab
+3. Add your custom domain
+
+**For GitHub Pages**:
 1. Go to repository Settings > Pages
 2. Add your custom domain in the "Custom domain" field
 3. Create a CNAME file in your repository root with your domain
+
+## Perfect for Hackathons
+
+This project is hackathon-ready:
+- ✅ **Live Demo**: Instant deployment with Vercel
+- ✅ **Responsive Design**: Works on all devices
+- ✅ **AI Integration**: Smart business assistance
+- ✅ **Voice Features**: Modern voice input/output
+- ✅ **Bilingual Support**: Hindi and English
+- ✅ **Professional UI**: Built with modern design principles
 
 ## Contributing
 
