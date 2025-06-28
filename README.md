@@ -34,7 +34,7 @@ A comprehensive business assistance application built with React and TypeScript,
 - Market analysis and pricing strategies
 
 ### 🗣️ **Advanced Voice Features**
-- Hindi and English voice input
+- 12 Language voice input
 - Natural language processing
 - Audio responses in multiple languages
 - Hands-free operation support
