@@ -10,7 +10,7 @@ A comprehensive business assistance application built with React and TypeScript,
 ## ✨ Enhanced Features
 
 ### 🤖 **Smart AI Chat Assistant**
-- Interactive chat interface for business queries in Hindi and English
+- Interactive chat interface for business queries in 12 languages of india
 - Voice recognition and text-to-speech support
 - Comprehensive business knowledge database
 - Real-time responses with practical advice
