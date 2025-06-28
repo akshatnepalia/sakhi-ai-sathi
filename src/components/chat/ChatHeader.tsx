@@ -1,18 +1,42 @@
 
 import React from 'react';
-import { MessageCircle, Volume2, VolumeX } from 'lucide-react';
+import { MessageCircle, Volume2, VolumeX, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { aiService } from '@/utils/aiService';
 
 interface ChatHeaderProps {
-  currentLanguage: 'hi' | 'en';
+  currentLanguage: string;
   isSpeaking: boolean;
-  onLanguageChange: (lang: 'hi' | 'en') => void;
+  onLanguageChange: (lang: string) => void;
   onStopSpeaking: () => void;
 }
 
+const languages = [
+  { code: 'hi', name: 'हिंदी', flag: '🇮🇳' },
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'bn', name: 'বাংলা', flag: '🇧🇩' },
+  { code: 'te', name: 'తెలుగు', flag: '🇮🇳' },
+  { code: 'mr', name: 'मराठी', flag: '🇮🇳' },
+  { code: 'ta', name: 'தமிழ்', flag: '🇮🇳' },
+  { code: 'gu', name: 'ગુજરાતી', flag: '🇮🇳' },
+  { code: 'kn', name: 'ಕನ್ನಡ', flag: '🇮🇳' },
+  { code: 'ml', name: 'മലയാളം', flag: '🇮🇳' },
+  { code: 'pa', name: 'ਪੰਜਾਬੀ', flag: '🇮🇳' },
+  { code: 'or', name: 'ଓଡ଼ିଆ', flag: '🇮🇳' },
+  { code: 'as', name: 'অসমীয়া', flag: '🇮🇳' }
+];
+
 const ChatHeader = ({ currentLanguage, isSpeaking, onLanguageChange, onStopSpeaking }: ChatHeaderProps) => {
+  const currentLang = languages.find(lang => lang.code === currentLanguage) || languages[0];
+
   return (
     <div className="bg-white border-b border-orange-200 p-4">
       <div className="flex items-center justify-between">
@@ -44,22 +68,26 @@ const ChatHeader = ({ currentLanguage, isSpeaking, onLanguageChange, onStopSpeak
             {isSpeaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
           </Button>
           
-          <Button
-            variant={currentLanguage === 'hi' ? 'default' : 'outline'}
-            size="sm"
-            onClick={() => onLanguageChange('hi')}
-            className="text-xs"
-          >
-            हिं
-          </Button>
-          <Button
-            variant={currentLanguage === 'en' ? 'default' : 'outline'}
-            size="sm"
-            onClick={() => onLanguageChange('en')}
-            className="text-xs"
-          >
-            EN
-          </Button>
+          <Select value={currentLanguage} onValueChange={onLanguageChange}>
+            <SelectTrigger className="w-32">
+              <SelectValue>
+                <div className="flex items-center space-x-2">
+                  <span>{currentLang.flag}</span>
+                  <span className="text-xs">{currentLang.name}</span>
+                </div>
+              </SelectValue>
+            </SelectTrigger>
+            <SelectContent>
+              {languages.map((lang) => (
+                <SelectItem key={lang.code} value={lang.code}>
+                  <div className="flex items-center space-x-2">
+                    <span>{lang.flag}</span>
+                    <span>{lang.name}</span>
+                  </div>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@ const ChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState<'hi' | 'en'>('hi');
+  const [currentLanguage, setCurrentLanguage] = useState<string>('hi');
   const { toast } = useToast();
 
   const { isListening, startListening } = useSpeechRecognition(currentLanguage);
@@ -31,6 +31,11 @@ const ChatBot = () => {
       setCurrentLanguage(settings.language || 'hi');
     }
   }, []);
+
+  useEffect(() => {
+    const settings = { language: currentLanguage };
+    localStorage.setItem('sakhi_settings', JSON.stringify(settings));
+  }, [currentLanguage]);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;

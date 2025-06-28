@@ -2,7 +2,25 @@
 import { useState, useRef } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
-export const useSpeechRecognition = (currentLanguage: 'hi' | 'en') => {
+const getLanguageConfig = (langCode: string) => {
+  const configs = {
+    'hi': { lang: 'hi-IN', name: 'Hindi (हिंदी)' },
+    'en': { lang: 'en-US', name: 'English' },
+    'bn': { lang: 'bn-IN', name: 'Bengali (বাংলা)' },
+    'te': { lang: 'te-IN', name: 'Telugu (తెలుగు)' },
+    'mr': { lang: 'mr-IN', name: 'Marathi (मराठी)' },
+    'ta': { lang: 'ta-IN', name: 'Tamil (தமிழ்)' },
+    'gu': { lang: 'gu-IN', name: 'Gujarati (ગુજરાતી)' },
+    'kn': { lang: 'kn-IN', name: 'Kannada (ಕನ್ನಡ)' },
+    'ml': { lang: 'ml-IN', name: 'Malayalam (മലയാളം)' },
+    'pa': { lang: 'pa-IN', name: 'Punjabi (ਪੰਜਾਬੀ)' },
+    'or': { lang: 'or-IN', name: 'Odia (ଓଡ଼ିଆ)' },
+    'as': { lang: 'as-IN', name: 'Assamese (অসমীয়া)' }
+  };
+  return configs[langCode as keyof typeof configs] || configs['en'];
+};
+
+export const useSpeechRecognition = (currentLanguage: string) => {
   const [isListening, setIsListening] = useState(false);
   const recognitionRef = useRef<any>(null);
   const { toast } = useToast();
@@ -29,8 +47,9 @@ export const useSpeechRecognition = (currentLanguage: 'hi' | 'en') => {
     try {
       const recognition = new SpeechRecognition();
       recognitionRef.current = recognition;
+      const langConfig = getLanguageConfig(currentLanguage);
       
-      recognition.lang = currentLanguage === 'hi' ? 'hi-IN' : 'en-US';
+      recognition.lang = langConfig.lang;
       recognition.continuous = false;
       recognition.interimResults = false;
       recognition.maxAlternatives = 1;
@@ -39,7 +58,7 @@ export const useSpeechRecognition = (currentLanguage: 'hi' | 'en') => {
         setIsListening(true);
         toast({
           title: `🎤 Listening...`,
-          description: `Speak in ${currentLanguage === 'hi' ? 'Hindi (हिंदी)' : 'English'}`,
+          description: `Speak in ${langConfig.name}`,
           variant: "default"
         });
       };
