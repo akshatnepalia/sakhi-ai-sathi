@@ -8,9 +8,10 @@ interface WelcomePageProps {
   onStartChat: () => void;
   onOpenBusinessPlan?: () => void;
   onOpenFinancialCalc?: () => void;
+  onOpenGovSchemes?: () => void;
 }
 
-const WelcomePage = ({ onStartChat, onOpenBusinessPlan, onOpenFinancialCalc }: WelcomePageProps) => {
+const WelcomePage = ({ onStartChat, onOpenBusinessPlan, onOpenFinancialCalc, onOpenGovSchemes }: WelcomePageProps) => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 via-yellow-50 to-green-50">
       {/* Hero Section */}
@@ -115,16 +116,16 @@ const WelcomePage = ({ onStartChat, onOpenBusinessPlan, onOpenFinancialCalc }: W
             </CardContent>
           </Card>
 
-          <Card className="border-purple-200 hover:shadow-lg transition-shadow duration-300">
+          <Card className="border-purple-200 hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={onOpenGovSchemes}>
             <CardContent className="p-6 text-center">
               <div className="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                SHG Focused
+                Government Schemes
               </h3>
               <p className="text-gray-600 text-sm">
-                Specially designed for Self-Help Group women entrepreneurs
+                Find loans and schemes for women entrepreneurs
               </p>
             </CardContent>
           </Card>
