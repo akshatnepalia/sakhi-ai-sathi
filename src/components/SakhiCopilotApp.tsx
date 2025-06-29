@@ -5,11 +5,12 @@ import ChatBot from './ChatBot';
 import Settings from './Settings';
 import BusinessPlanGenerator from './BusinessPlanGenerator';
 import FinancialCalculator from './FinancialCalculator';
+import GovernmentSchemes from './GovernmentSchemes';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Settings as SettingsIcon, FileText, Calculator } from 'lucide-react';
+import { ArrowLeft, Settings as SettingsIcon, FileText, Calculator, Building2 } from 'lucide-react';
 
 const SakhiCopilotApp = () => {
-  const [currentView, setCurrentView] = useState<'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc'>('welcome');
+  const [currentView, setCurrentView] = useState<'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc' | 'gov-schemes'>('welcome');
 
   const handleStartChat = () => {
     setCurrentView('chat');
@@ -29,6 +30,10 @@ const SakhiCopilotApp = () => {
 
   const handleOpenFinancialCalc = () => {
     setCurrentView('financial-calc');
+  };
+
+  const handleOpenGovSchemes = () => {
+    setCurrentView('gov-schemes');
   };
 
   return (
@@ -68,6 +73,15 @@ const SakhiCopilotApp = () => {
                   Calculator
                 </Button>
                 <Button
+                  onClick={handleOpenGovSchemes}
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  <Building2 className="w-4 h-4 mr-2" />
+                  Schemes
+                </Button>
+                <Button
                   onClick={handleOpenSettings}
                   variant="ghost"
                   size="sm"
@@ -89,6 +103,7 @@ const SakhiCopilotApp = () => {
             onStartChat={handleStartChat}
             onOpenBusinessPlan={handleOpenBusinessPlan}
             onOpenFinancialCalc={handleOpenFinancialCalc}
+            onOpenGovSchemes={handleOpenGovSchemes}
           />
         )}
         
@@ -106,6 +121,10 @@ const SakhiCopilotApp = () => {
 
         {currentView === 'financial-calc' && (
           <FinancialCalculator />
+        )}
+
+        {currentView === 'gov-schemes' && (
+          <GovernmentSchemes />
         )}
       </div>
     </div>

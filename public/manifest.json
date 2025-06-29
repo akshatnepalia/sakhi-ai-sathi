@@ -1,0 +1,82 @@
+
+{
+  "name": "SakhiCopilot - Your Business Companion",
+  "short_name": "SakhiCopilot",
+  "description": "Complete business assistance for rural women entrepreneurs and SHG members",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f97316",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["business", "finance", "education", "productivity"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot1.png",
+      "type": "image/png",
+      "sizes": "1280x720",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot2.png",
+      "type": "image/png",
+      "sizes": "750x1334",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI Chat",
+      "short_name": "Chat",
+      "description": "Start chatting with AI assistant",
+      "url": "/?shortcut=chat",
+      "icons": [{ "src": "/favicon.ico", "sizes": "192x192" }]
+    },
+    {
+      "name": "Business Plan",
+      "short_name": "Plan",
+      "description": "Create business plan",
+      "url": "/?shortcut=business-plan",
+      "icons": [{ "src": "/favicon.ico", "sizes": "192x192" }]
+    },
+    {
+      "name": "Calculator",
+      "short_name": "Calc",
+      "description": "Financial calculators",
+      "url": "/?shortcut=calculator",
+      "icons": [{ "src": "/favicon.ico", "sizes": "192x192" }]
+    },
+    {
+      "name": "Government Schemes",
+      "short_name": "Schemes",
+      "description": "Browse loan schemes",
+      "url": "/?shortcut=schemes",
+      "icons": [{ "src": "/favicon.ico", "sizes": "192x192" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  }
+}
