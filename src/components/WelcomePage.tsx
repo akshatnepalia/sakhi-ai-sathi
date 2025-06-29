@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { MessageCircle, Users, TrendingUp, Heart, FileText, Calculator, PiggyBank, Award } from 'lucide-react';
+import ShareButton from './ShareButton';
 
 interface WelcomePageProps {
   onStartChat: () => void;
@@ -217,14 +217,23 @@ const WelcomePage = ({ onStartChat, onOpenBusinessPlan, onOpenFinancialCalc, onO
           </div>
 
           <div className="text-center">
-            <Button
-              onClick={onStartChat}
-              variant="outline"
-              className="border-orange-300 text-orange-600 hover:bg-orange-50 px-8 py-3 text-lg font-semibold rounded-full"
-            >
-              <Heart className="w-5 h-5 mr-2" />
-              Start Your Business Journey Today
-            </Button>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button
+                onClick={onStartChat}
+                variant="outline"
+                className="border-orange-300 text-orange-600 hover:bg-orange-50 px-8 py-3 text-lg font-semibold rounded-full"
+              >
+                <Heart className="w-5 h-5 mr-2" />
+                Start Your Business Journey Today
+              </Button>
+              
+              <ShareButton 
+                type="invite" 
+                variant="default"
+                size="lg"
+                className="px-8 py-3 text-lg font-semibold rounded-full"
+              />
+            </div>
           </div>
         </div>
       </div>

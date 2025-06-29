@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import WelcomePage from './WelcomePage';
 import ChatBot from './ChatBot';
@@ -6,6 +5,7 @@ import Settings from './Settings';
 import BusinessPlanGenerator from './BusinessPlanGenerator';
 import FinancialCalculator from './FinancialCalculator';
 import GovernmentSchemes from './GovernmentSchemes';
+import VoiceCommands from './VoiceCommands';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Settings as SettingsIcon, FileText, Calculator, Building2 } from 'lucide-react';
 
@@ -34,6 +34,31 @@ const SakhiCopilotApp = () => {
 
   const handleOpenGovSchemes = () => {
     setCurrentView('gov-schemes');
+  };
+
+  const handleVoiceCommand = (command: string, params?: any) => {
+    switch (command) {
+      case 'create_business_plan':
+        setCurrentView('business-plan');
+        break;
+      case 'open_business_plan':
+        setCurrentView('business-plan');
+        break;
+      case 'open_calculator':
+        setCurrentView('financial-calc');
+        break;
+      case 'open_schemes':
+        setCurrentView('gov-schemes');
+        break;
+      case 'open_chat':
+        setCurrentView('chat');
+        break;
+      case 'show_help':
+        // Handle help command
+        break;
+      default:
+        console.log('Unknown voice command:', command);
+    }
   };
 
   return (
@@ -127,6 +152,11 @@ const SakhiCopilotApp = () => {
           <GovernmentSchemes />
         )}
       </div>
+
+      {/* Voice Commands - Only show on welcome and chat pages */}
+      {(currentView === 'welcome' || currentView === 'chat') && (
+        <VoiceCommands onCommand={handleVoiceCommand} />
+      )}
     </div>
   );
 };
