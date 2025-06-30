@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { MessageCircle, Users, TrendingUp, Heart, FileText, Calculator, PiggyBank, Award, Trophy } from 'lucide-react';
+import { MessageCircle, Users, TrendingUp, Heart, FileText, Calculator, PiggyBank, Award, Trophy, Palette } from 'lucide-react';
 import ShareButton from './ShareButton';
 
 interface WelcomePageProps {
@@ -12,6 +11,7 @@ interface WelcomePageProps {
   onOpenGovSchemes?: () => void;
   onOpenCommunity?: () => void;
   onOpenAchievements?: () => void;
+  onOpenPoster?: () => void;
 }
 
 const WelcomePage = ({ 
@@ -20,7 +20,8 @@ const WelcomePage = ({
   onOpenFinancialCalc, 
   onOpenGovSchemes,
   onOpenCommunity,
-  onOpenAchievements
+  onOpenAchievements,
+  onOpenPoster
 }: WelcomePageProps) => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 via-yellow-50 to-green-50">
@@ -83,7 +84,7 @@ const WelcomePage = ({
         </div>
 
         {/* Enhanced Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
           <Card className="border-orange-200 hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={onStartChat}>
             <CardContent className="p-6 text-center">
               <div className="w-16 h-16 bg-gradient-to-r from-orange-400 to-red-400 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -164,6 +165,20 @@ const WelcomePage = ({
               </h3>
               <p className="text-gray-600 text-sm">
                 Track progress and unlock rewards as you grow
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-indigo-200 hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={onOpenPoster}>
+            <CardContent className="p-6 text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-indigo-400 to-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Palette className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                Poster Generator
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Create beautiful promotional posters for your business
               </p>
             </CardContent>
           </Card>

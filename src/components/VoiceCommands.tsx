@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -117,6 +116,15 @@ const VoiceCommands = ({ onCommand }: VoiceCommandsProps) => {
       });
     }
     
+    // Poster commands
+    else if (transcript.includes('पोस्टर') || transcript.includes('poster') || transcript.includes('विज्ञापन')) {
+      onCommand('open_poster');
+      toast({
+        title: "🎯 Voice Command Executed",
+        description: "Opening poster generator...",
+      });
+    }
+    
     // Help commands
     else if (transcript.includes('मदद') || transcript.includes('help')) {
       onCommand('show_help');
@@ -129,7 +137,7 @@ const VoiceCommands = ({ onCommand }: VoiceCommandsProps) => {
     else {
       toast({
         title: "❓ Command Not Recognized", 
-        description: `Heard: "${transcript}". Try: "बिजनेस प्लान बनाओ", "कैलकुलेटर खोलो", "कम्युनिटी खोलो"`,
+        description: `Heard: "${transcript}". Try: "बिजनेस प्लान बनाओ", "कैलकुलेटर खोलो", "पोस्टर बनाओ", "कम्युनिटी खोलो"`,
         variant: "destructive"
       });
     }
@@ -141,7 +149,7 @@ const VoiceCommands = ({ onCommand }: VoiceCommandsProps) => {
       recognition.start();
       toast({
         title: "🎤 Voice Commands Active",
-        description: "Say: 'बिजनेस प्लान बनाओ', 'कैलकुलेटर खोलो', 'कम्युनिटी खोलो', 'अचीवमेंट देखो'",
+        description: "Say: 'बिजनेस प्लान बनाओ', 'कैलकुलेटर खोलो', 'पोस्टर बनाओ', 'कम्युनिटी खोलो', 'अचीवमेंट देखो'",
       });
     }
   };

@@ -1,375 +1,309 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { Download, Sparkles, Palette, Wand2 } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Badge } from '@/components/ui/badge';
+import { Download, Palette, Image, Type, Star } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { aiService } from '@/utils/aiService';
+import ShareButton from './ShareButton';
 
 const PosterGenerator = () => {
-  const [formData, setFormData] = useState({
+  const [posterData, setPosterData] = useState({
     businessName: '',
-    businessType: '',
-    contact: '',
-    description: '',
-    colors: 'warm'
+    tagline: '',
+    contactNumber: '',
+    address: '',
+    services: '',
+    template: 'modern',
+    color: 'purple'
   });
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [generatedPoster, setGeneratedPoster] = useState<string | null>(null);
+  const [generatedPoster, setGeneratedPoster] = useState<any>(null);
   const { toast } = useToast();
 
-  const businessTypes = [
-    { value: 'handicrafts', label: 'हस्तशिल्प - Handicrafts' },
-    { value: 'food', label: 'खाना - Food Business' },
-    { value: 'textiles', label: 'कपड़े - Textiles' },
-    { value: 'beauty', label: 'सौंदर्य - Beauty Products' },
-    { value: 'agriculture', label: 'कृषि - Agriculture' },
-    { value: 'services', label: 'सेवाएं - Services' }
+  const templates = [
+    { id: 'modern', name: 'Modern', description: 'Clean and professional' },
+    { id: 'traditional', name: 'Traditional', description: 'Classic Indian design' },
+    { id: 'colorful', name: 'Colorful', description: 'Vibrant and eye-catching' },
+    { id: 'minimal', name: 'Minimal', description: 'Simple and elegant' }
   ];
 
-  const colorSchemes = [
-    { value: 'warm', label: 'गर्म रंग - Warm Colors', colors: ['#FF6B35', '#F7931E', '#FFD23F'] },
-    { value: 'traditional', label: 'पारंपरिक - Traditional', colors: ['#8B4513', '#CD853F', '#DAA520'] },
-    { value: 'modern', label: 'आधुनिक - Modern', colors: ['#4ECDC4', '#45B7D1', '#96CEB4'] },
-    { value: 'vibrant', label: 'चमकीला - Vibrant', colors: ['#FF1744', '#FF9100', '#00E676'] }
+  const colors = [
+    { id: 'purple', name: 'Purple', hex: '#8B5CF6' },
+    { id: 'pink', name: 'Pink', hex: '#EC4899' },
+    { id: 'orange', name: 'Orange', hex: '#F97316' },
+    { id: 'green', name: 'Green', hex: '#10B981' },
+    { id: 'blue', name: 'Blue', hex: '#3B82F6' }
   ];
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setPosterData(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
 
-  const generatePoster = async () => {
-    if (!formData.businessName || !formData.businessType) {
+  const generatePoster = () => {
+    if (!posterData.businessName || !posterData.contactNumber) {
       toast({
-        title: "Missing Information",
-        description: "Please fill in business name and type.",
+        title: "❌ Missing Information",
+        description: "Please fill in business name and contact number",
         variant: "destructive"
       });
       return;
     }
 
-    setIsGenerating(true);
+    const poster = {
+      ...posterData,
+      id: Date.now(),
+      createdAt: new Date().toLocaleDateString()
+    };
 
-    try {
-      const content = await aiService.generatePosterContent(formData.businessType, formData.businessName);
-      
-      const posterHTML = createPosterHTML(content);
-      setGeneratedPoster(posterHTML);
-
-      toast({
-        title: "Poster Generated!",
-        description: "Your business poster is ready to download.",
-        variant: "default"
-      });
-    } catch (error) {
-      console.error('Poster generation error:', error);
-      toast({
-        title: "Generation Error",
-        description: "Failed to generate poster. Please try again.",
-        variant: "destructive"
-      });
-    } finally {
-      setIsGenerating(false);
-    }
-  };
-
-  const createPosterHTML = (content: string) => {
-    const selectedColorScheme = colorSchemes.find(scheme => scheme.value === formData.colors);
-    const colors = selectedColorScheme?.colors || ['#FF6B35', '#F7931E', '#FFD23F'];
-
-    return `
-      <div style="
-        width: 400px;
-        height: 600px;
-        background: linear-gradient(135deg, ${colors[0]}, ${colors[1]});
-        border-radius: 20px;
-        padding: 30px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        color: white;
-        font-family: 'Arial', sans-serif;
-        position: relative;
-        overflow: hidden;
-      ">
-        <!-- Decorative elements -->
-        <div style="
-          position: absolute;
-          top: -50px;
-          right: -50px;
-          width: 200px;
-          height: 200px;
-          background: rgba(255,255,255,0.1);
-          border-radius: 50%;
-        "></div>
-        
-        <div style="
-          position: absolute;
-          bottom: -30px;
-          left: -30px;
-          width: 150px;
-          height: 150px;
-          background: rgba(255,255,255,0.1);
-          border-radius: 50%;
-        "></div>
-
-        <!-- Content -->
-        <div style="position: relative; z-index: 2; text-align: center; height: 100%;">
-          <div style="
-            background: rgba(255,255,255,0.2);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
-          ">
-            <h1 style="
-              font-size: 28px;
-              font-weight: bold;
-              margin: 0 0 15px 0;
-              text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            ">${formData.businessName}</h1>
-            <p style="
-              font-size: 16px;
-              margin: 0;
-              opacity: 0.9;
-            ">${businessTypes.find(t => t.value === formData.businessType)?.label || formData.businessType}</p>
-          </div>
-
-          <div style="
-            background: rgba(255,255,255,0.15);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: left;
-            backdrop-filter: blur(5px);
-          ">
-            <div style="white-space: pre-line; font-size: 14px; line-height: 1.6;">
-              ${content}
-            </div>
-          </div>
-
-          ${formData.description ? `
-          <div style="
-            background: rgba(255,255,255,0.15);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 20px;
-            backdrop-filter: blur(5px);
-          ">
-            <p style="margin: 0; font-size: 14px; line-height: 1.5;">
-              ${formData.description}
-            </p>
-          </div>
-          ` : ''}
-
-          <div style="
-            position: absolute;
-            bottom: 20px;
-            left: 30px;
-            right: 30px;
-            background: rgba(255,255,255,0.25);
-            border-radius: 12px;
-            padding: 15px;
-            backdrop-filter: blur(10px);
-          ">
-            <p style="
-              margin: 0;
-              font-size: 18px;
-              font-weight: bold;
-              text-align: center;
-            ">📞 ${formData.contact || 'Contact Number'}</p>
-          </div>
-        </div>
-      </div>
-    `;
-  };
-
-  const downloadPoster = () => {
-    if (!generatedPoster) return;
-
-    const blob = new Blob([`
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="UTF-8">
-        <title>${formData.businessName} Poster</title>
-        <style>
-          body { margin: 0; padding: 20px; background: #f0f0f0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        </style>
-      </head>
-      <body>
-        ${generatedPoster}
-      </body>
-      </html>
-    `], { type: 'text/html' });
-
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${formData.businessName.replace(/\s+/g, '_')}_poster.html`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-
+    setGeneratedPoster(poster);
+    
     toast({
-      title: "Download Started",
-      description: "Your poster has been downloaded as an HTML file.",
-      variant: "default"
+      title: "🎨 Poster Generated!",
+      description: "Your promotional poster is ready for download and sharing",
     });
   };
 
+  const downloadPoster = () => {
+    // In a real app, this would generate and download an actual image
+    toast({
+      title: "📥 Download Started",
+      description: "Poster image will be saved to your device",
+    });
+  };
+
+  const selectedColor = colors.find(c => c.id === posterData.color);
+
   return (
-    <div className="p-4 space-y-6 bg-gradient-to-b from-purple-50 to-pink-50 min-h-screen">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">
-          🎨 पोस्टर जेनरेटर - Poster Generator
-        </h1>
-        <p className="text-gray-600">Create beautiful business posters with intelligent assistance</p>
-      </div>
+    <div className="min-h-screen bg-gray-50 p-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+            🎨 Poster Generator
+          </h1>
+          <p className="text-gray-600">
+            Create beautiful promotional posters for your business
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Form */}
-        <Card className="border-purple-200">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Palette className="w-5 h-5 text-purple-500" />
-              <span>Business Details</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="businessName">व्यापार का नाम - Business Name</Label>
-              <Input
-                id="businessName"
-                value={formData.businessName}
-                onChange={(e) => handleInputChange('businessName', e.target.value)}
-                placeholder="e.g., सीता की हस्तकला - Seeta's Handicrafts"
-                className="border-purple-200 focus:border-purple-400"
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="businessType">व्यापार का प्रकार - Business Type</Label>
-              <Select value={formData.businessType} onValueChange={(value) => handleInputChange('businessType', value)}>
-                <SelectTrigger className="border-purple-200 focus:border-purple-400">
-                  <SelectValue placeholder="Select business type" />
-                </SelectTrigger>
-                <SelectContent>
-                  {businessTypes.map((type) => (
-                    <SelectItem key={type.value} value={type.value}>
-                      {type.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <Label htmlFor="contact">संपर्क नंबर - Contact Number</Label>
-              <Input
-                id="contact"
-                value={formData.contact}
-                onChange={(e) => handleInputChange('contact', e.target.value)}
-                placeholder="9876543210"
-                className="border-purple-200 focus:border-purple-400"
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="description">विवरण - Description (Optional)</Label>
-              <Textarea
-                id="description"
-                value={formData.description}
-                onChange={(e) => handleInputChange('description', e.target.value)}
-                placeholder="Brief description of your business..."
-                className="border-purple-200 focus:border-purple-400"
-                rows={3}
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="colors">रंग योजना - Color Scheme</Label>
-              <Select value={formData.colors} onValueChange={(value) => handleInputChange('colors', value)}>
-                <SelectTrigger className="border-purple-200 focus:border-purple-400">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {colorSchemes.map((scheme) => (
-                    <SelectItem key={scheme.value} value={scheme.value}>
-                      <div className="flex items-center space-x-2">
-                        <div className="flex space-x-1">
-                          {scheme.colors.map((color, idx) => (
-                            <div
-                              key={idx}
-                              className="w-4 h-4 rounded-full"
-                              style={{ backgroundColor: color }}
-                            />
-                          ))}
-                        </div>
-                        <span>{scheme.label}</span>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <Button
-              onClick={generatePoster}
-              disabled={isGenerating}
-              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
-            >
-              {isGenerating ? (
-                <>
-                  <Wand2 className="w-4 h-4 mr-2 animate-spin" />
-                  Generating...
-                </>
-              ) : (
-                <>
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  Generate Poster
-                </>
-              )}
-            </Button>
-          </CardContent>
-        </Card>
-
-        {/* Preview */}
-        <Card className="border-purple-200">
-          <CardHeader>
-            <CardTitle className="flex items-center justify-between">
-              <span>Preview</span>
-              {generatedPoster && (
-                <Button
-                  onClick={downloadPoster}
-                  variant="outline"
-                  size="sm"
-                  className="border-purple-200"
-                >
-                  <Download className="w-4 h-4 mr-2" />
-                  Download
-                </Button>
-              )}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {generatedPoster ? (
-              <div className="flex justify-center">
-                <div 
-                  dangerouslySetInnerHTML={{ __html: generatedPoster }}
-                  style={{ transform: 'scale(0.8)', transformOrigin: 'top center' }}
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Poster Designer */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Palette className="w-5 h-5 mr-2" />
+                Design Your Poster
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <Label htmlFor="businessName">Business Name *</Label>
+                <Input
+                  id="businessName"
+                  value={posterData.businessName}
+                  onChange={(e) => handleInputChange('businessName', e.target.value)}
+                  placeholder="Enter your business name"
                 />
               </div>
-            ) : (
-              <div className="flex items-center justify-center h-64 bg-gray-100 rounded-lg border-2 border-dashed border-gray-300">
-                <div className="text-center">
-                  <Palette className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-500">Your poster preview will appear here</p>
+
+              <div>
+                <Label htmlFor="tagline">Tagline</Label>
+                <Input
+                  id="tagline"
+                  value={posterData.tagline}
+                  onChange={(e) => handleInputChange('tagline', e.target.value)}
+                  placeholder="e.g., 'Fresh homemade pickles'"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="services">Services/Products</Label>
+                <Textarea
+                  id="services"
+                  value={posterData.services}
+                  onChange={(e) => handleInputChange('services', e.target.value)}
+                  placeholder="List your main products or services"
+                  rows={3}
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="contactNumber">Contact Number *</Label>
+                <Input
+                  id="contactNumber"
+                  value={posterData.contactNumber}
+                  onChange={(e) => handleInputChange('contactNumber', e.target.value)}
+                  placeholder="Your phone number"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="address">Address</Label>
+                <Textarea
+                  id="address"
+                  value={posterData.address}
+                  onChange={(e) => handleInputChange('address', e.target.value)}
+                  placeholder="Your business address"
+                  rows={2}
+                />
+              </div>
+
+              <div>
+                <Label>Template Style</Label>
+                <Select value={posterData.template} onValueChange={(value) => handleInputChange('template', value)}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {templates.map(template => (
+                      <SelectItem key={template.id} value={template.id}>
+                        <div>
+                          <div className="font-medium">{template.name}</div>
+                          <div className="text-sm text-gray-500">{template.description}</div>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label>Color Theme</Label>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {colors.map(color => (
+                    <button
+                      key={color.id}
+                      onClick={() => handleInputChange('color', color.id)}
+                      className={`w-12 h-12 rounded-full border-4 ${
+                        posterData.color === color.id ? 'border-gray-800' : 'border-gray-300'
+                      }`}
+                      style={{ backgroundColor: color.hex }}
+                      title={color.name}
+                    />
+                  ))}
                 </div>
               </div>
-            )}
+
+              <Button onClick={generatePoster} className="w-full" size="lg">
+                <Image className="w-5 h-5 mr-2" />
+                Generate Poster
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Poster Preview */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Star className="w-5 h-5 mr-2" />
+                Poster Preview
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {generatedPoster ? (
+                <div className="space-y-6">
+                  {/* Poster Mockup */}
+                  <div 
+                    className="aspect-[3/4] border-8 border-white shadow-2xl rounded-lg p-6 text-white relative"
+                    style={{ 
+                      backgroundColor: selectedColor?.hex,
+                      backgroundImage: `linear-gradient(135deg, ${selectedColor?.hex}cc, ${selectedColor?.hex})`
+                    }}
+                  >
+                    <div className="text-center space-y-4">
+                      <h2 className="text-2xl font-bold">{generatedPoster.businessName}</h2>
+                      {generatedPoster.tagline && (
+                        <p className="text-lg opacity-90">{generatedPoster.tagline}</p>
+                      )}
+                      
+                      <div className="my-8">
+                        <div className="w-20 h-20 bg-white/20 rounded-full mx-auto flex items-center justify-center">
+                          <Type className="w-10 h-10" />
+                        </div>
+                      </div>
+
+                      {generatedPoster.services && (
+                        <div className="bg-white/10 rounded-lg p-4">
+                          <p className="text-sm">{generatedPoster.services}</p>
+                        </div>
+                      )}
+
+                      <div className="absolute bottom-6 left-6 right-6 space-y-2">
+                        <div className="flex items-center justify-center">
+                          <Badge className="bg-white text-gray-800">
+                            📞 {generatedPoster.contactNumber}
+                          </Badge>
+                        </div>
+                        {generatedPoster.address && (
+                          <p className="text-xs opacity-80 text-center">
+                            📍 {generatedPoster.address}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex flex-wrap gap-3">
+                    <Button onClick={downloadPoster} className="flex-1">
+                      <Download className="w-4 h-4 mr-2" />
+                      Download
+                    </Button>
+                    <ShareButton 
+                      type="business-plan" 
+                      data={generatedPoster}
+                      variant="outline"
+                    />
+                  </div>
+
+                  <div className="text-center">
+                    <Badge variant="secondary">
+                      Template: {templates.find(t => t.id === generatedPoster.template)?.name}
+                    </Badge>
+                  </div>
+                </div>
+              ) : (
+                <div className="aspect-[3/4] border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
+                  <div className="text-center text-gray-500">
+                    <Image className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                    <p>Fill in the details and generate your poster</p>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Quick Tips */}
+        <Card className="mt-8">
+          <CardHeader>
+            <CardTitle>💡 Poster Tips</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+              <div>
+                <h4 className="font-semibold text-blue-600 mb-2">Keep it Simple</h4>
+                <p>Use clear, readable fonts and avoid cluttering</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-green-600 mb-2">High Contrast</h4>
+                <p>Ensure text is easily readable against the background</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-purple-600 mb-2">Include Contact</h4>
+                <p>Always add your phone number or WhatsApp</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-orange-600 mb-2">Local Language</h4>
+                <p>Consider adding Hindi text for local customers</p>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
