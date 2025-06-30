@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import WelcomePage from './WelcomePage';
 import ChatBot from './ChatBot';
@@ -5,12 +6,14 @@ import Settings from './Settings';
 import BusinessPlanGenerator from './BusinessPlanGenerator';
 import FinancialCalculator from './FinancialCalculator';
 import GovernmentSchemes from './GovernmentSchemes';
+import CommunityForum from './CommunityForum';
+import AchievementSystem from './AchievementSystem';
 import VoiceCommands from './VoiceCommands';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Settings as SettingsIcon, FileText, Calculator, Building2 } from 'lucide-react';
+import { ArrowLeft, Settings as SettingsIcon, FileText, Calculator, Building2, Users, Trophy } from 'lucide-react';
 
 const SakhiCopilotApp = () => {
-  const [currentView, setCurrentView] = useState<'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc' | 'gov-schemes'>('welcome');
+  const [currentView, setCurrentView] = useState<'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc' | 'gov-schemes' | 'community' | 'achievements'>('welcome');
 
   const handleStartChat = () => {
     setCurrentView('chat');
@@ -36,6 +39,14 @@ const SakhiCopilotApp = () => {
     setCurrentView('gov-schemes');
   };
 
+  const handleOpenCommunity = () => {
+    setCurrentView('community');
+  };
+
+  const handleOpenAchievements = () => {
+    setCurrentView('achievements');
+  };
+
   const handleVoiceCommand = (command: string, params?: any) => {
     switch (command) {
       case 'create_business_plan':
@@ -52,6 +63,12 @@ const SakhiCopilotApp = () => {
         break;
       case 'open_chat':
         setCurrentView('chat');
+        break;
+      case 'open_community':
+        setCurrentView('community');
+        break;
+      case 'open_achievements':
+        setCurrentView('achievements');
         break;
       case 'show_help':
         // Handle help command
@@ -107,6 +124,24 @@ const SakhiCopilotApp = () => {
                   Schemes
                 </Button>
                 <Button
+                  onClick={handleOpenCommunity}
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  <Users className="w-4 h-4 mr-2" />
+                  Community
+                </Button>
+                <Button
+                  onClick={handleOpenAchievements}
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  <Trophy className="w-4 h-4 mr-2" />
+                  Achievements
+                </Button>
+                <Button
                   onClick={handleOpenSettings}
                   variant="ghost"
                   size="sm"
@@ -129,6 +164,8 @@ const SakhiCopilotApp = () => {
             onOpenBusinessPlan={handleOpenBusinessPlan}
             onOpenFinancialCalc={handleOpenFinancialCalc}
             onOpenGovSchemes={handleOpenGovSchemes}
+            onOpenCommunity={handleOpenCommunity}
+            onOpenAchievements={handleOpenAchievements}
           />
         )}
         
@@ -150,6 +187,14 @@ const SakhiCopilotApp = () => {
 
         {currentView === 'gov-schemes' && (
           <GovernmentSchemes />
+        )}
+
+        {currentView === 'community' && (
+          <CommunityForum />
+        )}
+
+        {currentView === 'achievements' && (
+          <AchievementSystem />
         )}
       </div>
 

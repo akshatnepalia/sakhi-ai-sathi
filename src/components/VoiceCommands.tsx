@@ -99,6 +99,24 @@ const VoiceCommands = ({ onCommand }: VoiceCommandsProps) => {
       });
     }
     
+    // Community commands
+    else if (transcript.includes('कम्युनिटी') || transcript.includes('community') || transcript.includes('फोरम')) {
+      onCommand('open_community');
+      toast({
+        title: "🎯 Voice Command Executed",
+        description: "Opening community forum...",
+      });
+    }
+    
+    // Achievement commands
+    else if (transcript.includes('अचीवमेंट') || transcript.includes('achievement') || transcript.includes('रिवॉर्ड')) {
+      onCommand('open_achievements');
+      toast({
+        title: "🎯 Voice Command Executed",
+        description: "Opening achievement system...",
+      });
+    }
+    
     // Help commands
     else if (transcript.includes('मदद') || transcript.includes('help')) {
       onCommand('show_help');
@@ -111,7 +129,7 @@ const VoiceCommands = ({ onCommand }: VoiceCommandsProps) => {
     else {
       toast({
         title: "❓ Command Not Recognized", 
-        description: `Heard: "${transcript}". Try: "बिजनेस प्लान बनाओ" or "कैलकुलेटर खोलो"`,
+        description: `Heard: "${transcript}". Try: "बिजनेस प्लान बनाओ", "कैलकुलेटर खोलो", "कम्युनिटी खोलो"`,
         variant: "destructive"
       });
     }
@@ -123,7 +141,7 @@ const VoiceCommands = ({ onCommand }: VoiceCommandsProps) => {
       recognition.start();
       toast({
         title: "🎤 Voice Commands Active",
-        description: "Say: 'बिजनेस प्लान बनाओ', 'कैलकुलेटर खोलो', 'सरकारी योजना'",
+        description: "Say: 'बिजनेस प्लान बनाओ', 'कैलकुलेटर खोलो', 'कम्युनिटी खोलो', 'अचीवमेंट देखो'",
       });
     }
   };

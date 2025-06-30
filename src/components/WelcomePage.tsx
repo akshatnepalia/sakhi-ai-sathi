@@ -1,7 +1,8 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { MessageCircle, Users, TrendingUp, Heart, FileText, Calculator, PiggyBank, Award } from 'lucide-react';
+import { MessageCircle, Users, TrendingUp, Heart, FileText, Calculator, PiggyBank, Award, Trophy } from 'lucide-react';
 import ShareButton from './ShareButton';
 
 interface WelcomePageProps {
@@ -9,9 +10,18 @@ interface WelcomePageProps {
   onOpenBusinessPlan?: () => void;
   onOpenFinancialCalc?: () => void;
   onOpenGovSchemes?: () => void;
+  onOpenCommunity?: () => void;
+  onOpenAchievements?: () => void;
 }
 
-const WelcomePage = ({ onStartChat, onOpenBusinessPlan, onOpenFinancialCalc, onOpenGovSchemes }: WelcomePageProps) => {
+const WelcomePage = ({ 
+  onStartChat, 
+  onOpenBusinessPlan, 
+  onOpenFinancialCalc, 
+  onOpenGovSchemes,
+  onOpenCommunity,
+  onOpenAchievements
+}: WelcomePageProps) => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 via-yellow-50 to-green-50">
       {/* Hero Section */}
@@ -30,7 +40,7 @@ const WelcomePage = ({ onStartChat, onOpenBusinessPlan, onOpenFinancialCalc, onO
           </p>
           
           <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-            Empowering rural women entrepreneurs with AI-powered guidance, business planning tools, and financial calculators
+            Empowering rural women entrepreneurs with comprehensive business guidance, community support, and achievement tracking
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -73,7 +83,7 @@ const WelcomePage = ({ onStartChat, onOpenBusinessPlan, onOpenFinancialCalc, onO
         </div>
 
         {/* Enhanced Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           <Card className="border-orange-200 hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={onStartChat}>
             <CardContent className="p-6 text-center">
               <div className="w-16 h-16 bg-gradient-to-r from-orange-400 to-red-400 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -119,13 +129,41 @@ const WelcomePage = ({ onStartChat, onOpenBusinessPlan, onOpenFinancialCalc, onO
           <Card className="border-purple-200 hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={onOpenGovSchemes}>
             <CardContent className="p-6 text-center">
               <div className="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-white" />
+                <PiggyBank className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-gray-800 mb-2">
                 Government Schemes
               </h3>
               <p className="text-gray-600 text-sm">
                 Find loans and schemes for women entrepreneurs
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-indigo-200 hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={onOpenCommunity}>
+            <CardContent className="p-6 text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                Community Forum
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Connect with fellow entrepreneurs and share experiences
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-yellow-200 hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={onOpenAchievements}>
+            <CardContent className="p-6 text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Trophy className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                Achievement System
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Track progress and unlock rewards as you grow
               </p>
             </CardContent>
           </Card>
@@ -143,15 +181,15 @@ const WelcomePage = ({ onStartChat, onOpenBusinessPlan, onOpenFinancialCalc, onO
                 <TrendingUp className="w-6 h-6 text-white" />
               </div>
               <h4 className="font-semibold text-gray-800 mb-2">Complete Business Suite</h4>
-              <p className="text-gray-600 text-sm">Chat, plan, calculate, and grow - all in one platform</p>
+              <p className="text-gray-600 text-sm">Chat, plan, calculate, connect, and grow - all in one platform</p>
             </div>
             
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                <PiggyBank className="w-6 h-6 text-white" />
+                <Users className="w-6 h-6 text-white" />
               </div>
-              <h4 className="font-semibold text-gray-800 mb-2">Financial Planning</h4>
-              <p className="text-gray-600 text-sm">Professional tools for loan planning and profit calculation</p>
+              <h4 className="font-semibold text-gray-800 mb-2">Community Support</h4>
+              <p className="text-gray-600 text-sm">Learn from successful entrepreneurs and get mentorship</p>
             </div>
             
             <div className="text-center">
@@ -207,10 +245,10 @@ const WelcomePage = ({ onStartChat, onOpenBusinessPlan, onOpenFinancialCalc, onO
             <Card className="border-l-4 border-l-purple-400 bg-white">
               <CardContent className="p-4">
                 <p className="text-gray-700 font-medium">
-                  📱 Voice support in Hindi and English for easy interaction
+                  🏘️ Connect with other entrepreneurs and share success stories
                 </p>
                 <p className="text-sm text-gray-500 mt-1">
-                  Speak naturally, get answers instantly
+                  Active community forum with expert guidance
                 </p>
               </CardContent>
             </Card>
