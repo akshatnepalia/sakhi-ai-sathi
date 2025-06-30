@@ -7,7 +7,7 @@ export const whatsappService = {
       `📈 *Monthly Revenue:* ₹${businessPlan.monthlyRevenue?.toLocaleString()}\n` +
       `⏰ *Break-even:* ${businessPlan.breakEvenMonths} months\n\n` +
       `✨ Created with SakhiCopilot - Your Business Companion\n` +
-      `🌐 ${window.location.origin}`;
+      `🌐 Join the community: https://sakhicopilot.com`;
     
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
@@ -19,7 +19,7 @@ export const whatsappService = {
       `💵 *Amount:* ₹${calculation.amount?.toLocaleString()}\n` +
       `📈 *Result:* ₹${calculation.result?.toLocaleString()}\n\n` +
       `✨ Calculated with SakhiCopilot\n` +
-      `🌐 ${window.location.origin}`;
+      `🌐 Get your business insights: https://sakhicopilot.com`;
     
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
@@ -32,7 +32,7 @@ export const whatsappService = {
       `📊 *Interest Rate:* ${scheme.interestRate}\n` +
       `🏢 *Department:* ${scheme.department}\n\n` +
       `✨ Found on SakhiCopilot\n` +
-      `🌐 ${window.location.origin}`;
+      `🌐 Discover more schemes: https://sakhicopilot.com`;
     
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
@@ -41,12 +41,13 @@ export const whatsappService = {
   inviteFriend: () => {
     const message = `🌟 *SakhiCopilot - Your Business Companion*\n\n` +
       `मैंने एक बहुत अच्छा ऐप खोजा है जो महिला उद्यमिता के लिए है!\n\n` +
-      `✅ AI से बिजनेस सलाह\n` +
+      `✅ व्यापारिक सलाह और मार्गदर्शन\n` +
       `✅ बिजनेस प्लान बनाना\n` +
       `✅ फाइनेंशियल कैलकुलेटर\n` +
       `✅ सरकारी योजनाएं\n` +
+      `✅ कम्युनिटी फोरम\n` +
       `✅ हिंदी और अंग्रेजी में\n\n` +
-      `🔗 ${window.location.origin}`;
+      `🔗 Join now: https://sakhicopilot.com`;
     
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
