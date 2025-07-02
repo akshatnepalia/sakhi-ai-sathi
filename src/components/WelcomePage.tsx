@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { MessageCircle, Users, TrendingUp, Heart, FileText, Calculator, PiggyBank, Award, Trophy, Palette, Star, Sparkles, Crown, Target } from 'lucide-react';
+import { MessageCircle, Users, TrendingUp, FileText, Calculator, PiggyBank, Award, Trophy, Palette, Target, Building2, BookOpen, Heart } from 'lucide-react';
 import ShareButton from './ShareButton';
 
 interface WelcomePageProps {
@@ -25,301 +25,314 @@ const WelcomePage = ({
   onOpenPoster
 }: WelcomePageProps) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-orange-50 via-yellow-50 to-emerald-50 overflow-hidden">
-      {/* Decorative Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-4 -right-4 w-72 h-72 bg-gradient-to-br from-pink-200 to-rose-300 rounded-full opacity-20 blur-3xl"></div>
-        <div className="absolute top-1/3 -left-8 w-64 h-64 bg-gradient-to-br from-orange-200 to-yellow-300 rounded-full opacity-20 blur-3xl"></div>
-        <div className="absolute -bottom-8 right-1/3 w-80 h-80 bg-gradient-to-br from-emerald-200 to-teal-300 rounded-full opacity-20 blur-3xl"></div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Government Header Bar */}
+      <div className="bg-blue-900 text-white px-4 py-2 text-sm">
+        <div className="container mx-auto flex justify-between items-center">
+          <span>Government of India Initiative</span>
+          <span>महिला उद्यमिता विकास मंच</span>
+        </div>
       </div>
 
-      {/* Hero Section */}
-      <div className="relative container mx-auto px-4 py-16">
-        <div className="text-center mb-16">
-          {/* Hero Image */}
-          <div className="relative mb-8">
-            <div className="w-32 h-32 bg-gradient-to-br from-rose-400 via-orange-400 to-yellow-400 rounded-3xl rotate-6 flex items-center justify-center mx-auto mb-6 shadow-2xl">
-              <Crown className="w-16 h-16 text-white transform -rotate-6" />
+      {/* Main Header */}
+      <header className="bg-white border-b-4 border-orange-500 shadow-sm">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
+                <Building2 className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-blue-900">SakhiCopilot</h1>
+                <p className="text-gray-600">Women Entrepreneurship Development Platform</p>
+              </div>
             </div>
-            <div className="absolute -top-2 -right-2">
-              <Sparkles className="w-8 h-8 text-yellow-400 animate-pulse" />
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-orange-500 rounded">
+                <div className="w-full h-4 bg-white"></div>
+                <div className="w-full h-4 bg-green-500"></div>
+                <div className="w-full h-4 bg-orange-500"></div>
+              </div>
             </div>
           </div>
-          
-          <h1 className="text-5xl md:text-7xl font-black bg-gradient-to-r from-rose-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent mb-6 leading-tight">
-            SakhiCopilot
-          </h1>
-          
-          <p className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-            आपकी सफलता की सहेली 💫
+        </div>
+      </header>
+
+      {/* Navigation */}
+      <nav className="bg-blue-800 text-white">
+        <div className="container mx-auto px-4">
+          <div className="flex space-x-8 py-3">
+            <a href="#" className="hover:text-orange-300 transition-colors">Home</a>
+            <a href="#" className="hover:text-orange-300 transition-colors">Services</a>
+            <a href="#" className="hover:text-orange-300 transition-colors">Schemes</a>
+            <a href="#" className="hover:text-orange-300 transition-colors">Resources</a>
+            <a href="#" className="hover:text-orange-300 transition-colors">Contact</a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-blue-50 to-orange-50 py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold text-blue-900 mb-4">
+            Empowering Women Entrepreneurs
+          </h2>
+          <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
+            Complete digital platform for women entrepreneurs providing business guidance, 
+            financial tools, government scheme information, and community support
           </p>
-          
-          <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
-            महिला उद्यमियों के लिए संपूर्ण व्यापारिक मार्गदर्शन, समुदायिक सहयोग, और उपलब्धि ट्रैकिंग
-          </p>
-          
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap justify-center gap-6 mb-12">
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
             <Button
               onClick={onStartChat}
-              className="bg-gradient-to-r from-rose-500 via-orange-500 to-yellow-500 hover:from-rose-600 hover:via-orange-600 hover:to-yellow-600 text-white px-10 py-4 text-xl font-bold rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg"
             >
-              <MessageCircle className="w-6 h-6 mr-3" />
-              सखी से बात करें
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Start AI Assistant
             </Button>
-            
             <Button
               onClick={onOpenBusinessPlan}
               variant="outline"
-              className="border-2 border-purple-300 text-purple-700 hover:bg-purple-50 px-8 py-4 text-xl font-bold rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+              className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3 text-lg"
             >
-              <Target className="w-6 h-6 mr-3" />
-              बिजनेस प्लान बनाएं
+              <FileText className="w-5 h-5 mr-2" />
+              Create Business Plan
             </Button>
           </div>
+        </div>
+      </section>
 
-          {/* Success Stories Banner */}
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-purple-600 to-pink-600 p-8 mb-16 shadow-2xl">
-            <div className="relative z-10 text-center">
-              <div className="flex justify-center mb-4">
-                <img 
-                  src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=120&h=120&fit=crop&crop=face" 
-                  alt="Successful woman entrepreneur" 
-                  className="w-20 h-20 rounded-full border-4 border-white shadow-lg mr-2"
-                />
-                <img 
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=120&h=120&fit=crop&crop=face" 
-                  alt="Woman using laptop" 
-                  className="w-20 h-20 rounded-full border-4 border-white shadow-lg mx-2"
-                />
-                <img 
-                  src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=120&h=120&fit=crop&crop=face" 
-                  alt="Business woman" 
-                  className="w-20 h-20 rounded-full border-4 border-white shadow-lg ml-2"
-                />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-2">2,847+ सफल महिला उद्यमी</h3>
-              <p className="text-purple-100 text-lg">हमारे साथ अपना बिजनेस बढ़ा चुकी हैं! 🚀</p>
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-pink-400/20"></div>
+      {/* Services Grid */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h3 className="text-3xl font-bold text-center text-blue-900 mb-12">
+            Digital Services for Women Entrepreneurs
+          </h3>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <Card className="border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer" onClick={onStartChat}>
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <MessageCircle className="w-8 h-8 text-blue-600" />
+                </div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                  AI Business Assistant
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  Get instant guidance and answers for your business queries
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer" onClick={onOpenBusinessPlan}>
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <FileText className="w-8 h-8 text-green-600" />
+                </div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                  Business Plan Generator
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  Create professional business plans with financial projections
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer" onClick={onOpenFinancialCalc}>
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Calculator className="w-8 h-8 text-orange-600" />
+                </div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                  Financial Calculator
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  Calculate ROI, EMI, break-even points and profit margins
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer" onClick={onOpenGovSchemes}>
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <PiggyBank className="w-8 h-8 text-purple-600" />
+                </div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                  Government Schemes
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  Find loans and schemes for women entrepreneurs
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer" onClick={onOpenCommunity}>
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-red-600" />
+                </div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                  Community Forum
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  Connect with fellow women entrepreneurs
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer" onClick={onOpenAchievements}>
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Trophy className="w-8 h-8 text-yellow-600" />
+                </div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                  Progress Tracking
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  Track your entrepreneurial journey and achievements
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer" onClick={onOpenPoster}>
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Palette className="w-8 h-8 text-indigo-600" />
+                </div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                  Marketing Materials
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  Create promotional posters for your business
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <BookOpen className="w-8 h-8 text-teal-600" />
+                </div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                  Learning Resources
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  Access training materials and educational content
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
+      </section>
 
-        {/* Enhanced Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
-          <Card className="group border-0 bg-gradient-to-br from-rose-50 to-pink-100 hover:from-rose-100 hover:to-pink-200 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:-rotate-1" onClick={onStartChat}>
-            <CardContent className="p-8 text-center relative overflow-hidden">
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-rose-200 to-pink-300 rounded-full opacity-30"></div>
-              <div className="w-20 h-20 bg-gradient-to-br from-rose-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transform group-hover:rotate-12 transition-transform duration-300">
-                <MessageCircle className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">
-                स्मार्ट AI चैट 🗣️
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                हिंदी या अंग्रेजी में तुरंत जवाब पाएं, आवाज़ की सुविधा के साथ
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="group border-0 bg-gradient-to-br from-blue-50 to-indigo-100 hover:from-blue-100 hover:to-indigo-200 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:rotate-1" onClick={onOpenBusinessPlan}>
-            <CardContent className="p-8 text-center relative overflow-hidden">
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-blue-200 to-indigo-300 rounded-full opacity-30"></div>
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transform group-hover:rotate-12 transition-transform duration-300">
-                <FileText className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">
-                बिजनेस प्लान जेनेरेटर 📊
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                वित्तीय अनुमानों के साथ प्रोफेशनल बिजनेस प्लान बनाएं
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="group border-0 bg-gradient-to-br from-emerald-50 to-teal-100 hover:from-emerald-100 hover:to-teal-200 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:-rotate-1" onClick={onOpenFinancialCalc}>
-            <CardContent className="p-8 text-center relative overflow-hidden">
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-emerald-200 to-teal-300 rounded-full opacity-30"></div>
-              <div className="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transform group-hover:rotate-12 transition-transform duration-300">
-                <Calculator className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">
-                वित्तीय कैलकुलेटर 💰
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                मुनाफा, ROI, लोन EMI, और ब्रेक-ईवन पॉइंट कैलकुलेट करें
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="group border-0 bg-gradient-to-br from-purple-50 to-pink-100 hover:from-purple-100 hover:to-pink-200 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:rotate-1" onClick={onOpenGovSchemes}>
-            <CardContent className="p-8 text-center relative overflow-hidden">
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-purple-200 to-pink-300 rounded-full opacity-30"></div>
-              <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transform group-hover:rotate-12 transition-transform duration-300">
-                <PiggyBank className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">
-                सरकारी योजनाएं 🏛️
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                महिला उद्यमियों के लिए लोन और योजनाएं खोजें
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="group border-0 bg-gradient-to-br from-orange-50 to-red-100 hover:from-orange-100 hover:to-red-200 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:-rotate-1" onClick={onOpenCommunity}>
-            <CardContent className="p-8 text-center relative overflow-hidden">
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-orange-200 to-red-300 rounded-full opacity-30"></div>
-              <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transform group-hover:rotate-12 transition-transform duration-300">
-                <Users className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">
-                कम्युनिटी फोरम 👥
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                साथी उद्यमियों से जुड़ें और अनुभव साझा करें
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="group border-0 bg-gradient-to-br from-yellow-50 to-orange-100 hover:from-yellow-100 hover:to-orange-200 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:rotate-1" onClick={onOpenAchievements}>
-            <CardContent className="p-8 text-center relative overflow-hidden">
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-yellow-200 to-orange-300 rounded-full opacity-30"></div>
-              <div className="w-20 h-20 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transform group-hover:rotate-12 transition-transform duration-300">
-                <Trophy className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">
-                उपलब्धि सिस्टम 🏆
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                प्रगति ट्रैक करें और बढ़ने के साथ रिवार्ड अनलॉक करें
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="group border-0 bg-gradient-to-br from-indigo-50 to-blue-100 hover:from-indigo-100 hover:to-blue-200 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:-rotate-1" onClick={onOpenPoster}>
-            <CardContent className="p-8 text-center relative overflow-hidden">
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-indigo-200 to-blue-300 rounded-full opacity-30"></div>
-              <div className="w-20 h-20 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transform group-hover:rotate-12 transition-transform duration-300">
-                <Palette className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">
-                पोस्टर जेनेरेटर 🎨
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                अपने बिजनेस के लिए सुंदर प्रमोशनल पोस्टर बनाएं
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="group border-0 bg-gradient-to-br from-teal-50 to-cyan-100 hover:from-teal-100 hover:to-cyan-200 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:rotate-1">
-            <CardContent className="p-8 text-center relative overflow-hidden">
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-teal-200 to-cyan-300 rounded-full opacity-30"></div>
-              <div className="w-20 h-20 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transform group-hover:rotate-12 transition-transform duration-300">
-                <Star className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">
-                मेंटरशिप प्रोग्राम 🌟
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                अनुभवी उद्यमियों से सीधे सलाह और मार्गदर्शन पाएं
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Success Stories Section */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-12 mb-16 border border-white/20">
-          <h2 className="text-4xl font-bold text-gray-800 text-center mb-8">
-            <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              सफलता की कहानियां 📈
-            </span>
-          </h2>
+      {/* Key Features */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h3 className="text-3xl font-bold text-center text-blue-900 mb-12">
+            Platform Features
+          </h3>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center group">
-              <div className="relative mb-6">
-                <img 
-                  src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=200&h=200&fit=crop&crop=face" 
-                  alt="Priya Sharma - Pickle Business Success" 
-                  className="w-24 h-24 rounded-full mx-auto shadow-xl group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                  <Trophy className="w-4 h-4 text-white" />
-                </div>
+            <div className="text-center">
+              <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Target className="w-12 h-12 text-white" />
               </div>
-              <h4 className="font-bold text-gray-800 mb-2">प्रिया शर्मा</h4>
-              <p className="text-gray-600 text-sm mb-3">अचार बिजनेस</p>
-              <p className="text-2xl font-bold text-green-600 mb-2">₹50,000/महीना</p>
-              <p className="text-gray-600 text-sm">"₹5000 से शुरू करके आज मैं एक सफल बिजनेसवुमन हूं!"</p>
+              <h4 className="text-xl font-semibold text-gray-800 mb-4">Comprehensive Guidance</h4>
+              <p className="text-gray-600">
+                End-to-end support for starting and scaling your business with AI-powered assistance
+              </p>
             </div>
             
-            <div className="text-center group">
-              <div className="relative mb-6">
-                <img 
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=200&h=200&fit=crop&crop=face" 
-                  alt="Sunita Devi - Handicraft Export Success" 
-                  className="w-24 h-24 rounded-full mx-auto shadow-xl group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-                  <Crown className="w-4 h-4 text-white" />
-                </div>
+            <div className="text-center">
+              <div className="w-24 h-24 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <TrendingUp className="w-12 h-12 text-white" />
               </div>
-              <h4 className="font-bold text-gray-800 mb-2">सुनीता देवी</h4>
-              <p className="text-gray-600 text-sm mb-3">हस्तशिल्प निर्यात</p>
-              <p className="text-2xl font-bold text-blue-600 mb-2">₹1,20,000/महीना</p>
-              <p className="text-gray-600 text-sm">"घर से शुरू करके अब मैं अंतर्राष्ट्रीय बाजार में हूं!"</p>
+              <h4 className="text-xl font-semibold text-gray-800 mb-4">Financial Tools</h4>
+              <p className="text-gray-600">
+                Professional financial calculators and business planning tools for informed decisions
+              </p>
             </div>
             
-            <div className="text-center group">
-              <div className="relative mb-6">
-                <img 
-                  src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=200&h=200&fit=crop&crop=face" 
-                  alt="Meera Patel - Fashion Boutique Success" 
-                  className="w-24 h-24 rounded-full mx-auto shadow-xl group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
-                  <Heart className="w-4 h-4 text-white" />
-                </div>
+            <div className="text-center">
+              <div className="w-24 h-24 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Heart className="w-12 h-12 text-white" />
               </div>
-              <h4 className="font-bold text-gray-800 mb-2">मीरा पटेल</h4>
-              <p className="text-gray-600 text-sm mb-3">फैशन बुटीक</p>
-              <p className="text-2xl font-bold text-purple-600 mb-2">₹80,000/महीना</p>
-              <p className="text-gray-600 text-sm">"सखी की मदद से मैंने अपना सपनों का बुटीक खोला!"</p>
+              <h4 className="text-xl font-semibold text-gray-800 mb-4">Community Support</h4>
+              <p className="text-gray-600">
+                Connect with mentors and fellow entrepreneurs for networking and collaboration
+              </p>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Call to Action Section */}
-        <div className="text-center">
-          <div className="bg-gradient-to-r from-rose-500 via-orange-500 to-yellow-500 rounded-3xl p-12 shadow-2xl">
-            <h2 className="text-4xl font-bold text-white mb-6">
-              आज ही शुरू करें अपना बिजनेस जर्नी! 🚀
-            </h2>
-            <p className="text-xl text-rose-100 mb-8 max-w-2xl mx-auto">
-              हज़ारों महिलाओं की तरह आप भी बनें एक सफल उद्यमी। सखी आपके साथ है हर कदम पर!
-            </p>
+      {/* Call to Action */}
+      <section className="py-16 bg-blue-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h3 className="text-3xl font-bold mb-4">
+            Start Your Entrepreneurial Journey Today
+          </h3>
+          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            Join the digital platform designed specifically for women entrepreneurs in India
+          </p>
+          
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button
+              onClick={onStartChat}
+              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg"
+            >
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Get Started Now
+            </Button>
             
-            <div className="flex flex-wrap justify-center gap-6">
-              <Button
-                onClick={onStartChat}
-                variant="outline"
-                className="bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-orange-600 px-10 py-4 text-xl font-bold rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-              >
-                <Heart className="w-6 h-6 mr-3" />
-                अभी शुरू करें
-              </Button>
-              
-              <ShareButton 
-                type="invite" 
-                variant="outline"
-                size="lg"
-                className="bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-purple-600 px-10 py-4 text-xl font-bold rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-              />
-            </div>
+            <ShareButton 
+              type="invite" 
+              variant="outline"
+              size="lg"
+              className="border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 text-lg"
+            />
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-8">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <h5 className="font-semibold mb-4">About Platform</h5>
+              <p className="text-gray-300 text-sm">
+                Government initiative to support women entrepreneurs with digital tools and resources
+              </p>
+            </div>
+            <div>
+              <h5 className="font-semibold mb-4">Quick Links</h5>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li><a href="#" className="hover:text-white">Services</a></li>
+                <li><a href="#" className="hover:text-white">Government Schemes</a></li>
+                <li><a href="#" className="hover:text-white">Resources</a></li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-semibold mb-4">Support</h5>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li><a href="#" className="hover:text-white">Help Center</a></li>
+                <li><a href="#" className="hover:text-white">Contact Us</a></li>
+                <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-semibold mb-4">Contact</h5>
+              <p className="text-gray-300 text-sm">
+                Email: support@sakhicopilot.gov.in<br />
+                Phone: 1800-XXX-XXXX
+              </p>
+            </div>
+          </div>
+          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-300">
+            <p>© 2024 Government of India. All rights reserved. | Developed for Women Entrepreneurship Development</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
