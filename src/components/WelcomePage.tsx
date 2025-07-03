@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -14,6 +13,7 @@ interface WelcomePageProps {
   onOpenCommunity?: () => void;
   onOpenAchievements?: () => void;
   onOpenPoster?: () => void;
+  onOpenEducation?: () => void;
 }
 
 const WelcomePage = ({ 
@@ -23,7 +23,8 @@ const WelcomePage = ({
   onOpenGovSchemes,
   onOpenCommunity,
   onOpenAchievements,
-  onOpenPoster
+  onOpenPoster,
+  onOpenEducation
 }: WelcomePageProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -243,7 +244,7 @@ const WelcomePage = ({
                   व्यापारिक नवाचार
                 </h4>
                 <p className="text-gray-600">
-                  Innovative business solutions through digital platforms and AI assistance
+                  Innovative business solutions through digital platforms and assistance
                 </p>
               </CardContent>
             </Card>
@@ -283,10 +284,10 @@ const WelcomePage = ({
                   <MessageCircle className="w-8 h-8 text-blue-600" />
                 </div>
                 <h4 className="text-lg font-semibold text-gray-800 mb-2">
-                  AI व्यापारिक सहायक
+                  व्यापारिक सहायक
                 </h4>
                 <p className="text-gray-600 text-sm">
-                  Instant business guidance and query resolution through AI
+                  Instant business guidance and query resolution
                 </p>
               </CardContent>
             </Card>
@@ -375,7 +376,7 @@ const WelcomePage = ({
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-gray-200 hover:border-teal-500 hover:shadow-lg transition-all cursor-pointer">
+            <Card className="border-2 border-gray-200 hover:border-teal-500 hover:shadow-lg transition-all cursor-pointer" onClick={onOpenEducation}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="w-8 h-8 text-teal-600" />
@@ -413,7 +414,7 @@ const WelcomePage = ({
               </div>
               <h4 className="text-2xl font-semibold text-gray-800 mb-4">व्यापक मार्गदर्शन</h4>
               <p className="text-gray-600">
-                End-to-end business support through AI-powered digital assistance and government resources
+                End-to-end business support through digital assistance and government resources
               </p>
             </div>
             

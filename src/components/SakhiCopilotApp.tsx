@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import WelcomePage from './WelcomePage';
 import ChatBot from './ChatBot';
@@ -9,11 +10,12 @@ import CommunityForum from './CommunityForum';
 import AchievementSystem from './AchievementSystem';
 import VoiceCommands from './VoiceCommands';
 import PosterGenerator from './PosterGenerator';
+import EducationResources from './EducationResources';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Settings as SettingsIcon, FileText, Calculator, Building2, Users, Trophy, Palette } from 'lucide-react';
+import { ArrowLeft, Settings as SettingsIcon, FileText, Calculator, Building2, Users, Trophy, Palette, BookOpen } from 'lucide-react';
 
 const SakhiCopilotApp = () => {
-  const [currentView, setCurrentView] = useState<'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc' | 'gov-schemes' | 'community' | 'achievements' | 'poster'>('welcome');
+  const [currentView, setCurrentView] = useState<'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc' | 'gov-schemes' | 'community' | 'achievements' | 'poster' | 'education'>('welcome');
 
   const handleStartChat = () => {
     setCurrentView('chat');
@@ -51,6 +53,10 @@ const SakhiCopilotApp = () => {
     setCurrentView('poster');
   };
 
+  const handleOpenEducation = () => {
+    setCurrentView('education');
+  };
+
   const handleVoiceCommand = (command: string, params?: any) => {
     switch (command) {
       case 'create_business_plan':
@@ -79,6 +85,9 @@ const SakhiCopilotApp = () => {
         break;
       case 'create_poster':
         setCurrentView('poster');
+        break;
+      case 'open_education':
+        setCurrentView('education');
         break;
       case 'show_help':
         // Handle help command
@@ -161,6 +170,15 @@ const SakhiCopilotApp = () => {
                   Poster
                 </Button>
                 <Button
+                  onClick={handleOpenEducation}
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  <BookOpen className="w-4 h-4 mr-2" />
+                  Education
+                </Button>
+                <Button
                   onClick={handleOpenSettings}
                   variant="ghost"
                   size="sm"
@@ -186,6 +204,7 @@ const SakhiCopilotApp = () => {
             onOpenCommunity={handleOpenCommunity}
             onOpenAchievements={handleOpenAchievements}
             onOpenPoster={handleOpenPoster}
+            onOpenEducation={handleOpenEducation}
           />
         )}
         
@@ -219,6 +238,10 @@ const SakhiCopilotApp = () => {
 
         {currentView === 'poster' && (
           <PosterGenerator />
+        )}
+
+        {currentView === 'education' && (
+          <EducationResources />
         )}
       </div>
 
