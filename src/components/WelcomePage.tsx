@@ -1,8 +1,9 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { MessageCircle, Users, TrendingUp, FileText, Calculator, PiggyBank, Award, Trophy, Palette, Target, Building2, BookOpen, Heart, Phone, Mail } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { MessageCircle, Users, TrendingUp, FileText, Calculator, PiggyBank, Award, Trophy, Palette, Target, Building2, BookOpen, Heart, Phone, Mail, Settings } from 'lucide-react';
 import ShareButton from './ShareButton';
 
 interface WelcomePageProps {
@@ -24,6 +25,8 @@ const WelcomePage = ({
   onOpenAchievements,
   onOpenPoster
 }: WelcomePageProps) => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Official Header Bar */}
@@ -49,11 +52,102 @@ const WelcomePage = ({
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-12 bg-orange-500 rounded overflow-hidden">
-                <div className="w-full h-4 bg-orange-500"></div>
-                <div className="w-full h-4 bg-white"></div>
-                <div className="w-full h-4 bg-green-500"></div>
-              </div>
+              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="outline" size="sm" className="flex items-center space-x-2">
+                    <Settings className="w-4 h-4" />
+                    <span>Settings</span>
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center space-x-2">
+                      <Settings className="w-5 h-5" />
+                      <span>Platform Settings</span>
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-6 py-4">
+                    <div className="space-y-4">
+                      <div className="border-b pb-4">
+                        <h4 className="font-semibold text-gray-800 mb-2">Language Preferences</h4>
+                        <div className="grid grid-cols-2 gap-2">
+                          <Button variant="outline" size="sm" className="justify-start">
+                            हिंदी
+                          </Button>
+                          <Button variant="outline" size="sm" className="justify-start">
+                            English
+                          </Button>
+                          <Button variant="outline" size="sm" className="justify-start">
+                            বাংলা
+                          </Button>
+                          <Button variant="outline" size="sm" className="justify-start">
+                            தமிழ்
+                          </Button>
+                        </div>
+                      </div>
+
+                      <div className="border-b pb-4">
+                        <h4 className="font-semibold text-gray-800 mb-2">Accessibility</h4>
+                        <div className="space-y-2">
+                          <label className="flex items-center space-x-2">
+                            <input type="checkbox" className="rounded" />
+                            <span className="text-sm">High Contrast Mode</span>
+                          </label>
+                          <label className="flex items-center space-x-2">
+                            <input type="checkbox" className="rounded" />
+                            <span className="text-sm">Large Text</span>
+                          </label>
+                          <label className="flex items-center space-x-2">
+                            <input type="checkbox" className="rounded" />
+                            <span className="text-sm">Voice Navigation</span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div className="border-b pb-4">
+                        <h4 className="font-semibold text-gray-800 mb-2">Notifications</h4>
+                        <div className="space-y-2">
+                          <label className="flex items-center space-x-2">
+                            <input type="checkbox" defaultChecked className="rounded" />
+                            <span className="text-sm">Government Scheme Updates</span>
+                          </label>
+                          <label className="flex items-center space-x-2">
+                            <input type="checkbox" defaultChecked className="rounded" />
+                            <span className="text-sm">Training Notifications</span>
+                          </label>
+                          <label className="flex items-center space-x-2">
+                            <input type="checkbox" className="rounded" />
+                            <span className="text-sm">Community Messages</span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Support</h4>
+                        <div className="space-y-2">
+                          <Button variant="ghost" size="sm" className="w-full justify-start">
+                            <Phone className="w-4 h-4 mr-2" />
+                            Contact Support: 1800-XXX-XXXX
+                          </Button>
+                          <Button variant="ghost" size="sm" className="w-full justify-start">
+                            <Mail className="w-4 h-4 mr-2" />
+                            Email: support@sakhicopilot.gov.in
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-end space-x-2 pt-4">
+                      <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+                        Cancel
+                      </Button>
+                      <Button onClick={() => setIsDialogOpen(false)}>
+                        Save Settings
+                      </Button>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>
