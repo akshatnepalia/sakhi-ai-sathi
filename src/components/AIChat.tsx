@@ -1,10 +1,11 @@
+
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Mic, MicOff, Bot, User, Sparkles, Zap } from 'lucide-react';
+import { Send, Mic, MicOff, Bot, User, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { aiService, ChatMessage, AIResponse } from '@/utils/aiService';
+import { businessService, ChatMessage } from '@/utils/aiService';
 import { useToast } from '@/hooks/use-toast';
 
 const AIChat = () => {
@@ -44,7 +45,7 @@ const AIChat = () => {
     setIsLoading(true);
 
     try {
-      const response = await aiService.generateResponse(input, messages);
+      const response = await businessService.generateResponse(input, messages);
       
       const assistantMessage: ChatMessage = {
         role: 'assistant',
@@ -54,13 +55,11 @@ const AIChat = () => {
 
       setMessages(prev => [...prev, assistantMessage]);
 
-      if (!response.isAI) {
-        toast({
-          title: "Database Mode",
-          description: "Using comprehensive business database. Add API key for enhanced responses.",
-          variant: "default"
-        });
-      }
+      toast({
+        title: "Business Database",
+        description: "Using comprehensive business knowledge database.",
+        variant: "default"
+      });
     } catch (error) {
       console.error('Chat error:', error);
       toast({
@@ -139,17 +138,10 @@ const AIChat = () => {
           <div>
             <h2 className="font-semibold text-gray-800">सखी - Sakhi Business Assistant</h2>
             <p className="text-sm text-gray-600">
-              {aiService.hasApiKey() ? (
-                <span className="flex items-center">
-                  <Sparkles className="w-4 h-4 mr-1 text-green-500" />
-                  Enhanced Mode
-                </span>
-              ) : (
-                <span className="flex items-center">
-                  <Zap className="w-4 h-4 mr-1 text-orange-500" />
-                  Database Mode
-                </span>
-              )}
+              <span className="flex items-center">
+                <Sparkles className="w-4 h-4 mr-1 text-green-500" />
+                Business Database Mode
+              </span>
             </p>
           </div>
         </div>

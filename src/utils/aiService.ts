@@ -5,42 +5,35 @@ interface ChatMessage {
   timestamp: Date;
 }
 
-interface AIResponse {
+interface BusinessResponse {
   response: string;
   confidence: number;
   suggestions: string[];
-  isAI: boolean;
+  isLocal: boolean;
 }
 
-class AIService {
+class BusinessKnowledgeService {
   constructor() {
-    // No API key needed - using comprehensive business database
+    // Local business knowledge database - no external dependencies
   }
 
-  setApiKey(key: string) {
-    // No longer needed - purely local business database
-    console.log('SakhiCopilot now uses comprehensive business database - no API key required!');
-  }
-
-  hasApiKey(): boolean {
-    // Always return true since we have local knowledge
+  hasLocalDatabase(): boolean {
     return true;
   }
 
-  async generateResponse(message: string, context: ChatMessage[] = []): Promise<AIResponse> {
-    // Always use our comprehensive business database
+  async generateResponse(message: string, context: ChatMessage[] = []): Promise<BusinessResponse> {
     return this.getBusinessResponse(message);
   }
 
-  private getBusinessResponse(message: string): AIResponse {
+  private getBusinessResponse(message: string): BusinessResponse {
     const lowerMessage = message.toLowerCase();
     
-    // Comprehensive world-level business database with Q&A
+    // Comprehensive business knowledge database
     const businessDatabase = {
       // Business starting - Global best practices
       business: {
         keywords: ['business', 'व्यापार', 'व्यवसाय', 'start', 'शुरू', 'कारोबार', 'enterprise', 'startup', 'company'],
-        response: `🚀 व्यापार शुरू करने की विश्वव्यापी गाइड | Global Business Starting Guide:
+        response: `🚀 व्यापार शुरू करने की संपूर्ण गाइड | Complete Business Starting Guide:
 
 💰 BUDGET PLANNING (बजट योजना):
 • शुरुआती पूंजी: ₹5,000-₹2,00,000 (Start with what you have)
@@ -77,7 +70,7 @@ Start small, think global! छोटे से शुरू करें, बड
       // Comprehensive loan and funding information
       loan: {
         keywords: ['loan', 'लोन', 'पैसा', 'funding', 'capital', 'mudra', 'मुद्रा', 'finance', 'credit', 'investment'],
-        response: `💰 COMPREHENSIVE FUNDING GUIDE | पूर्ण फंडिंग गाइड:
+        response: `💰 पूर्ण फंडिंग गाइड | COMPREHENSIVE FUNDING GUIDE:
 
 🏦 INDIAN GOVERNMENT SCHEMES:
 • MUDRA LOAN:
@@ -124,7 +117,7 @@ Success Rate: SHG members get 90% higher loan approval!`,
       // Advanced marketing strategies
       marketing: {
         keywords: ['marketing', 'बिक्री', 'sale', 'customer', 'ग्राहक', 'promotion', 'advertisement', 'branding', 'social media'],
-        response: `📈 WORLD-CLASS MARKETING STRATEGIES | विश्वस्तरीय मार्केटिंग रणनीतियां:
+        response: `📈 विश्वस्तरीय मार्केटिंग रणनीतियां | WORLD-CLASS MARKETING STRATEGIES:
 
 📱 DIGITAL MARKETING MASTERY:
 • SOCIAL MEDIA STRATEGY:
@@ -186,7 +179,7 @@ Marketing Budget: 10-20% of revenue for growth phase`,
       // Comprehensive food business guide
       food: {
         keywords: ['food', 'खाना', 'pickle', 'अचार', 'papad', 'पापड़', 'sweets', 'मिठाई', 'snacks', 'catering', 'restaurant', 'bakery'],
-        response: `🍽️ COMPLETE FOOD BUSINESS ENCYCLOPEDIA | संपूर्ण खाद्य व्यापार विश्वकोश:
+        response: `🍽️ संपूर्ण खाद्य व्यापार विश्वकोश | COMPLETE FOOD BUSINESS ENCYCLOPEDIA:
 
 📋 LICENSING & COMPLIANCE:
 • FSSAI LICENSE (Food Safety):
@@ -375,7 +368,7 @@ Legal compliance is business necessity!`,
           response: data.response,
           confidence: 0.95,
           suggestions: data.suggestions,
-          isAI: false
+          isLocal: true
         };
       }
     }
@@ -428,35 +421,15 @@ Type your question or press 🎤 to speak!`,
         'FSSAI license process',
         'Handicraft business ideas'
       ],
-      isAI: false
+      isLocal: true
     };
   }
 
-  private generateSuggestions(message: string): string[] {
-    const allSuggestions = [
-      'व्यापार कैसे शुरू करें?',
-      'Business plan template',
-      'Mudra loan application',
-      'Digital marketing strategy',
-      'FSSAI license process',
-      'Export procedures',
-      'Organic farming benefits',
-      'Website creation',
-      'Business registration types',
-      'कम पैसे में व्यापार',
-      'घर से बिजनेस आइडिया',
-      'महिला उद्यमी योजना',
-      'डिजिटल पेमेंट सेटअप'
-    ];
-    
-    return allSuggestions.sort(() => 0.5 - Math.random()).slice(0, 4);
-  }
-
   async generatePosterContent(businessType: string, businessName: string): Promise<string> {
-    return this.getFallbackPosterContent(businessType, businessName);
+    return this.getLocalPosterContent(businessType, businessName);
   }
 
-  private getFallbackPosterContent(businessType: string, businessName: string): string {
+  private getLocalPosterContent(businessType: string, businessName: string): string {
     const templates = {
       'handicrafts': `🎨 ${businessName} 🎨
 हस्तशिल्प की दुनिया में आपका स्वागत है!
@@ -505,5 +478,5 @@ Name of quality and reliability!
   }
 }
 
-export const aiService = new AIService();
-export type { ChatMessage, AIResponse };
+export const businessService = new BusinessKnowledgeService();
+export type { ChatMessage, BusinessResponse };

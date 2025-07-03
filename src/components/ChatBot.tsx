@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { aiService } from '@/utils/aiService';
+import { businessService } from '@/utils/aiService';
 import { useToast } from '@/hooks/use-toast';
 import { useSpeechRecognition } from '@/hooks/useSpeechRecognition';
 import { useSpeechSynthesis } from '@/hooks/useSpeechSynthesis';
@@ -40,14 +40,6 @@ const ChatBot = () => {
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
-    if (!aiService.hasApiKey()) {
-      toast({
-        title: "❌ Enhanced Features Unavailable",
-        description: "Please add your API key in Settings to get enhanced responses.",
-        variant: "destructive"
-      });
-    }
-
     const userMessage: Message = {
       role: 'user',
       content: input,
@@ -59,7 +51,7 @@ const ChatBot = () => {
     setIsLoading(true);
 
     try {
-      const response = await aiService.generateResponse(input, messages.slice(-5));
+      const response = await businessService.generateResponse(input, messages.slice(-5));
       
       const assistantMessage: Message = {
         role: 'assistant',
@@ -73,13 +65,11 @@ const ChatBot = () => {
         speak(response.response);
       }
 
-      if (!response.isAI && !aiService.hasApiKey()) {
-        toast({
-          title: "📱 Database Mode",
-          description: "Add your API key in Settings for enhanced responses.",
-          variant: "default"
-        });
-      }
+      toast({
+        title: "📱 Business Database",
+        description: "Response from comprehensive business knowledge database.",
+        variant: "default"
+      });
     } catch (error) {
       console.error('Chat error:', error);
       toast({
