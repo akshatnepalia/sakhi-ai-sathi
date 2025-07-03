@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Download, Palette, Image, Type, Star, Sparkles, Heart, Zap, Crown } from 'lucide-react';
+import { Download, Palette, Image, Type, Star, Sparkles, Heart, Zap, Crown, Phone, MapPin } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import ShareButton from './ShareButton';
 
@@ -28,7 +28,7 @@ const PosterGenerator = () => {
 
   const templates = [
     { id: 'modern', name: 'Modern Pro', description: 'Clean and professional', icon: Sparkles },
-    { id: 'traditional', name: 'Traditional', description: 'Classic Indian design', icon: Crown },
+    { id: 'traditional', name: 'Traditional', description: 'Classic design', icon: Crown },
     { id: 'colorful', name: 'Vibrant', description: 'Bold and eye-catching', icon: Zap },
     { id: 'minimal', name: 'Minimal Elite', description: 'Simple and elegant', icon: Heart },
     { id: 'premium', name: 'Premium Gold', description: 'Luxury business style', icon: Star }
@@ -48,12 +48,6 @@ const PosterGenerator = () => {
     { id: 'elegant', name: 'Elegant Script', style: 'font-light' },
     { id: 'modern', name: 'Modern Sans', style: 'font-medium' },
     { id: 'classic', name: 'Classic Serif', style: 'font-normal' }
-  ];
-
-  const layouts = [
-    { id: 'centered', name: 'Centered' },
-    { id: 'top-focus', name: 'Top Focus' },
-    { id: 'split', name: 'Split Design' }
   ];
 
   const handleInputChange = (field: string, value: string) => {
@@ -119,7 +113,7 @@ const PosterGenerator = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
-          {/* Enhanced Poster Designer */}
+          {/* Poster Designer */}
           <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
             <CardHeader className="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-t-lg">
               <CardTitle className="flex items-center text-xl">
@@ -194,17 +188,20 @@ const PosterGenerator = () => {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      {templates.map(template => (
-                        <SelectItem key={template.id} value={template.id}>
-                          <div className="flex items-center">
-                            <template.icon className="w-4 h-4 mr-2" />
-                            <div>
-                              <div className="font-medium">{template.name}</div>
-                              <div className="text-sm text-gray-500">{template.description}</div>
+                      {templates.map(template => {
+                        const IconComponent = template.icon;
+                        return (
+                          <SelectItem key={template.id} value={template.id}>
+                            <div className="flex items-center">
+                              <IconComponent className="w-4 h-4 mr-2" />
+                              <div>
+                                <div className="font-medium">{template.name}</div>
+                                <div className="text-sm text-gray-500">{template.description}</div>
+                              </div>
                             </div>
-                          </div>
-                        </SelectItem>
-                      ))}
+                          </SelectItem>
+                        );
+                      })}
                     </SelectContent>
                   </Select>
                 </div>
@@ -254,7 +251,7 @@ const PosterGenerator = () => {
             </CardContent>
           </Card>
 
-          {/* Enhanced Poster Preview */}
+          {/* Poster Preview */}
           <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
             <CardHeader className="bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-t-lg">
               <CardTitle className="flex items-center text-xl">
@@ -265,9 +262,9 @@ const PosterGenerator = () => {
             <CardContent className="p-6">
               {generatedPoster ? (
                 <div className="space-y-6">
-                  {/* Enhanced Poster Mockup */}
+                  {/* Poster Mockup */}
                   <div 
-                    className={`aspect-[3/4] border-8 border-white shadow-2xl rounded-xl p-8 text-white relative overflow-hidden ${selectedFont?.style}`}
+                    className={`aspect-[3/4] border-8 border-white shadow-2xl rounded-xl p-6 text-white relative overflow-hidden ${selectedFont?.style}`}
                     style={{ 
                       background: getPosterBackground(),
                       backgroundImage: posterData.template === 'premium' ? 'url("data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="white" fill-opacity="0.1"%3E%3Cpath d="M20 20c0 11-9 20-20 20s-20-9-20-20 9-20 20-20 20 9 20 20z"/%3E%3C/g%3E%3C/svg%3E")' : undefined
@@ -280,42 +277,44 @@ const PosterGenerator = () => {
                       </div>
                     )}
                     
-                    <div className="text-center space-y-6 h-full flex flex-col justify-between">
-                      <div>
-                        <h2 className="text-3xl font-bold mb-2">{generatedPoster.businessName}</h2>
+                    <div className="text-center space-y-4 h-full flex flex-col justify-between">
+                      <div className="space-y-2">
+                        <h2 className="text-2xl md:text-3xl font-bold">{generatedPoster.businessName}</h2>
                         {generatedPoster.tagline && (
                           <p className="text-lg opacity-90 italic">{generatedPoster.tagline}</p>
                         )}
                       </div>
                       
                       <div className="flex-1 flex items-center justify-center">
-                        <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                          <Type className="w-12 h-12" />
+                        <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                          <Type className="w-10 h-10" />
                         </div>
                       </div>
 
                       {generatedPoster.services && (
-                        <div className="bg-white/15 rounded-xl p-4 backdrop-blur-sm">
+                        <div className="bg-white/15 rounded-xl p-3 backdrop-blur-sm">
                           <p className="text-sm font-medium">{generatedPoster.services}</p>
                         </div>
                       )}
 
-                      <div className="space-y-3">
+                      <div className="space-y-2">
                         <div className="flex items-center justify-center">
-                          <Badge className="bg-white/90 text-gray-800 px-4 py-2 text-base font-semibold">
-                            📞 {generatedPoster.contactNumber}
-                          </Badge>
+                          <div className="bg-white/90 text-gray-800 px-3 py-2 rounded-full flex items-center">
+                            <Phone className="w-4 h-4 mr-2" />
+                            <span className="font-semibold">{generatedPoster.contactNumber}</span>
+                          </div>
                         </div>
                         {generatedPoster.address && (
-                          <p className="text-sm opacity-90 text-center">
-                            📍 {generatedPoster.address}
-                          </p>
+                          <div className="flex items-center justify-center text-sm opacity-90">
+                            <MapPin className="w-4 h-4 mr-1" />
+                            <span>{generatedPoster.address}</span>
+                          </div>
                         )}
                       </div>
                     </div>
                   </div>
 
-                  {/* Enhanced Actions */}
+                  {/* Actions */}
                   <div className="flex flex-wrap gap-3">
                     <Button onClick={downloadPoster} className="flex-1 bg-green-600 hover:bg-green-700">
                       <Download className="w-4 h-4 mr-2" />
@@ -331,8 +330,12 @@ const PosterGenerator = () => {
 
                   <div className="text-center space-y-2">
                     <Badge variant="secondary" className="text-sm">
-                      <selectedTemplate?.icon className="w-4 h-4 mr-1" />
-                      {selectedTemplate?.name}
+                      {selectedTemplate && (
+                        <>
+                          <selectedTemplate.icon className="w-4 h-4 mr-1" />
+                          {selectedTemplate.name}
+                        </>
+                      )}
                     </Badge>
                     <Badge variant="outline" className="text-sm ml-2">
                       {selectedColor?.name}
@@ -352,7 +355,7 @@ const PosterGenerator = () => {
           </Card>
         </div>
 
-        {/* Enhanced Tips Section */}
+        {/* Tips Section */}
         <Card className="mt-8 shadow-xl border-0 bg-gradient-to-r from-blue-50 to-purple-50">
           <CardHeader>
             <CardTitle className="flex items-center text-2xl">
@@ -381,7 +384,7 @@ const PosterGenerator = () => {
                   <Star className="w-4 h-4 mr-1" />
                   Include Contact
                 </h4>
-                <p>Always prominently display your phone number or WhatsApp for easy contact</p>
+                <p>Always prominently display your phone number for easy contact</p>
               </div>
               <div className="bg-white p-4 rounded-lg shadow-sm">
                 <h4 className="font-semibold text-orange-600 mb-2 flex items-center">
