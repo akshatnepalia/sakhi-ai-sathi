@@ -123,6 +123,35 @@ export default {
 					'50%': {
 						boxShadow: '0 0 40px rgba(139, 92, 246, 0.6)'
 					}
+				},
+				'gradient-x': {
+					'0%, 100%': {
+						backgroundSize: '200% 200%',
+						backgroundPosition: 'left center'
+					},
+					'50%': {
+						backgroundSize: '200% 200%',
+						backgroundPosition: 'right center'
+					}
+				},
+				'tilt': {
+					'0%, 50%, 100%': {
+						transform: 'rotate(0deg)'
+					},
+					'25%': {
+						transform: 'rotate(0.5deg)'
+					},
+					'75%': {
+						transform: 'rotate(-0.5deg)'
+					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0px)'
+					},
+					'50%': {
+						transform: 'translateY(-10px)'
+					}
 				}
 			},
 			animation: {
@@ -131,16 +160,24 @@ export default {
 				'fade-in': 'fade-in 0.5s ease-out',
 				'slide-up': 'slide-up 0.6s ease-out',
 				'scale-in': 'scale-in 0.4s ease-out',
-				'glow': 'glow 2s ease-in-out infinite alternate'
+				'glow': 'glow 2s ease-in-out infinite alternate',
+				'gradient-x': 'gradient-x 15s ease infinite',
+				'tilt': 'tilt 10s infinite linear',
+				'float': 'float 3s ease-in-out infinite'
 			},
 			boxShadow: {
 				'3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
 				'4xl': '0 45px 100px -12px rgba(0, 0, 0, 0.25)',
 				'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-				'glow': '0 0 40px rgba(139, 92, 246, 0.4)'
+				'glow': '0 0 40px rgba(139, 92, 246, 0.4)',
+				'glow-lg': '0 0 60px rgba(139, 92, 246, 0.6)',
+				'inner-glow': 'inset 0 2px 4px 0 rgba(255, 255, 255, 0.1)'
 			},
 			backdropBlur: {
 				'xs': '2px',
+			},
+			backgroundImage: {
+				'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
 			}
 		}
 	},
