@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { aiService } from '@/utils/aiService';
+import { businessService } from '@/utils/aiService';
 
 interface ChatHeaderProps {
   currentLanguage: string;
@@ -48,7 +48,7 @@ const ChatHeader = ({ currentLanguage, isSpeaking, onLanguageChange, onStopSpeak
             <h1 className="text-xl font-bold text-gray-800">SakhiCopilot</h1>
             <p className="text-sm text-gray-600 flex items-center space-x-2">
               <span>Your Business Companion</span>
-              {aiService.hasApiKey() ? (
+              {businessService.hasLocalDatabase() ? (
                 <Badge className="bg-green-100 text-green-700 text-xs">Enhanced Active</Badge>
               ) : (
                 <Badge variant="outline" className="bg-yellow-100 text-yellow-700 text-xs">Database Mode</Badge>

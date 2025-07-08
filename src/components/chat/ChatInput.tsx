@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Send, Mic, MicOff, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { aiService } from '@/utils/aiService';
+import { businessService } from '@/utils/aiService';
 
 const getLanguagePlaceholder = (langCode: string) => {
   const placeholders = {
@@ -150,7 +149,7 @@ const ChatInput = ({
         <div className="text-xs text-gray-500">
           🎤 Voice: {getLanguageName(currentLanguage)} | 
           🔊 Speaker: {isSpeaking ? 'Playing...' : 'Ready'} |
-          🤖 Mode: {aiService.hasApiKey() ? 'Enhanced' : 'Database'}
+          🤖 Mode: {businessService.hasLocalDatabase() ? 'Enhanced' : 'Database'}
         </div>
         
         {messagesLength > 0 && (
