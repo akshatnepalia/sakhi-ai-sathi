@@ -11,11 +11,12 @@ import AchievementSystem from './AchievementSystem';
 import VoiceCommands from './VoiceCommands';
 import PosterGenerator from './PosterGenerator';
 import EducationResources from './EducationResources';
+import InstantSelectDemo from './InstantSelectDemo';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Settings as SettingsIcon, FileText, Calculator, Building2, Users, Trophy, Palette, BookOpen } from 'lucide-react';
+import { ArrowLeft, Settings as SettingsIcon, FileText, Calculator, Building2, Users, Trophy, Palette, BookOpen, Timer } from 'lucide-react';
 
 const SakhiCopilotApp = () => {
-  const [currentView, setCurrentView] = useState<'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc' | 'gov-schemes' | 'community' | 'achievements' | 'poster' | 'education'>('welcome');
+  const [currentView, setCurrentView] = useState<'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc' | 'gov-schemes' | 'community' | 'achievements' | 'poster' | 'education' | 'instant-select'>('welcome');
 
   const handleStartChat = () => {
     setCurrentView('chat');
@@ -57,6 +58,10 @@ const SakhiCopilotApp = () => {
     setCurrentView('education');
   };
 
+  const handleOpenInstantSelect = () => {
+    setCurrentView('instant-select');
+  };
+
   const handleVoiceCommand = (command: string, params?: any) => {
     switch (command) {
       case 'create_business_plan':
@@ -88,6 +93,9 @@ const SakhiCopilotApp = () => {
         break;
       case 'open_education':
         setCurrentView('education');
+        break;
+      case 'open_instant_select':
+        setCurrentView('instant-select');
         break;
       case 'show_help':
         // Handle help command
@@ -179,6 +187,15 @@ const SakhiCopilotApp = () => {
                   Education
                 </Button>
                 <Button
+                  onClick={handleOpenInstantSelect}
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  <Timer className="w-4 h-4 mr-2" />
+                  Quick Select
+                </Button>
+                <Button
                   onClick={handleOpenSettings}
                   variant="ghost"
                   size="sm"
@@ -242,6 +259,10 @@ const SakhiCopilotApp = () => {
 
         {currentView === 'education' && (
           <EducationResources />
+        )}
+
+        {currentView === 'instant-select' && (
+          <InstantSelectDemo />
         )}
       </div>
 
