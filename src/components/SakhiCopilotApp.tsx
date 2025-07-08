@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import WelcomePage from './WelcomePage';
+import EnhancedWelcomePage from './EnhancedWelcomePage';
 import ChatBot from './ChatBot';
 import Settings from './Settings';
 import BusinessPlanGenerator from './BusinessPlanGenerator';
@@ -109,12 +108,12 @@ const SakhiCopilotApp = () => {
     <div className="min-h-screen">
       {/* Navigation Header */}
       {currentView !== 'welcome' && (
-        <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 border-b border-white/20 px-4 py-3 flex items-center justify-between backdrop-blur-sm">
           <Button
-            onClick={handleBackToWelcome}
+            onClick={() => setCurrentView('welcome')}
             variant="ghost"
             size="sm"
-            className="text-gray-600 hover:text-gray-800"
+            className="text-white/80 hover:text-white hover:bg-white/10"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Home
@@ -124,82 +123,82 @@ const SakhiCopilotApp = () => {
             {currentView === 'chat' && (
               <>
                 <Button
-                  onClick={handleOpenBusinessPlan}
+                  onClick={() => setCurrentView('business-plan')}
                   variant="ghost"
                   size="sm"
-                  className="text-gray-600 hover:text-gray-800"
+                  className="text-white/80 hover:text-white hover:bg-white/10"
                 >
                   <FileText className="w-4 h-4 mr-2" />
                   Business Plan
                 </Button>
                 <Button
-                  onClick={handleOpenFinancialCalc}
+                  onClick={() => setCurrentView('financial-calc')}
                   variant="ghost"
                   size="sm"
-                  className="text-gray-600 hover:text-gray-800"
+                  className="text-white/80 hover:text-white hover:bg-white/10"
                 >
                   <Calculator className="w-4 h-4 mr-2" />
                   Calculator
                 </Button>
                 <Button
-                  onClick={handleOpenGovSchemes}
+                  onClick={() => setCurrentView('gov-schemes')}
                   variant="ghost"
                   size="sm"
-                  className="text-gray-600 hover:text-gray-800"
+                  className="text-white/80 hover:text-white hover:bg-white/10"
                 >
                   <Building2 className="w-4 h-4 mr-2" />
                   Schemes
                 </Button>
                 <Button
-                  onClick={handleOpenCommunity}
+                  onClick={() => setCurrentView('community')}
                   variant="ghost"
                   size="sm"
-                  className="text-gray-600 hover:text-gray-800"
+                  className="text-white/80 hover:text-white hover:bg-white/10"
                 >
                   <Users className="w-4 h-4 mr-2" />
                   Community
                 </Button>
                 <Button
-                  onClick={handleOpenAchievements}
+                  onClick={() => setCurrentView('achievements')}
                   variant="ghost"
                   size="sm"
-                  className="text-gray-600 hover:text-gray-800"
+                  className="text-white/80 hover:text-white hover:bg-white/10"
                 >
                   <Trophy className="w-4 h-4 mr-2" />
                   Achievements
                 </Button>
                 <Button
-                  onClick={handleOpenPoster}
+                  onClick={() => setCurrentView('poster')}
                   variant="ghost"
                   size="sm"
-                  className="text-gray-600 hover:text-gray-800"
+                  className="text-white/80 hover:text-white hover:bg-white/10"
                 >
                   <Palette className="w-4 h-4 mr-2" />
                   Poster
                 </Button>
                 <Button
-                  onClick={handleOpenEducation}
+                  onClick={() => setCurrentView('education')}
                   variant="ghost"
                   size="sm"
-                  className="text-gray-600 hover:text-gray-800"
+                  className="text-white/80 hover:text-white hover:bg-white/10"
                 >
                   <BookOpen className="w-4 h-4 mr-2" />
                   Education
                 </Button>
                 <Button
-                  onClick={handleOpenInstantSelect}
+                  onClick={() => setCurrentView('instant-select')}
                   variant="ghost"
                   size="sm"
-                  className="text-gray-600 hover:text-gray-800"
+                  className="text-white/80 hover:text-white hover:bg-white/10"
                 >
                   <Timer className="w-4 h-4 mr-2" />
                   Quick Select
                 </Button>
                 <Button
-                  onClick={handleOpenSettings}
+                  onClick={() => setCurrentView('settings')}
                   variant="ghost"
                   size="sm"
-                  className="text-gray-600 hover:text-gray-800"
+                  className="text-white/80 hover:text-white hover:bg-white/10"
                 >
                   <SettingsIcon className="w-4 h-4 mr-2" />
                   Settings
@@ -213,57 +212,28 @@ const SakhiCopilotApp = () => {
       {/* Main Content */}
       <div className={currentView !== 'welcome' ? 'h-[calc(100vh-64px)]' : ''}>
         {currentView === 'welcome' && (
-          <WelcomePage 
-            onStartChat={handleStartChat}
-            onOpenBusinessPlan={handleOpenBusinessPlan}
-            onOpenFinancialCalc={handleOpenFinancialCalc}
-            onOpenGovSchemes={handleOpenGovSchemes}
-            onOpenCommunity={handleOpenCommunity}
-            onOpenAchievements={handleOpenAchievements}
-            onOpenPoster={handleOpenPoster}
-            onOpenEducation={handleOpenEducation}
+          <EnhancedWelcomePage 
+            onStartChat={() => setCurrentView('chat')}
+            onOpenBusinessPlan={() => setCurrentView('business-plan')}
+            onOpenFinancialCalc={() => setCurrentView('financial-calc')}
+            onOpenGovSchemes={() => setCurrentView('gov-schemes')}
+            onOpenCommunity={() => setCurrentView('community')}
+            onOpenAchievements={() => setCurrentView('achievements')}
+            onOpenPoster={() => setCurrentView('poster')}
+            onOpenEducation={() => setCurrentView('education')}
           />
         )}
         
-        {currentView === 'chat' && (
-          <ChatBot />
-        )}
-        
-        {currentView === 'settings' && (
-          <Settings />
-        )}
-
-        {currentView === 'business-plan' && (
-          <BusinessPlanGenerator />
-        )}
-
-        {currentView === 'financial-calc' && (
-          <FinancialCalculator />
-        )}
-
-        {currentView === 'gov-schemes' && (
-          <GovernmentSchemes />
-        )}
-
-        {currentView === 'community' && (
-          <CommunityForum />
-        )}
-
-        {currentView === 'achievements' && (
-          <AchievementSystem />
-        )}
-
-        {currentView === 'poster' && (
-          <PosterGenerator />
-        )}
-
-        {currentView === 'education' && (
-          <EducationResources />
-        )}
-
-        {currentView === 'instant-select' && (
-          <InstantSelectDemo />
-        )}
+        {currentView === 'chat' && <ChatBot />}
+        {currentView === 'settings' && <Settings />}
+        {currentView === 'business-plan' && <BusinessPlanGenerator />}
+        {currentView === 'financial-calc' && <FinancialCalculator />}
+        {currentView === 'gov-schemes' && <GovernmentSchemes />}
+        {currentView === 'community' && <CommunityForum />}
+        {currentView === 'achievements' && <AchievementSystem />}
+        {currentView === 'poster' && <PosterGenerator />}
+        {currentView === 'education' && <EducationResources />}
+        {currentView === 'instant-select' && <InstantSelectDemo />}
       </div>
 
       {/* Voice Commands - Only show on welcome and chat pages */}
