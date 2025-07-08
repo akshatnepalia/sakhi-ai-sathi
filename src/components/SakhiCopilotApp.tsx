@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import EnhancedWelcomePage from './EnhancedWelcomePage';
 import ChatBot from './ChatBot';
@@ -11,8 +12,8 @@ import VoiceCommands from './VoiceCommands';
 import PosterGenerator from './PosterGenerator';
 import EducationResources from './EducationResources';
 import InstantSelectDemo from './InstantSelectDemo';
-import { Button } from '@/components/ui/button';
-import { ArrowLeft, Settings as SettingsIcon, FileText, Calculator, Building2, Users, Trophy, Palette, BookOpen, Timer } from 'lucide-react';
+import { MicrosoftButton } from '@/components/ui/microsoft-button';
+import { ArrowLeft, Settings as SettingsIcon, FileText, Calculator, Building2, Users, Trophy, Palette, BookOpen, Timer, Sparkles } from 'lucide-react';
 
 const SakhiCopilotApp = () => {
   const [currentView, setCurrentView] = useState<'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc' | 'gov-schemes' | 'community' | 'achievements' | 'poster' | 'education' | 'instant-select'>('welcome');
@@ -105,112 +106,118 @@ const SakhiCopilotApp = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Navigation Header */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Enhanced Navigation Header with Microsoft Design */}
       {currentView !== 'welcome' && (
-        <div className="bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 border-b border-white/20 px-4 py-3 flex items-center justify-between backdrop-blur-sm">
-          <Button
-            onClick={() => setCurrentView('welcome')}
-            variant="ghost"
-            size="sm"
-            className="text-white/80 hover:text-white hover:bg-white/10"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Home
-          </Button>
+        <div className="relative bg-black/30 backdrop-blur-2xl border-b border-white/10 px-6 py-4">
+          {/* Background Effects */}
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 via-pink-600/5 to-orange-600/5"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
           
-          <div className="flex items-center space-x-2">
-            {currentView === 'chat' && (
-              <>
-                <Button
-                  onClick={() => setCurrentView('business-plan')}
-                  variant="ghost"
-                  size="sm"
-                  className="text-white/80 hover:text-white hover:bg-white/10"
-                >
-                  <FileText className="w-4 h-4 mr-2" />
-                  Business Plan
-                </Button>
-                <Button
-                  onClick={() => setCurrentView('financial-calc')}
-                  variant="ghost"
-                  size="sm"
-                  className="text-white/80 hover:text-white hover:bg-white/10"
-                >
-                  <Calculator className="w-4 h-4 mr-2" />
-                  Calculator
-                </Button>
-                <Button
-                  onClick={() => setCurrentView('gov-schemes')}
-                  variant="ghost"
-                  size="sm"
-                  className="text-white/80 hover:text-white hover:bg-white/10"
-                >
-                  <Building2 className="w-4 h-4 mr-2" />
-                  Schemes
-                </Button>
-                <Button
-                  onClick={() => setCurrentView('community')}
-                  variant="ghost"
-                  size="sm"
-                  className="text-white/80 hover:text-white hover:bg-white/10"
-                >
-                  <Users className="w-4 h-4 mr-2" />
-                  Community
-                </Button>
-                <Button
-                  onClick={() => setCurrentView('achievements')}
-                  variant="ghost"
-                  size="sm"
-                  className="text-white/80 hover:text-white hover:bg-white/10"
-                >
-                  <Trophy className="w-4 h-4 mr-2" />
-                  Achievements
-                </Button>
-                <Button
-                  onClick={() => setCurrentView('poster')}
-                  variant="ghost"
-                  size="sm"
-                  className="text-white/80 hover:text-white hover:bg-white/10"
-                >
-                  <Palette className="w-4 h-4 mr-2" />
-                  Poster
-                </Button>
-                <Button
-                  onClick={() => setCurrentView('education')}
-                  variant="ghost"
-                  size="sm"
-                  className="text-white/80 hover:text-white hover:bg-white/10"
-                >
-                  <BookOpen className="w-4 h-4 mr-2" />
-                  Education
-                </Button>
-                <Button
-                  onClick={() => setCurrentView('instant-select')}
-                  variant="ghost"
-                  size="sm"
-                  className="text-white/80 hover:text-white hover:bg-white/10"
-                >
-                  <Timer className="w-4 h-4 mr-2" />
-                  Quick Select
-                </Button>
-                <Button
-                  onClick={() => setCurrentView('settings')}
-                  variant="ghost"
-                  size="sm"
-                  className="text-white/80 hover:text-white hover:bg-white/10"
-                >
-                  <SettingsIcon className="w-4 h-4 mr-2" />
-                  Settings
-                </Button>
-              </>
-            )}
+          <div className="relative z-10 flex items-center justify-between">
+            <MicrosoftButton
+              onClick={() => setCurrentView('welcome')}
+              variant="ghost"
+              size="default"
+              className="text-white/90 hover:text-white hover:bg-white/10 backdrop-blur-sm"
+            >
+              <ArrowLeft className="w-5 h-5 mr-2" />
+              Back to Home
+            </MicrosoftButton>
+            
+            <div className="flex items-center space-x-2">
+              {currentView === 'chat' && (
+                <>
+                  <MicrosoftButton
+                    onClick={() => setCurrentView('business-plan')}
+                    variant="ghost"
+                    size="sm"
+                    className="text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
+                  >
+                    <FileText className="w-4 h-4 mr-2" />
+                    Business Plan
+                  </MicrosoftButton>
+                  <MicrosoftButton
+                    onClick={() => setCurrentView('financial-calc')}
+                    variant="ghost"
+                    size="sm"
+                    className="text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
+                  >
+                    <Calculator className="w-4 h-4 mr-2" />
+                    Calculator
+                  </MicrosoftButton>
+                  <MicrosoftButton
+                    onClick={() => setCurrentView('gov-schemes')}
+                    variant="ghost"
+                    size="sm"
+                    className="text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
+                  >
+                    <Building2 className="w-4 h-4 mr-2" />
+                    Schemes
+                  </MicrosoftButton>
+                  <MicrosoftButton
+                    onClick={() => setCurrentView('community')}
+                    variant="ghost"
+                    size="sm"
+                    className="text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
+                  >
+                    <Users className="w-4 h-4 mr-2" />
+                    Community
+                  </MicrosoftButton>
+                  <MicrosoftButton
+                    onClick={() => setCurrentView('achievements')}
+                    variant="ghost"
+                    size="sm"
+                    className="text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
+                  >
+                    <Trophy className="w-4 h-4 mr-2" />
+                    Achievements
+                  </MicrosoftButton>
+                  <MicrosoftButton
+                    onClick={() => setCurrentView('poster')}
+                    variant="ghost"
+                    size="sm"
+                    className="text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
+                  >
+                    <Palette className="w-4 h-4 mr-2" />
+                    Poster
+                  </MicrosoftButton>
+                  <MicrosoftButton
+                    onClick={() => setCurrentView('education')}
+                    variant="ghost"
+                    size="sm"
+                    className="text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
+                  >
+                    <BookOpen className="w-4 h-4 mr-2" />
+                    Education
+                  </MicrosoftButton>
+                  <MicrosoftButton
+                    onClick={() => setCurrentView('instant-select')}
+                    variant="ghost"
+                    size="sm"
+                    className="text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
+                  >
+                    <Timer className="w-4 h-4 mr-2" />
+                    Quick Select
+                  </MicrosoftButton>
+                  <MicrosoftButton
+                    onClick={() => setCurrentView('settings')}
+                    variant="outline"
+                    size="sm"
+                    className="border-white/30 text-white/90 hover:text-white hover:bg-white/10 hover:border-white/50 backdrop-blur-sm"
+                  >
+                    <SettingsIcon className="w-4 h-4 mr-2" />
+                    Settings
+                  </MicrosoftButton>
+                </>
+              )}
+            </div>
           </div>
         </div>
       )}
 
-      {/* Main Content */}
-      <div className={currentView !== 'welcome' ? 'h-[calc(100vh-64px)]' : ''}>
+      {/* Main Content with Microsoft Design */}
+      <div className={currentView !== 'welcome' ? 'h-[calc(100vh-80px)]' : ''}>
         {currentView === 'welcome' && (
           <EnhancedWelcomePage 
             onStartChat={() => setCurrentView('chat')}
@@ -224,19 +231,34 @@ const SakhiCopilotApp = () => {
           />
         )}
         
-        {currentView === 'chat' && <ChatBot />}
-        {currentView === 'settings' && <Settings />}
-        {currentView === 'business-plan' && <BusinessPlanGenerator />}
-        {currentView === 'financial-calc' && <FinancialCalculator />}
-        {currentView === 'gov-schemes' && <GovernmentSchemes />}
-        {currentView === 'community' && <CommunityForum />}
-        {currentView === 'achievements' && <AchievementSystem />}
-        {currentView === 'poster' && <PosterGenerator />}
-        {currentView === 'education' && <EducationResources />}
-        {currentView === 'instant-select' && <InstantSelectDemo />}
+        {/* Enhanced Content Wrapper */}
+        {currentView !== 'welcome' && (
+          <div className="h-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+            {/* Background Effects */}
+            <div className="absolute inset-0">
+              <div className="absolute top-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+              <div className="absolute bottom-20 right-20 w-80 h-80 bg-blue-500/10 rounded-full mix-blend-multiply filter blur-2xl animate-pulse animation-delay-2000"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-conic from-purple-500/3 via-blue-500/3 to-pink-500/3 rounded-full animate-spin animation-duration-[60s]"></div>
+            </div>
+            
+            {/* Content */}
+            <div className="relative z-10 h-full">
+              {currentView === 'chat' && <ChatBot />}
+              {currentView === 'settings' && <Settings />}
+              {currentView === 'business-plan' && <BusinessPlanGenerator />}
+              {currentView === 'financial-calc' && <FinancialCalculator />}
+              {currentView === 'gov-schemes' && <GovernmentSchemes />}
+              {currentView === 'community' && <CommunityForum />}
+              {currentView === 'achievements' && <AchievementSystem />}
+              {currentView === 'poster' && <PosterGenerator />}
+              {currentView === 'education' && <EducationResources />}
+              {currentView === 'instant-select' && <InstantSelectDemo />}
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* Voice Commands - Only show on welcome and chat pages */}
+      {/* Enhanced Voice Commands */}
       {(currentView === 'welcome' || currentView === 'chat') && (
         <VoiceCommands onCommand={handleVoiceCommand} />
       )}

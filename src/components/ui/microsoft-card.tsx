@@ -9,9 +9,10 @@ const MicrosoftCard = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-black/40 via-black/30 to-black/20 backdrop-blur-2xl shadow-2xl transition-all duration-500 hover:shadow-4xl hover:scale-[1.02] hover:border-white/20",
-      "before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/5 before:via-transparent before:to-white/5 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100",
-      "after:absolute after:inset-0 after:bg-gradient-to-br after:from-purple-500/5 after:via-transparent after:to-pink-500/5 after:opacity-0 after:transition-opacity after:duration-700 hover:after:opacity-100",
+      "relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-black/50 via-black/40 to-black/30 backdrop-blur-2xl shadow-2xl transition-all duration-500 hover:shadow-4xl hover:scale-[1.02] hover:border-white/25",
+      "before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/8 before:via-transparent before:to-white/8 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100",
+      "after:absolute after:inset-0 after:bg-gradient-to-br after:from-purple-500/8 after:via-transparent after:to-pink-500/8 after:opacity-0 after:transition-opacity after:duration-700 hover:after:opacity-100",
+      "group",
       className
     )}
     {...props}
@@ -25,7 +26,7 @@ const MicrosoftCardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-2 p-8", className)}
+    className={cn("flex flex-col space-y-3 p-8 relative z-10", className)}
     {...props}
   />
 ));
@@ -38,7 +39,7 @@ const MicrosoftCardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "text-2xl font-bold leading-tight tracking-tight text-white/95 transition-colors duration-300",
+      "text-2xl font-bold leading-tight tracking-tight text-white/95 transition-all duration-300 group-hover:text-white group-hover:scale-105",
       className
     )}
     {...props}
@@ -52,7 +53,7 @@ const MicrosoftCardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-base text-white/75 leading-relaxed transition-colors duration-300", className)}
+    className={cn("text-base text-white/75 leading-relaxed transition-all duration-300 group-hover:text-white/90", className)}
     {...props}
   />
 ));
@@ -62,7 +63,7 @@ const MicrosoftCardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-8 pt-0", className)} {...props} />
+  <div ref={ref} className={cn("p-8 pt-0 relative z-10", className)} {...props} />
 ));
 MicrosoftCardContent.displayName = "MicrosoftCardContent";
 
@@ -72,7 +73,7 @@ const MicrosoftCardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex items-center p-6 pt-0", className)}
+    className={cn("flex items-center p-6 pt-0 relative z-10", className)}
     {...props}
   />
 ));
