@@ -221,6 +221,14 @@ const SakhiCopilotApp = () => {
         {currentView === 'welcome' && (
           <GovernmentWelcomePage 
             onStartChat={() => setCurrentView('chat')}
+            onOpenBusinessPlan={() => setCurrentView('business-plan')}
+            onOpenFinancialCalc={() => setCurrentView('financial-calc')}
+            onOpenGovSchemes={() => setCurrentView('gov-schemes')}
+            onOpenCommunity={() => setCurrentView('community')}
+            onOpenAchievements={() => setCurrentView('achievements')}
+            onOpenPoster={() => setCurrentView('poster')}
+            onOpenEducation={() => setCurrentView('education')}
+            onOpenInstantSelect={() => setCurrentView('instant-select')}
           />
         )}
         
@@ -253,7 +261,48 @@ const SakhiCopilotApp = () => {
 
       {/* Enhanced Voice Commands */}
       {(currentView === 'welcome' || currentView === 'chat') && (
-        <VoiceCommands onCommand={handleVoiceCommand} />
+        <VoiceCommands onCommand={(command: string, params?: any) => {
+          switch (command) {
+            case 'create_business_plan':
+              setCurrentView('business-plan');
+              break;
+            case 'open_business_plan':
+              setCurrentView('business-plan');
+              break;
+            case 'open_calculator':
+              setCurrentView('financial-calc');
+              break;
+            case 'open_schemes':
+              setCurrentView('gov-schemes');
+              break;
+            case 'open_chat':
+              setCurrentView('chat');
+              break;
+            case 'open_community':
+              setCurrentView('community');
+              break;
+            case 'open_achievements':
+              setCurrentView('achievements');
+              break;
+            case 'open_poster':
+              setCurrentView('poster');
+              break;
+            case 'create_poster':
+              setCurrentView('poster');
+              break;
+            case 'open_education':
+              setCurrentView('education');
+              break;
+            case 'open_instant_select':
+              setCurrentView('instant-select');
+              break;
+            case 'show_help':
+              // Handle help command
+              break;
+            default:
+              console.log('Unknown voice command:', command);
+          }
+        }} />
       )}
     </div>
   );
