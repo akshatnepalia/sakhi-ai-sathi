@@ -8,7 +8,7 @@ A comprehensive business assistance application built with React and TypeScript,
 **Production URL:** https://sakhi-ai-sathi.vercel.app
 
 ## ✨ Features
-
+ 
 ### 🤖 **Smart Business Assistant**
 - Interactive chat interface for business queries in 12 languages of India
 - Voice recognition and text-to-speech support
@@ -25,7 +25,7 @@ A comprehensive business assistance application built with React and TypeScript,
 - **Profit Margin Calculator** - Calculate profits and margins
 - **ROI Calculator** - Return on investment analysis
 - **Loan EMI Calculator** - Monthly payment calculations
-- **Break-even Calculator** - Determine break-even points
+- **Break-even Calculator** - Determine break-even point
 
 ### 🎯 **Specialized for Women Entrepreneurs**
 - SHG-focused guidance and resources
