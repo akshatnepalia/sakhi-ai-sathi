@@ -32,26 +32,26 @@ const GovernmentWelcomePage = ({
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('हिंदी');
-  const [notifications, setNotifications] = useState(3);
+  const [notifications, setNotifications] = useState(0);
 
-  const languages = ['हिंदी', 'English', 'বাংলা', 'தமிழ்', 'తెলుగు', 'ಕನ್ನಡ', 'മലയാളം', 'ગુજરાતી', 'ਪੰਜਾਬੀ', 'ଓଡ଼ିଆ', 'اردو', 'मराठी'];
+  const languages = ['हिंदी', 'English', 'বাংলা', 'தமிழ்', 'তেলুগু', 'ಕನ್ನಡ', 'മലയാളം', 'ગુજરાતી', 'ਪੰਜਾਬੀ', 'ଓଡ଼ିଆ', 'اردو', 'मराठी'];
 
   const quickStats = [
-    { label: 'महिला उद्यमी पंजीकृत', value: '2.5 लाख+', icon: Users },
-    { label: 'व्यापारिक योजनाएं तैयार', value: '1.2 लाख+', icon: FileText },
-    { label: 'सफल व्यापार शुरू', value: '85,000+', icon: TrendingUp },
-    { label: 'आर्थिक सहायता दी गई', value: '₹500 करोड़+', icon: PiggyBank }
+    { label: 'पंजीकृत उपयोगकर्ता', value: 'Available', icon: Users },
+    { label: 'व्यापारिक योजनाएं', value: 'Generate', icon: FileText },
+    { label: 'सरकारी योजनाएं', value: 'Explore', icon: TrendingUp },
+    { label: 'सहायता केंद्र', value: '24x7', icon: PiggyBank }
   ];
 
   const recentUpdates = [
-    { title: 'नई महिला उद्यमिता योजना 2024', date: '5 दिन पहले', important: true },
-    { title: 'डिजिटल मार्केटिंग प्रशिक्षण कार्यक्रम', date: '1 सप्ताह पहले', important: false },
-    { title: 'वित्तीय सहायता की नई दरें', date: '2 सप्ताह पहले', important: true }
+    { title: 'महिला उद्यमिता योजना 2024', date: 'नवीनतम', important: true },
+    { title: 'डिजिटल मार्केटिंग प्रशिक्षण', date: 'उपलब्ध', important: false },
+    { title: 'वित्तीय सहायता जानकारी', date: 'अपडेट', important: true }
   ];
 
   return (
     <div className="min-h-screen bg-gray-900">
-      {/* Enhanced Official Header Bar */}
+      {/* Official Header Bar */}
       <div className="bg-blue-950 text-white px-4 py-3 text-sm border-b border-orange-500">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-4">
@@ -76,7 +76,7 @@ const GovernmentWelcomePage = ({
         </div>
       </div>
 
-      {/* Enhanced Main Header */}
+      {/* Main Header */}
       <header className="bg-gray-800 border-b-4 border-orange-500 shadow-lg sticky top-0 z-40">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -120,7 +120,6 @@ const GovernmentWelcomePage = ({
                       <span>Platform Settings</span>
                     </DialogTitle>
                   </DialogHeader>
-                  {/* Enhanced Settings Content */}
                   <div className="space-y-6 py-4 max-h-96 overflow-y-auto">
                     <div className="space-y-4">
                       <div className="border-b border-gray-700 pb-4">
@@ -190,11 +189,11 @@ const GovernmentWelcomePage = ({
                         <div className="space-y-2">
                           <Button variant="ghost" size="sm" className="w-full justify-start text-gray-300 hover:bg-gray-700">
                             <Phone className="w-4 h-4 mr-2" />
-                            हेल्पलाइन: 1800-XXX-XXXX (24x7)
+                            हेल्पलाइन: 1800-11-1016 (24x7)
                           </Button>
                           <Button variant="ghost" size="sm" className="w-full justify-start text-gray-300 hover:bg-gray-700">
                             <Mail className="w-4 h-4 mr-2" />
-                            ईमेल: support@sakhicopilot.gov.in
+                            ईमेल: support@wcd.nic.in
                           </Button>
                           <Button variant="ghost" size="sm" className="w-full justify-start text-gray-300 hover:bg-gray-700">
                             <MessageCircle className="w-4 h-4 mr-2" />
@@ -259,7 +258,7 @@ const GovernmentWelcomePage = ({
                 <div className="flex items-center justify-center mb-2">
                   <stat.icon className="w-8 h-8 text-blue-400" />
                 </div>
-                <div className="text-2xl font-bold text-white">{stat.value}</div>
+                <div className="text-xl font-bold text-white">{stat.value}</div>
                 <div className="text-sm text-gray-400">{stat.label}</div>
               </div>
             ))}
@@ -294,7 +293,7 @@ const GovernmentWelcomePage = ({
             <div className="flex items-center space-x-2">
               <Bell className="w-5 h-5 animate-pulse" />
               <span className="font-semibold">महत्वपूर्ण अपडेट:</span>
-              <span className="text-sm">नई महिला उद्यमिता योजना 2024 - अभी आवेदन करें!</span>
+              <span className="text-sm">महिला उद्यमिता विकास योजना - आवेदन आमंत्रित</span>
             </div>
             <Button variant="ghost" size="sm" className="text-white hover:bg-orange-700">
               <ChevronRight className="w-4 h-4" />
@@ -303,7 +302,7 @@ const GovernmentWelcomePage = ({
         </div>
       </section>
 
-      {/* Enhanced Hero Section */}
+      {/* Hero Section */}
       <section 
         className="relative py-20 bg-gradient-to-r from-gray-800 to-gray-900"
         style={{
@@ -347,12 +346,12 @@ const GovernmentWelcomePage = ({
                 <span>100% सुरक्षित</span>
               </div>
               <div className="flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full">
-                <Star className="w-4 h-4" />
-                <span>4.8★ रेटिंग</span>
-              </div>
-              <div className="flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full">
                 <Clock className="w-4 h-4" />
                 <span>24x7 उपलब्ध</span>
+              </div>
+              <div className="flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full">
+                <Building2 className="w-4 h-4" />
+                <span>सरकारी पहल</span>
               </div>
             </div>
           </div>
@@ -458,7 +457,7 @@ const GovernmentWelcomePage = ({
         </div>
       </section>
 
-      {/* Enhanced Services Grid */}
+      {/* Services Grid */}
       <section className="py-16 bg-gray-900">
         <div className="container mx-auto px-4">
           <h3 className="text-4xl font-bold text-center text-white mb-4">
@@ -514,7 +513,7 @@ const GovernmentWelcomePage = ({
                   वित्तीय कैलकुलेटर
                 </h4>
                 <p className="text-gray-400 text-sm mb-3">
-                  Calculate ROI, EMI, break-even analysis and profit margins
+                  Calculate profits, investments, and business metrics
                 </p>
                 <div className="flex items-center justify-center text-orange-400 text-sm">
                   <TrendingUp className="w-4 h-4 mr-1" />
@@ -554,7 +553,7 @@ const GovernmentWelcomePage = ({
                 </p>
                 <div className="flex items-center justify-center text-red-400 text-sm">
                   <Heart className="w-4 h-4 mr-1" />
-                  2.5 लाख+ सदस्य
+                  समुदाय से जुड़ें
                 </div>
               </CardContent>
             </Card>
@@ -608,7 +607,7 @@ const GovernmentWelcomePage = ({
                 </p>
                 <div className="flex items-center justify-center text-teal-400 text-sm">
                   <BookOpen className="w-4 h-4 mr-1" />
-                  500+ कोर्स उपलब्ध
+                  शिक्षा सामग्री
                 </div>
               </CardContent>
             </Card>
@@ -616,7 +615,7 @@ const GovernmentWelcomePage = ({
         </div>
       </section>
 
-      {/* Platform Features with Images */}
+      {/* Platform Features */}
       <section className="py-16 bg-gray-800">
         <div className="container mx-auto px-4">
           <h3 className="text-4xl font-bold text-center text-white mb-12">
@@ -703,15 +702,6 @@ const GovernmentWelcomePage = ({
               size="lg"
               className="border-2 border-white text-white hover:bg-white hover:text-blue-950 px-10 py-4 text-lg font-semibold"
             />
-
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-2 border-white text-white hover:bg-white hover:text-blue-950 px-10 py-4 text-lg font-semibold flex items-center"
-            >
-              <Download className="w-6 h-6 mr-3" />
-              मोबाइल ऐप डाउनलोड करें
-            </Button>
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-sm">
@@ -724,14 +714,14 @@ const GovernmentWelcomePage = ({
               <span>24x7 सपोर्ट</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Users className="w-4 h-4" />
-              <span>2.5 लाख+ उपयोगकर्ता</span>
+              <Building2 className="w-4 h-4" />
+              <span>विश्वसनीय मंच</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Enhanced Voice Command Button */}
+      {/* Voice Command Button */}
       <div className="fixed bottom-6 right-6 z-50">
         <div className="relative">
           <Button
@@ -746,7 +736,7 @@ const GovernmentWelcomePage = ({
         </div>
       </div>
 
-      {/* Enhanced Official Footer */}
+      {/* Official Footer */}
       <footer className="bg-gray-950 text-white py-12 border-t border-gray-800">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
@@ -785,11 +775,11 @@ const GovernmentWelcomePage = ({
               <div className="space-y-3 text-sm text-gray-400">
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-2 text-blue-400" />
-                  <span>support@sakhicopilot.gov.in</span>
+                  <span>support@wcd.nic.in</span>
                 </div>
                 <div className="flex items-center">
                   <Phone className="w-4 h-4 mr-2 text-green-400" />
-                  <span>1800-XXX-XXXX (टॉल फ्री)</span>
+                  <span>1800-11-1016 (टॉल फ्री)</span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-4 h-4 mr-2 text-red-400" />
@@ -812,7 +802,7 @@ const GovernmentWelcomePage = ({
           </div>
           <div className="text-center mt-4">
             <p className="text-xs text-gray-500">
-              यह वेबसाइट भारत सरकार के दिशा-निर्देशों के अनुसार डिज़ाइन की गई है | Last Updated: December 2024
+              यह वेबसाइट भारत सरकार के दिशा-निर्देशों के अनुसार डिज़ाइन की गई है | Last Updated: January 2025
             </p>
           </div>
         </div>
