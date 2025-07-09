@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import EnhancedWelcomePage from './EnhancedWelcomePage';
+import GovernmentWelcomePage from './GovernmentWelcomePage';
 import ChatBot from './ChatBot';
 import Settings from './Settings';
 import BusinessPlanGenerator from './BusinessPlanGenerator';
@@ -216,18 +216,11 @@ const SakhiCopilotApp = () => {
         </div>
       )}
 
-      {/* Main Content with Microsoft Design */}
+      {/* Main Content */}
       <div className={currentView !== 'welcome' ? 'h-[calc(100vh-80px)]' : ''}>
         {currentView === 'welcome' && (
-          <EnhancedWelcomePage 
+          <GovernmentWelcomePage 
             onStartChat={() => setCurrentView('chat')}
-            onOpenBusinessPlan={() => setCurrentView('business-plan')}
-            onOpenFinancialCalc={() => setCurrentView('financial-calc')}
-            onOpenGovSchemes={() => setCurrentView('gov-schemes')}
-            onOpenCommunity={() => setCurrentView('community')}
-            onOpenAchievements={() => setCurrentView('achievements')}
-            onOpenPoster={() => setCurrentView('poster')}
-            onOpenEducation={() => setCurrentView('education')}
           />
         )}
         
