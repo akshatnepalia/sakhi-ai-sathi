@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Card, CardContent } from '@/components/ui/card';
-import { Settings, MessageCircle, Phone, Mail, FileText, Calculator, PiggyBank, Users, Trophy, Palette, BookOpen, Target, TrendingUp, Heart, Building2, Timer } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { MessageCircle, Users, TrendingUp, FileText, Calculator, PiggyBank, Award, Trophy, Palette, Target, Building2, BookOpen, Heart, Phone, Mail, Settings, Timer, Mic } from 'lucide-react';
 import ShareButton from './ShareButton';
 
 interface GovernmentWelcomePageProps {
@@ -19,9 +19,9 @@ interface GovernmentWelcomePageProps {
 }
 
 const GovernmentWelcomePage = ({ 
-  onStartChat,
-  onOpenBusinessPlan,
-  onOpenFinancialCalc,
+  onStartChat, 
+  onOpenBusinessPlan, 
+  onOpenFinancialCalc, 
   onOpenGovSchemes,
   onOpenCommunity,
   onOpenAchievements,
@@ -32,9 +32,9 @@ const GovernmentWelcomePage = ({
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Top Government Header */}
-      <div className="bg-blue-800 text-white px-4 py-2 text-sm">
+    <div className="min-h-screen bg-gray-900">
+      {/* Official Header Bar */}
+      <div className="bg-blue-950 text-white px-4 py-2 text-sm">
         <div className="container mx-auto flex justify-between items-center">
           <span>भारत सरकार | Government of India</span>
           <span>महिला एवं बाल विकास मंत्रालय</span>
@@ -42,100 +42,98 @@ const GovernmentWelcomePage = ({
       </div>
 
       {/* Main Header */}
-      <header className="bg-white border-b shadow-sm">
-        <div className="container mx-auto px-4 py-4">
+      <header className="bg-gray-800 border-b-4 border-orange-500 shadow-lg">
+        <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
-                <div className="w-8 h-10 bg-white rounded-sm flex items-center justify-center">
-                  <div className="w-4 h-6 bg-blue-600 rounded-sm"></div>
-                </div>
+            <div className="flex items-center space-x-6">
+              <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                <Building2 className="w-10 h-10 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-blue-900">SakhiCopilot</h1>
-                <p className="text-gray-700 text-base">महिला उद्यमिता विकास मंच</p>
-                <p className="text-gray-600 text-sm">Women Entrepreneurship Development Platform</p>
+                <h1 className="text-3xl font-bold text-white">SakhiCopilot</h1>
+                <p className="text-gray-300 text-lg">महिला उद्यमिता विकास मंच</p>
+                <p className="text-gray-400">Women Entrepreneurship Development Platform</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
-                  <Button variant="outline" size="sm" className="flex items-center space-x-2">
+                  <Button variant="outline" size="sm" className="flex items-center space-x-2 border-gray-600 text-gray-300 hover:bg-gray-700">
                     <Settings className="w-4 h-4" />
                     <span>Settings</span>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
+                <DialogContent className="sm:max-w-[425px] bg-gray-800 border-gray-700">
                   <DialogHeader>
-                    <DialogTitle className="flex items-center space-x-2">
+                    <DialogTitle className="flex items-center space-x-2 text-white">
                       <Settings className="w-5 h-5" />
                       <span>Platform Settings</span>
                     </DialogTitle>
                   </DialogHeader>
                   <div className="space-y-6 py-4">
                     <div className="space-y-4">
-                      <div className="border-b pb-4">
-                        <h4 className="font-semibold text-gray-800 mb-2">Language Preferences</h4>
+                      <div className="border-b border-gray-700 pb-4">
+                        <h4 className="font-semibold text-gray-200 mb-2">Language Preferences</h4>
                         <div className="grid grid-cols-2 gap-2">
-                          <Button variant="outline" size="sm" className="justify-start">
+                          <Button variant="outline" size="sm" className="justify-start border-gray-600 text-gray-300 hover:bg-gray-700">
                             हिंदी
                           </Button>
-                          <Button variant="outline" size="sm" className="justify-start">
+                          <Button variant="outline" size="sm" className="justify-start border-gray-600 text-gray-300 hover:bg-gray-700">
                             English
                           </Button>
-                          <Button variant="outline" size="sm" className="justify-start">
+                          <Button variant="outline" size="sm" className="justify-start border-gray-600 text-gray-300 hover:bg-gray-700">
                             বাংলা
                           </Button>
-                          <Button variant="outline" size="sm" className="justify-start">
+                          <Button variant="outline" size="sm" className="justify-start border-gray-600 text-gray-300 hover:bg-gray-700">
                             தமிழ்
                           </Button>
                         </div>
                       </div>
 
-                      <div className="border-b pb-4">
-                        <h4 className="font-semibold text-gray-800 mb-2">Accessibility</h4>
+                      <div className="border-b border-gray-700 pb-4">
+                        <h4 className="font-semibold text-gray-200 mb-2">Accessibility</h4>
                         <div className="space-y-2">
                           <label className="flex items-center space-x-2">
                             <input type="checkbox" className="rounded" />
-                            <span className="text-sm">High Contrast Mode</span>
+                            <span className="text-sm text-gray-300">High Contrast Mode</span>
                           </label>
                           <label className="flex items-center space-x-2">
                             <input type="checkbox" className="rounded" />
-                            <span className="text-sm">Large Text</span>
+                            <span className="text-sm text-gray-300">Large Text</span>
                           </label>
                           <label className="flex items-center space-x-2">
                             <input type="checkbox" className="rounded" />
-                            <span className="text-sm">Voice Navigation</span>
+                            <span className="text-sm text-gray-300">Voice Navigation</span>
                           </label>
                         </div>
                       </div>
 
-                      <div className="border-b pb-4">
-                        <h4 className="font-semibold text-gray-800 mb-2">Notifications</h4>
+                      <div className="border-b border-gray-700 pb-4">
+                        <h4 className="font-semibold text-gray-200 mb-2">Notifications</h4>
                         <div className="space-y-2">
                           <label className="flex items-center space-x-2">
                             <input type="checkbox" defaultChecked className="rounded" />
-                            <span className="text-sm">Government Scheme Updates</span>
+                            <span className="text-sm text-gray-300">Government Scheme Updates</span>
                           </label>
                           <label className="flex items-center space-x-2">
                             <input type="checkbox" defaultChecked className="rounded" />
-                            <span className="text-sm">Training Notifications</span>
+                            <span className="text-sm text-gray-300">Training Notifications</span>
                           </label>
                           <label className="flex items-center space-x-2">
                             <input type="checkbox" className="rounded" />
-                            <span className="text-sm">Community Messages</span>
+                            <span className="text-sm text-gray-300">Community Messages</span>
                           </label>
                         </div>
                       </div>
 
                       <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">Support</h4>
+                        <h4 className="font-semibold text-gray-200 mb-2">Support</h4>
                         <div className="space-y-2">
-                          <Button variant="ghost" size="sm" className="w-full justify-start">
+                          <Button variant="ghost" size="sm" className="w-full justify-start text-gray-300 hover:bg-gray-700">
                             <Phone className="w-4 h-4 mr-2" />
                             Contact Support: 1800-XXX-XXXX
                           </Button>
-                          <Button variant="ghost" size="sm" className="w-full justify-start">
+                          <Button variant="ghost" size="sm" className="w-full justify-start text-gray-300 hover:bg-gray-700">
                             <Mail className="w-4 h-4 mr-2" />
                             Email: support@sakhicopilot.gov.in
                           </Button>
@@ -144,10 +142,10 @@ const GovernmentWelcomePage = ({
                     </div>
 
                     <div className="flex justify-end space-x-2 pt-4">
-                      <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+                      <Button variant="outline" onClick={() => setIsDialogOpen(false)} className="border-gray-600 text-gray-300 hover:bg-gray-700">
                         Cancel
                       </Button>
-                      <Button onClick={() => setIsDialogOpen(false)}>
+                      <Button onClick={() => setIsDialogOpen(false)} className="bg-blue-600 hover:bg-blue-700">
                         Save Settings
                       </Button>
                     </div>
@@ -160,38 +158,40 @@ const GovernmentWelcomePage = ({
       </header>
 
       {/* Navigation */}
-      <nav className="bg-blue-700 text-white shadow-md">
+      <nav className="bg-blue-900 text-white shadow-md">
         <div className="container mx-auto px-4">
-          <div className="flex space-x-8 py-3">
-            <a href="#" className="hover:text-blue-200 transition-colors font-medium">मुख्य पृष्ठ</a>
-            <a href="#" className="hover:text-blue-200 transition-colors font-medium">सेवाएं</a>
-            <a href="#" className="hover:text-blue-200 transition-colors font-medium">योजनाएं</a>
-            <a href="#" className="hover:text-blue-200 transition-colors font-medium">संसाधन</a>
-            <a href="#" className="hover:text-blue-200 transition-colors font-medium">संपर्क</a>
+          <div className="flex space-x-8 py-4">
+            <a href="#" className="hover:text-orange-300 transition-colors font-medium">मुख्य पृष्ठ</a>
+            <a href="#" className="hover:text-orange-300 transition-colors font-medium">सेवाएं</a>
+            <a href="#" className="hover:text-orange-300 transition-colors font-medium">योजनाएं</a>
+            <a href="#" className="hover:text-orange-300 transition-colors font-medium">संसाधन</a>
+            <a href="#" className="hover:text-orange-300 transition-colors font-medium">संपर्क</a>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section with Background */}
+      {/* Hero Section with Background Image */}
       <section 
-        className="relative py-20 bg-cover bg-center min-h-[500px] flex items-center"
+        className="relative py-20 bg-gradient-to-r from-gray-800 to-gray-900"
         style={{
-          backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.7), rgba(249, 115, 22, 0.7)), url('https://images.unsplash.com/photo-1577995851048-b91aa2a9b5b9?w=1200&h=600&fit=crop')`
+          backgroundImage: `linear-gradient(rgba(31, 41, 55, 0.9), rgba(17, 24, 39, 0.9)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=600&fit=crop')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }}
       >
-        <div className="container mx-auto px-4 text-center text-white relative z-10">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        <div className="container mx-auto px-4 text-center text-white">
+          <h2 className="text-5xl font-bold mb-6">
             महिला उद्यमियों का सशक्तिकरण
           </h2>
-          <p className="text-2xl md:text-3xl mb-4 font-medium">Empowering Women Entrepreneurs</p>
-          <p className="text-lg md:text-xl mb-12 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-2xl mb-4">Empowering Women Entrepreneurs</p>
+          <p className="text-xl mb-10 max-w-4xl mx-auto opacity-90">
             भारत सरकार की डिजिटल पहल - महिला उद्यमियों के लिए व्यापारिक मार्गदर्शन, 
             वित्तीय उपकरण और सामुदायिक सहायता प्रदान करने वाला एकीकृत मंच
           </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             <Button
               onClick={onStartChat}
-              className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-4 text-lg font-semibold shadow-lg rounded-lg"
+              className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-4 text-lg font-semibold shadow-lg"
             >
               <MessageCircle className="w-6 h-6 mr-3" />
               AI सहायक शुरू करें
@@ -199,35 +199,25 @@ const GovernmentWelcomePage = ({
             <Button
               onClick={onOpenBusinessPlan}
               variant="outline"
-              className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-blue-800 px-10 py-4 text-lg font-semibold rounded-lg"
+              className="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-10 py-4 text-lg font-semibold"
             >
               <FileText className="w-6 h-6 mr-3" />
               व्यापारिक योजना बनाएं
             </Button>
           </div>
         </div>
-        
-        {/* Floating Voice Button */}
-        <div className="fixed bottom-8 right-8 z-50">
-          <Button
-            className="w-16 h-16 rounded-full bg-purple-600 hover:bg-purple-700 shadow-2xl animate-pulse"
-            onClick={onStartChat}
-          >
-            <MessageCircle className="w-8 h-8 text-white" />
-          </Button>
-        </div>
       </section>
 
       {/* Success Stories Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-800">
         <div className="container mx-auto px-4">
-          <h3 className="text-4xl font-bold text-center text-blue-900 mb-12">
+          <h3 className="text-4xl font-bold text-center text-white mb-12">
             सफलता की कहानियां | Success Stories
           </h3>
           
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-48 bg-gray-200">
+            <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow bg-gray-700 border-gray-600">
+              <div className="h-48 bg-gray-600">
                 <img 
                   src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=300&fit=crop" 
                   alt="Women entrepreneurs working together"
@@ -235,17 +225,17 @@ const GovernmentWelcomePage = ({
                 />
               </div>
               <CardContent className="p-6">
-                <h4 className="text-xl font-semibold text-gray-800 mb-3">
+                <h4 className="text-xl font-semibold text-white mb-3">
                   डिजिटल सशक्तिकरण
                 </h4>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   Technology empowering women entrepreneurs across rural and urban India
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-48 bg-gray-200">
+            <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow bg-gray-700 border-gray-600">
+              <div className="h-48 bg-gray-600">
                 <img 
                   src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop" 
                   alt="Woman using laptop for business"
@@ -253,17 +243,17 @@ const GovernmentWelcomePage = ({
                 />
               </div>
               <CardContent className="p-6">
-                <h4 className="text-xl font-semibold text-gray-800 mb-3">
+                <h4 className="text-xl font-semibold text-white mb-3">
                   व्यापारिक नवाचार
                 </h4>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   Innovative business solutions through digital platforms and assistance
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-48 bg-gray-200">
+            <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow bg-gray-700 border-gray-600">
+              <div className="h-48 bg-gray-600">
                 <img 
                   src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400&h=300&fit=crop" 
                   alt="Digital technology display"
@@ -271,10 +261,10 @@ const GovernmentWelcomePage = ({
                 />
               </div>
               <CardContent className="p-6">
-                <h4 className="text-xl font-semibold text-gray-800 mb-3">
+                <h4 className="text-xl font-semibold text-white mb-3">
                   तकनीकी प्रगति
                 </h4>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   Advanced digital tools and resources for modern entrepreneurship
                 </p>
               </CardContent>
@@ -284,148 +274,146 @@ const GovernmentWelcomePage = ({
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-900">
         <div className="container mx-auto px-4">
-          <h3 className="text-4xl font-bold text-center text-blue-900 mb-12">
+          <h3 className="text-4xl font-bold text-center text-white mb-12">
             डिजिटल सेवाएं | Digital Services
           </h3>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <Card className="border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer" onClick={onStartChat}>
+            <Card className="border-2 border-gray-700 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer bg-gray-800" onClick={onStartChat}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <MessageCircle className="w-8 h-8 text-blue-600" />
                 </div>
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                <h4 className="text-lg font-semibold text-white mb-2">
                   व्यापारिक सहायक
                 </h4>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-400 text-sm">
                   Instant business guidance and query resolution
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-gray-200 hover:border-green-500 hover:shadow-lg transition-all cursor-pointer" onClick={onOpenBusinessPlan}>
+            <Card className="border-2 border-gray-700 hover:border-green-500 hover:shadow-lg transition-all cursor-pointer bg-gray-800" onClick={onOpenBusinessPlan}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <FileText className="w-8 h-8 text-green-600" />
                 </div>
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                <h4 className="text-lg font-semibold text-white mb-2">
                   व्यापारिक योजना जेनरेटर
                 </h4>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-400 text-sm">
                   Professional business plan creation with financial projections
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-gray-200 hover:border-orange-500 hover:shadow-lg transition-all cursor-pointer" onClick={onOpenFinancialCalc}>
+            <Card className="border-2 border-gray-700 hover:border-orange-500 hover:shadow-lg transition-all cursor-pointer bg-gray-800" onClick={onOpenFinancialCalc}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Calculator className="w-8 h-8 text-orange-600" />
                 </div>
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                <h4 className="text-lg font-semibold text-white mb-2">
                   वित्तीय कैलकुलेटर
                 </h4>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-400 text-sm">
                   Calculate ROI, EMI, break-even analysis and profit margins
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-gray-200 hover:border-purple-500 hover:shadow-lg transition-all cursor-pointer" onClick={onOpenGovSchemes}>
+            <Card className="border-2 border-gray-700 hover:border-purple-500 hover:shadow-lg transition-all cursor-pointer bg-gray-800" onClick={onOpenGovSchemes}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <PiggyBank className="w-8 h-8 text-purple-600" />
                 </div>
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                <h4 className="text-lg font-semibold text-white mb-2">
                   सरकारी योजनाएं
                 </h4>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-400 text-sm">
                   Government schemes and funding opportunities for women
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-gray-200 hover:border-red-500 hover:shadow-lg transition-all cursor-pointer" onClick={onOpenCommunity}>
+            <Card className="border-2 border-gray-700 hover:border-red-500 hover:shadow-lg transition-all cursor-pointer bg-gray-800" onClick={onOpenCommunity}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-red-600" />
                 </div>
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                <h4 className="text-lg font-semibold text-white mb-2">
                   सामुदायिक मंच
                 </h4>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-400 text-sm">
                   Connect and collaborate with fellow women entrepreneurs
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-gray-200 hover:border-yellow-500 hover:shadow-lg transition-all cursor-pointer" onClick={onOpenAchievements}>
+            <Card className="border-2 border-gray-700 hover:border-yellow-500 hover:shadow-lg transition-all cursor-pointer bg-gray-800" onClick={onOpenAchievements}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Trophy className="w-8 h-8 text-yellow-600" />
                 </div>
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                <h4 className="text-lg font-semibold text-white mb-2">
                   प्रगति ट्रैकिंग
                 </h4>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-400 text-sm">
                   Track entrepreneurial journey and milestone achievements
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-gray-200 hover:border-indigo-500 hover:shadow-lg transition-all cursor-pointer" onClick={onOpenPoster}>
+            <Card className="border-2 border-gray-700 hover:border-indigo-500 hover:shadow-lg transition-all cursor-pointer bg-gray-800" onClick={onOpenPoster}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Palette className="w-8 h-8 text-indigo-600" />
                 </div>
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                <h4 className="text-lg font-semibold text-white mb-2">
                   मार्केटिंग सामग्री
                 </h4>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-400 text-sm">
                   Create promotional materials and business posters
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-gray-200 hover:border-teal-500 hover:shadow-lg transition-all cursor-pointer" onClick={onOpenEducation}>
+            <Card className="border-2 border-gray-700 hover:border-teal-500 hover:shadow-lg transition-all cursor-pointer bg-gray-800" onClick={onOpenEducation}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="w-8 h-8 text-teal-600" />
                 </div>
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                <h4 className="text-lg font-semibold text-white mb-2">
                   शिक्षा संसाधन
                 </h4>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-400 text-sm">
                   Training materials and educational content library
                 </p>
               </CardContent>
             </Card>
 
-            {onOpenInstantSelect && (
-              <Card className="border-2 border-gray-200 hover:border-pink-500 hover:shadow-lg transition-all cursor-pointer" onClick={onOpenInstantSelect}>
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-pink-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Timer className="w-8 h-8 text-pink-600" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-800 mb-2">
-                    त्वरित चयन
-                  </h4>
-                  <p className="text-gray-600 text-sm">
-                    Quick access to commonly used features
-                  </p>
-                </CardContent>
-              </Card>
-            )}
+            <Card className="border-2 border-gray-700 hover:border-pink-500 hover:shadow-lg transition-all cursor-pointer bg-gray-800" onClick={onOpenInstantSelect}>
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-pink-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Timer className="w-8 h-8 text-pink-600" />
+                </div>
+                <h4 className="text-lg font-semibold text-white mb-2">
+                  त्वरित चयन
+                </h4>
+                <p className="text-gray-400 text-sm">
+                  Quick selection tools for rapid decision making
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Platform Features with Images */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-800">
         <div className="container mx-auto px-4">
-          <h3 className="text-4xl font-bold text-center text-blue-900 mb-12">
+          <h3 className="text-4xl font-bold text-center text-white mb-12">
             मंच की विशेषताएं | Platform Features
           </h3>
           
@@ -441,8 +429,8 @@ const GovernmentWelcomePage = ({
               <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Target className="w-10 h-10 text-white" />
               </div>
-              <h4 className="text-2xl font-semibold text-gray-800 mb-4">व्यापक मार्गदर्शन</h4>
-              <p className="text-gray-600">
+              <h4 className="text-2xl font-semibold text-white mb-4">व्यापक मार्गदर्शन</h4>
+              <p className="text-gray-300">
                 End-to-end business support through digital assistance and government resources
               </p>
             </div>
@@ -458,8 +446,8 @@ const GovernmentWelcomePage = ({
               <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <TrendingUp className="w-10 h-10 text-white" />
               </div>
-              <h4 className="text-2xl font-semibold text-gray-800 mb-4">वित्तीय उपकरण</h4>
-              <p className="text-gray-600">
+              <h4 className="text-2xl font-semibold text-white mb-4">वित्तीय उपकरण</h4>
+              <p className="text-gray-300">
                 Professional financial calculators and business planning tools for informed decision making
               </p>
             </div>
@@ -475,8 +463,8 @@ const GovernmentWelcomePage = ({
               <div className="w-20 h-20 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Heart className="w-10 h-10 text-white" />
               </div>
-              <h4 className="text-2xl font-semibold text-gray-800 mb-4">सामुदायिक सहायता</h4>
-              <p className="text-gray-600">
+              <h4 className="text-2xl font-semibold text-white mb-4">सामुदायिक सहायता</h4>
+              <p className="text-gray-300">
                 Connect with mentors, government officials, and fellow entrepreneurs for networking and growth
               </p>
             </div>
@@ -485,7 +473,7 @@ const GovernmentWelcomePage = ({
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-blue-900 text-white">
+      <section className="py-16 bg-blue-950 text-white">
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-4xl font-bold mb-6">
             आज ही अपनी उद्यमिता यात्रा शुरू करें
@@ -507,28 +495,38 @@ const GovernmentWelcomePage = ({
               type="invite" 
               variant="outline"
               size="lg"
-              className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-10 py-4 text-lg font-semibold"
+              className="border-2 border-white text-white hover:bg-white hover:text-blue-950 px-10 py-4 text-lg font-semibold"
             />
           </div>
         </div>
       </section>
 
+      {/* Voice Command Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button
+          onClick={() => console.log('Voice command activated')}
+          className="w-16 h-16 rounded-full bg-orange-500 hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+        >
+          <Mic className="w-6 h-6" />
+        </Button>
+      </div>
+
       {/* Official Footer */}
-      <footer className="bg-gray-800 text-white py-12">
+      <footer className="bg-gray-950 text-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h5 className="font-semibold mb-4 text-lg">मंच के बारे में</h5>
-              <p className="text-gray-300 text-sm mb-4">
+              <p className="text-gray-400 text-sm mb-4">
                 भारत सरकार की पहल - महिला उद्यमियों को डिजिटल उपकरण और संसाधन प्रदान करने हेतु
               </p>
-              <p className="text-gray-400 text-xs">
+              <p className="text-gray-500 text-xs">
                 महिला एवं बाल विकास मंत्रालय, भारत सरकार
               </p>
             </div>
             <div>
               <h5 className="font-semibold mb-4 text-lg">त्वरित लिंक</h5>
-              <ul className="space-y-2 text-sm text-gray-300">
+              <ul className="space-y-2 text-sm text-gray-400">
                 <li><a href="#" className="hover:text-white transition-colors">सेवाएं</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">सरकारी योजनाएं</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">संसाधन</a></li>
@@ -537,7 +535,7 @@ const GovernmentWelcomePage = ({
             </div>
             <div>
               <h5 className="font-semibold mb-4 text-lg">सहायता</h5>
-              <ul className="space-y-2 text-sm text-gray-300">
+              <ul className="space-y-2 text-sm text-gray-400">
                 <li><a href="#" className="hover:text-white transition-colors">सहायता केंद्र</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">संपर्क करें</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">गोपनीयता नीति</a></li>
@@ -546,7 +544,7 @@ const GovernmentWelcomePage = ({
             </div>
             <div>
               <h5 className="font-semibold mb-4 text-lg">संपर्क विवरण</h5>
-              <div className="space-y-3 text-sm text-gray-300">
+              <div className="space-y-3 text-sm text-gray-400">
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-2" />
                   <span>support@sakhicopilot.gov.in</span>
@@ -555,15 +553,15 @@ const GovernmentWelcomePage = ({
                   <Phone className="w-4 h-4 mr-2" />
                   <span>1800-XXX-XXXX (टॉल फ्री)</span>
                 </div>
-                <p className="text-gray-400 text-xs mt-4">
+                <p className="text-gray-500 text-xs mt-4">
                   सोमवार से शुक्रवार: 9:00 AM - 6:00 PM
                 </p>
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-700 mt-10 pt-8 text-center text-sm text-gray-300">
+          <div className="border-t border-gray-800 mt-10 pt-8 text-center text-sm text-gray-400">
             <p>© 2024 भारत सरकार। सभी अधिकार सुरक्षित। | महिला उद्यमिता विकास हेतु विकसित</p>
-            <p className="mt-2 text-xs text-gray-400">
+            <p className="mt-2 text-xs text-gray-500">
               यह वेबसाइट भारत सरकार के दिशा-निर्देशों के अनुसार डिज़ाइन की गई है
             </p>
           </div>
