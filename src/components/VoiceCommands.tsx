@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -134,11 +133,29 @@ const VoiceCommands = ({ onCommand }: VoiceCommandsProps) => {
         description: "Showing voice commands help...",
       });
     }
+
+    // Marketplace commands
+    else if (transcript.includes('मार्केटप्लेस') || transcript.includes('marketplace') || transcript.includes('खरीदारी')) {
+      onCommand('open_marketplace');
+      toast({
+        title: "🎯 Voice Command Executed",
+        description: "Opening SHG marketplace...",
+      });
+    }
+    
+    // Marketing commands
+    else if (transcript.includes('मार्केटिंग') || transcript.includes('marketing') || transcript.includes('व्हाट्सएप')) {
+      onCommand('open_marketing');
+      toast({
+        title: "🎯 Voice Command Executed",
+        description: "Opening WhatsApp marketing generator...",
+      });
+    }
     
     else {
       toast({
         title: "❓ Command Not Recognized", 
-        description: `Heard: "${transcript}". Try: "बिजनेस प्लान बनाओ", "कैलकुलेटर खोलो", "पोस्टर बनाओ", "कम्युनिटी खोलो"`,
+        description: `Heard: "${transcript}". Try: "बिजनेस प्लान बनाओ", "मार्केटप्लेस खोलो", "मार्केटिंग मैसेज बनाओ"`,
         variant: "destructive"
       });
     }

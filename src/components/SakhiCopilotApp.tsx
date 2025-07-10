@@ -15,11 +15,13 @@ import VoiceCommands from './VoiceCommands';
 import PosterGenerator from './PosterGenerator';
 import EducationResources from './EducationResources';
 import InstantSelectDemo from './InstantSelectDemo';
+import SHGMarketplace from './SHGMarketplace';
+import MarketingGenerator from './MarketingGenerator';
 import { ArrowLeft } from 'lucide-react';
 import { MicrosoftButton } from '@/components/ui/microsoft-button';
 
 const SakhiCopilotApp = () => {
-  const [currentView, setCurrentView] = useState<'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc' | 'gov-schemes' | 'community' | 'achievements' | 'poster' | 'education' | 'instant-select'>('welcome');
+  const [currentView, setCurrentView] = useState<'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc' | 'gov-schemes' | 'community' | 'achievements' | 'poster' | 'education' | 'instant-select' | 'marketplace' | 'marketing'>('welcome');
   const [language, setLanguage] = useState<'hi' | 'en'>('en');
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -93,6 +95,15 @@ const SakhiCopilotApp = () => {
         break;
       case 'show_help':
         break;
+      case 'open_marketplace':
+        setCurrentView('marketplace');
+        break;
+      case 'open_marketing':
+        setCurrentView('marketing');
+        break;
+      case 'create_marketing':
+        setCurrentView('marketing');
+        break;
       default:
         console.log('Unknown voice command:', command);
     }
@@ -122,6 +133,8 @@ const SakhiCopilotApp = () => {
           onOpenPoster={() => setCurrentView('poster')}
           onOpenFinancialCalc={() => setCurrentView('financial-calc')}
           onOpenGovSchemes={() => setCurrentView('gov-schemes')}
+          onOpenMarketplace={() => setCurrentView('marketplace')}
+          onOpenMarketing={() => setCurrentView('marketing')}
         />
 
         {/* Enhanced Voice Commands */}
@@ -172,6 +185,8 @@ const SakhiCopilotApp = () => {
             {currentView === 'poster' && <PosterGenerator />}
             {currentView === 'education' && <EducationResources />}
             {currentView === 'instant-select' && <InstantSelectDemo />}
+            {currentView === 'marketplace' && <SHGMarketplace />}
+            {currentView === 'marketing' && <MarketingGenerator />}
           </div>
         </div>
       </div>
