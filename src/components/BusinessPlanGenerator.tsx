@@ -1,351 +1,357 @@
 
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Download, FileText, Calculator, TrendingUp } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-
-interface BusinessPlan {
-  businessName: string;
-  businessType: string;
-  location: string;
-  initialInvestment: number;
-  monthlyExpenses: number;
-  expectedRevenue: number;
-  description: string;
-  targetMarket: string;
-  products: string;
-}
+import { MicrosoftCard, MicrosoftCardContent, MicrosoftCardHeader, MicrosoftCardTitle } from './ui/microsoft-card';
+import { MicrosoftButton } from './ui/microsoft-button';
+import { SubTabs } from './ui/sub-tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import { FileText, Download, Lightbulb, Calculator, TrendingUp, Users, MapPin, Target, Zap, Sparkles } from 'lucide-react';
 
 const BusinessPlanGenerator = () => {
-  const [plan, setPlan] = useState<BusinessPlan>({
-    businessName: '',
-    businessType: '',
-    location: '',
-    initialInvestment: 0,
-    monthlyExpenses: 0,
-    expectedRevenue: 0,
-    description: '',
-    targetMarket: '',
-    products: ''
-  });
-  
-  const [generatedPlan, setGeneratedPlan] = useState<string>('');
-  const [isGenerating, setIsGenerating] = useState(false);
-  const { toast } = useToast();
+  const [businessType, setBusinessType] = useState('');
+  const [businessName, setBusinessName] = useState('');
+  const [location, setLocation] = useState('');
+  const [investment, setInvestment] = useState('');
 
-  const businessTypes = [
-    'Food & Catering',
-    'Handicrafts & Textiles',
-    'Beauty & Wellness',
-    'Retail & Trading',
-    'Agriculture & Farming',
-    'Education & Training',
-    'Home-based Services',
-    'Digital Services'
+  const businessPlanTabs = [
+    {
+      id: 'overview',
+      label: 'व्यापार सिंहावलोकन',
+      icon: <Lightbulb className="w-4 h-4" />,
+      content: (
+        <div className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=200&fit=crop" 
+                alt="Business planning"
+                className="w-full h-32 object-cover rounded-lg shadow-sm mb-4"
+              />
+              <h3 className="text-lg font-semibold mb-2">व्यापारिक योजना क्यों जरूरी है?</h3>
+              <p className="text-gray-600 text-sm">
+                एक अच्छी व्यापारिक योजना आपके सपनों को साकार करने का रोडमैप है। यह आपको स्पष्ट दिशा देती है।
+              </p>
+            </div>
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop" 
+                alt="Success planning"
+                className="w-full h-32 object-cover rounded-lg shadow-sm mb-4"
+              />
+              <h3 className="text-lg font-semibold mb-2">सफलता के लिए रणनीति</h3>
+              <p className="text-gray-600 text-sm">
+                AI की मदद से बनाई गई योजना आपको बाजार में प्रतिस्पर्धा में आगे रखती है।
+              </p>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'financials',
+      label: 'वित्तीय योजना',
+      icon: <Calculator className="w-4 h-4" />,
+      content: (
+        <div className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop" 
+                alt="Financial planning"
+                className="w-full h-32 object-cover rounded-lg shadow-sm mb-4"
+              />
+              <h3 className="text-lg font-semibold mb-2">वित्तीय पूर्वानुमान</h3>
+              <p className="text-gray-600 text-sm">
+                निवेश, लागत, और मुनाफे का विस्तृत विश्लेषण करें।
+              </p>
+            </div>
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=200&fit=crop" 
+                alt="Investment planning"
+                className="w-full h-32 object-cover rounded-lg shadow-sm mb-4"
+              />
+              <h3 className="text-lg font-semibold mb-2">निवेश रणनीति</h3>
+              <p className="text-gray-600 text-sm">
+                शुरुआती निवेश से लेकर भविष्य की वृद्धि तक की योजना।
+              </p>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'marketing',
+      label: 'मार्केटिंग रणनीति',
+      icon: <TrendingUp className="w-4 h-4" />,
+      content: (
+        <div className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=200&fit=crop" 
+                alt="Marketing strategy"
+                className="w-full h-32 object-cover rounded-lg shadow-sm mb-4"
+              />
+              <h3 className="text-lg font-semibold mb-2">डिजिटल मार्केटिंग</h3>
+              <p className="text-gray-600 text-sm">
+                सोशल मीडिया और ऑनलाइन प्लेटफॉर्म का सदुपयोग करें।
+              </p>
+            </div>
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&h=200&fit=crop" 
+                alt="Customer reach"
+                className="w-full h-32 object-cover rounded-lg shadow-sm mb-4"
+              />
+              <h3 className="text-lg font-semibold mb-2">ग्राहक पहुंच</h3>
+              <p className="text-gray-600 text-sm">
+                स्थानीय और राष्ट्रीय स्तर पर ग्राहकों तक पहुंचने की रणनीति।
+              </p>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'operations',
+      label: 'संचालन योजना',
+      icon: <Target className="w-4 h-4" />,
+      content: (
+        <div className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=200&fit=crop" 
+                alt="Operations planning"
+                className="w-full h-32 object-cover rounded-lg shadow-sm mb-4"
+              />
+              <h3 className="text-lg font-semibold mb-2">दैनिक संचालन</h3>
+              <p className="text-gray-600 text-sm">
+                व्यापार के दैनिक कार्यों की व्यवस्थित योजना।
+              </p>
+            </div>
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=200&fit=crop" 
+                alt="Workflow optimization"
+                className="w-full h-32 object-cover rounded-lg shadow-sm mb-4"
+              />
+              <h3 className="text-lg font-semibold mb-2">कार्यप्रवाह अनुकूलन</h3>
+              <p className="text-gray-600 text-sm">
+                कुशलता और गुणवत्ता के लिए प्रक्रिया सुधार।
+              </p>
+            </div>
+          </div>
+        </div>
+      )
+    }
   ];
 
-  const generateBusinessPlan = () => {
-    if (!plan.businessName || !plan.businessType) {
-      toast({
-        title: "Missing Information",
-        description: "Please fill in business name and type at minimum.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    setIsGenerating(true);
-
-    // Simulate generation delay
-    setTimeout(() => {
-      const roi = plan.initialInvestment > 0 ? 
-        ((plan.expectedRevenue * 12 - plan.monthlyExpenses * 12 - plan.initialInvestment) / plan.initialInvestment * 100).toFixed(1) : '0';
-      
-      const breakEvenMonths = plan.expectedRevenue > plan.monthlyExpenses ? 
-        Math.ceil(plan.initialInvestment / (plan.expectedRevenue - plan.monthlyExpenses)) : 'N/A';
-
-      const businessPlanContent = `
-# ${plan.businessName} - Business Plan
-
-## Executive Summary
-**Business Name:** ${plan.businessName}
-**Business Type:** ${plan.businessType}
-**Location:** ${plan.location}
-**Owner:** SHG Member
-
-## Business Description
-${plan.description || 'A promising business venture focused on serving the local community with quality products/services.'}
-
-## Products/Services
-${plan.products || 'Quality products/services tailored to meet customer needs in the local market.'}
-
-## Target Market
-${plan.targetMarket || 'Local community members, nearby villages, and potential online customers.'}
-
-## Financial Projections
-
-### Initial Investment Required
-₹${plan.initialInvestment.toLocaleString()}
-
-### Monthly Expenses
-₹${plan.monthlyExpenses.toLocaleString()}
-
-### Expected Monthly Revenue
-₹${plan.expectedRevenue.toLocaleString()}
-
-### Expected Annual Profit
-₹${((plan.expectedRevenue - plan.monthlyExpenses) * 12).toLocaleString()}
-
-### Return on Investment (ROI)
-${roi}% annually
-
-### Break-even Period
-${breakEvenMonths} months
-
-## Marketing Strategy
-- Word-of-mouth marketing through SHG network
-- Local community engagement
-- Social media presence (WhatsApp, Facebook)
-- Participation in local markets and fairs
-- Quality customer service for repeat business
-
-## Government Support Available
-- MUDRA Loan for business funding
-- SHG support schemes
-- Skill development programs
-- Marketing assistance through local authorities
-
-## Risk Analysis & Mitigation
-- **Market Risk:** Diversify products/services
-- **Financial Risk:** Maintain emergency fund
-- **Competition:** Focus on quality and customer service
-- **Supply Chain:** Develop multiple supplier relationships
-
-## Growth Plan
-**Year 1:** Establish business and build customer base
-**Year 2:** Expand product line and increase marketing
-**Year 3:** Consider additional locations or online expansion
-
-## Success Metrics
-- Monthly revenue target: ₹${plan.expectedRevenue.toLocaleString()}
-- Customer acquisition: 10-20 new customers monthly
-- Profit margin: Maintain above 30%
-- Business sustainability: Achieve break-even by month ${breakEvenMonths}
-
----
-*Generated by SakhiCopilot - Your Business Companion*
-*Date: ${new Date().toLocaleDateString()}*
-`;
-
-      setGeneratedPlan(businessPlanContent);
-      setIsGenerating(false);
-      
-      toast({
-        title: "✅ Business Plan Generated!",
-        description: "Your comprehensive business plan is ready for download.",
-      });
-    }, 2000);
-  };
-
-  const downloadPlan = () => {
-    const element = document.createElement('a');
-    const file = new Blob([generatedPlan], { type: 'text/plain' });
-    element.href = URL.createObjectURL(file);
-    element.download = `${plan.businessName || 'Business'}-Plan.txt`;
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-    
-    toast({
-      title: "📄 Downloaded!",
-      description: "Business plan saved to your device.",
-    });
-  };
-
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
-      <div className="text-center mb-8">
-        <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-          <FileText className="w-8 h-8 text-white" />
+    <div className="h-full overflow-y-auto">
+      <div className="max-w-6xl mx-auto p-6 space-y-8">
+        {/* Header */}
+        <div className="text-center space-y-4">
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
+              <FileText className="w-8 h-8 text-white" />
+            </div>
+          </div>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+            व्यापारिक योजना जेनरेटर
+          </h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            AI की मदद से अपनी व्यापारिक योजना बनाएं। हमारा स्मार्ट सिस्टम आपकी जरूरतों के अनुसार व्यापक योजना तैयार करता है।
+          </p>
         </div>
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">Business Plan Generator</h1>
-        <p className="text-gray-600">Create a professional business plan in minutes</p>
-      </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        {/* Input Form */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Calculator className="w-5 h-5 mr-2" />
-              Business Details
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="businessName">Business Name *</Label>
-              <Input
-                id="businessName"
-                value={plan.businessName}
-                onChange={(e) => setPlan({...plan, businessName: e.target.value})}
-                placeholder="e.g., Sunita's Pickles"
-              />
+        <Tabs defaultValue="create" className="w-full">
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="create" className="flex items-center gap-2">
+              <Zap className="w-4 h-4" />
+              नई योजना बनाएं
+            </TabsTrigger>
+            <TabsTrigger value="templates" className="flex items-center gap-2">
+              <FileText className="w-4 h-4" />
+              टेम्प्लेट्स
+            </TabsTrigger>
+            <TabsTrigger value="guide" className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4" />
+              गाइड
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="create" className="space-y-6">
+            <MicrosoftCard>
+              <MicrosoftCardHeader>
+                <MicrosoftCardTitle>व्यापार की जानकारी दें</MicrosoftCardTitle>
+              </MicrosoftCardHeader>
+              <MicrosoftCardContent className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      व्यापार का नाम
+                    </label>
+                    <input
+                      type="text"
+                      value={businessName}
+                      onChange={(e) => setBusinessName(e.target.value)}
+                      placeholder="जैसे: रानी की साड़ी दुकान"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      व्यापार का प्रकार
+                    </label>
+                    <select
+                      value={businessType}
+                      onChange={(e) => setBusinessType(e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    >
+                      <option value="">व्यापार का प्रकार चुनें</option>
+                      <option value="tailoring">सिलाई-कढ़ाई</option>
+                      <option value="food">खाद्य उत्पादन</option>
+                      <option value="handicrafts">हस्तशिल्प</option>
+                      <option value="beauty">सौंदर्य सेवाएं</option>
+                      <option value="retail">खुदरा व्यापार</option>
+                      <option value="agriculture">कृषि उत्पाद</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      स्थान
+                    </label>
+                    <input
+                      type="text"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      placeholder="जैसे: जयपुर, राजस्थान"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      प्रारंभिक निवेश
+                    </label>
+                    <input
+                      type="text"
+                      value={investment}
+                      onChange={(e) => setInvestment(e.target.value)}
+                      placeholder="जैसे: ₹50,000"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    />
+                  </div>
+                </div>
+
+                <MicrosoftButton 
+                  variant="microsoft" 
+                  size="lg"
+                  className="w-full"
+                  disabled={!businessName || !businessType}
+                >
+                  <Sparkles className="w-5 h-5 mr-2" />
+                  AI से व्यापारिक योजना बनाएं
+                </MicrosoftButton>
+              </MicrosoftCardContent>
+            </MicrosoftCard>
+
+            {businessName && businessType && (
+              <MicrosoftCard>
+                <MicrosoftCardHeader>
+                  <MicrosoftCardTitle>आपकी व्यापारिक योजना</MicrosoftCardTitle>
+                </MicrosoftCardHeader>
+                <MicrosoftCardContent>
+                  <SubTabs tabs={businessPlanTabs} defaultTab="overview" />
+                  
+                  <div className="mt-8 flex flex-wrap gap-4 justify-center">
+                    <MicrosoftButton variant="outline" className="flex items-center gap-2">
+                      <Download className="w-4 h-4" />
+                      PDF डाउनलोड करें
+                    </MicrosoftButton>
+                    <MicrosoftButton variant="outline" className="flex items-center gap-2">
+                      <FileText className="w-4 h-4" />
+                      Word में सेव करें
+                    </MicrosoftButton>
+                  </div>
+                </MicrosoftCardContent>
+              </MicrosoftCard>
+            )}
+          </TabsContent>
+
+          <TabsContent value="templates" className="space-y-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "सिलाई-कढ़ाई व्यापार",
+                  image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=300&h=200&fit=crop",
+                  description: "महिलाओं के लिए सिलाई-कढ़ाई व्यापार की संपूर्ण योजना"
+                },
+                {
+                  title: "खाद्य उत्पादन व्यापार",
+                  image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=300&h=200&fit=crop",
+                  description: "घर से शुरू करें खाद्य उत्पादन का व्यापार"
+                },
+                {
+                  title: "हस्तशिल्प व्यापार",
+                  image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=300&h=200&fit=crop",
+                  description: "पारंपरिक हस्तशिल्प को आधुनिक बाजार में बेचें"
+                }
+              ].map((template, index) => (
+                <MicrosoftCard key={index} className="cursor-pointer hover:shadow-lg transition-shadow">
+                  <div className="aspect-video relative overflow-hidden rounded-t-lg">
+                    <img 
+                      src={template.image} 
+                      alt={template.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <MicrosoftCardContent className="p-4">
+                    <h3 className="font-semibold mb-2">{template.title}</h3>
+                    <p className="text-sm text-gray-600 mb-3">{template.description}</p>
+                    <MicrosoftButton variant="outline" size="sm" className="w-full">
+                      टेम्प्लेट का उपयोग करें
+                    </MicrosoftButton>
+                  </MicrosoftCardContent>
+                </MicrosoftCard>
+              ))}
             </div>
+          </TabsContent>
 
-            <div>
-              <Label htmlFor="businessType">Business Type *</Label>
-              <Select onValueChange={(value) => setPlan({...plan, businessType: value})}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select business type" />
-                </SelectTrigger>
-                <SelectContent>
-                  {businessTypes.map((type) => (
-                    <SelectItem key={type} value={type}>{type}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <Label htmlFor="location">Location</Label>
-              <Input
-                id="location"
-                value={plan.location}
-                onChange={(e) => setPlan({...plan, location: e.target.value})}
-                placeholder="Village/City, State"
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="description">Business Description</Label>
-              <Textarea
-                id="description"
-                value={plan.description}
-                onChange={(e) => setPlan({...plan, description: e.target.value})}
-                placeholder="What does your business do?"
-                rows={3}
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="products">Products/Services</Label>
-              <Textarea
-                id="products"
-                value={plan.products}
-                onChange={(e) => setPlan({...plan, products: e.target.value})}
-                placeholder="What will you sell or offer?"
-                rows={2}
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="targetMarket">Target Customers</Label>
-              <Input
-                id="targetMarket"
-                value={plan.targetMarket}
-                onChange={(e) => setPlan({...plan, targetMarket: e.target.value})}
-                placeholder="Who will buy from you?"
-              />
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Financial Input */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <TrendingUp className="w-5 h-5 mr-2" />
-              Financial Planning
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="initialInvestment">Initial Investment (₹)</Label>
-              <Input
-                id="initialInvestment"
-                type="number"
-                value={plan.initialInvestment}
-                onChange={(e) => setPlan({...plan, initialInvestment: Number(e.target.value)})}
-                placeholder="e.g., 50000"
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="monthlyExpenses">Monthly Expenses (₹)</Label>
-              <Input
-                id="monthlyExpenses"
-                type="number"
-                value={plan.monthlyExpenses}
-                onChange={(e) => setPlan({...plan, monthlyExpenses: Number(e.target.value)})}
-                placeholder="e.g., 5000"
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="expectedRevenue">Expected Monthly Revenue (₹)</Label>
-              <Input
-                id="expectedRevenue"
-                type="number"
-                value={plan.expectedRevenue}
-                onChange={(e) => setPlan({...plan, expectedRevenue: Number(e.target.value)})}
-                placeholder="e.g., 15000"
-              />
-            </div>
-
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-blue-800 mb-2">Quick Analysis</h4>
-              <div className="text-sm text-blue-700 space-y-1">
-                <p>Monthly Profit: ₹{(plan.expectedRevenue - plan.monthlyExpenses).toLocaleString()}</p>
-                <p>Annual Profit: ₹{((plan.expectedRevenue - plan.monthlyExpenses) * 12).toLocaleString()}</p>
-                {plan.initialInvestment > 0 && plan.expectedRevenue > plan.monthlyExpenses && (
-                  <p>Break-even: {Math.ceil(plan.initialInvestment / (plan.expectedRevenue - plan.monthlyExpenses))} months</p>
-                )}
+          <TabsContent value="guide" className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500&h=300&fit=crop" 
+                  alt="Business planning guide"
+                  className="w-full h-48 object-cover rounded-lg shadow-lg mb-4"
+                />
+                <h3 className="text-xl font-semibold mb-3">व्यापारिक योजना कैसे बनाएं?</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li>• अपने व्यापार का विचार स्पष्ट करें</li>
+                  <li>• बाजार अनुसंधान करें</li>
+                  <li>• वित्तीय योजना तैयार करें</li>
+                  <li>• मार्केटिंग रणनीति बनाएं</li>
+                </ul>
+              </div>
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=300&fit=crop" 
+                  alt="Success tips"
+                  className="w-full h-48 object-cover rounded-lg shadow-lg mb-4"
+                />
+                <h3 className="text-xl font-semibold mb-3">सफलता के लिए टिप्स</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li>• छोटे से शुरुआत करें</li>
+                  <li>• ग्राहकों की प्रतिक्रिया सुनें</li>
+                  <li>• निरंतर सीखते रहें</li>
+                  <li>• नेटवर्किंग करें</li>
+                </ul>
               </div>
             </div>
-
-            <Button 
-              onClick={generateBusinessPlan}
-              disabled={isGenerating}
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
-            >
-              {isGenerating ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                  Generating Plan...
-                </>
-              ) : (
-                <>
-                  <FileText className="w-4 h-4 mr-2" />
-                  Generate Business Plan
-                </>
-              )}
-            </Button>
-          </CardContent>
-        </Card>
+          </TabsContent>
+        </Tabs>
       </div>
-
-      {/* Generated Plan Display */}
-      {generatedPlan && (
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle>Your Business Plan</CardTitle>
-            <Button onClick={downloadPlan} variant="outline">
-              <Download className="w-4 h-4 mr-2" />
-              Download Plan
-            </Button>
-          </CardHeader>
-          <CardContent>
-            <div className="bg-gray-50 p-4 rounded-lg max-h-96 overflow-y-auto">
-              <pre className="whitespace-pre-wrap text-sm">{generatedPlan}</pre>
-            </div>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 };
