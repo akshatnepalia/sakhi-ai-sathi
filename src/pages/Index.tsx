@@ -1,14 +1,26 @@
 
 import React, { useState } from 'react';
 import SakhiCopilotApp from "@/components/SakhiCopilotApp";
+import Navigation from "@/components/Navigation";
 
 const Index = () => {
   const [showApp, setShowApp] = useState(false);
   const [initialView, setInitialView] = useState<'welcome' | 'chat' | 'business-plan' | 'poster' | 'financial-calc' | 'gov-schemes' | 'marketplace' | 'marketing'>('welcome');
+  const [language, setLanguage] = useState<'hi' | 'en'>('en');
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleQuickStart = (view: 'chat' | 'business-plan' | 'poster' | 'financial-calc' | 'gov-schemes' | 'marketplace' | 'marketing') => {
     setInitialView(view);
     setShowApp(true);
+  };
+
+  const handleThemeToggle = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark');
+  };
+
+  const handleLanguageChange = (newLanguage: 'hi' | 'en') => {
+    setLanguage(newLanguage);
   };
 
   if (showApp) {
@@ -17,11 +29,20 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      {/* Navigation */}
+      <Navigation
+        currentLanguage={language}
+        onLanguageChange={handleLanguageChange}
+        isDarkMode={isDarkMode}
+        onThemeToggle={handleThemeToggle}
+      />
+
       {/* Hero Banner with Indian Background */}
       <div 
+        id="home"
         className="relative h-96 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1200&h=600&fit=crop')`
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=1200&h=600&fit=crop')`
         }}
       >
         <div className="absolute inset-0 flex items-center justify-center">
@@ -34,7 +55,7 @@ const Index = () => {
       </div>
 
       {/* Indian Cultural Showcase */}
-      <div className="py-16 bg-gradient-to-br from-orange-50 to-green-50">
+      <div id="use-cases" className="py-16 bg-gradient-to-br from-orange-50 to-green-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">भारतीय संस्कृति में महिला सशक्तिकरण | Women Empowerment in Indian Culture</h2>
           <div className="grid md:grid-cols-4 gap-6">
@@ -49,7 +70,7 @@ const Index = () => {
             </div>
             <div className="text-center">
               <img 
-                src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=400&h=300&fit=crop" 
+                src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&h=300&fit=crop" 
                 alt="Indian spices and herbs"
                 className="w-full h-48 object-cover rounded-lg shadow-lg mb-4"
               />
@@ -58,7 +79,7 @@ const Index = () => {
             </div>
             <div className="text-center">
               <img 
-                src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&h=300&fit=crop" 
+                src="https://images.unsplash.com/photo-1610432763119-135abb7ad5c4?w=400&h=300&fit=crop" 
                 alt="Indian textiles and fabrics"
                 className="w-full h-48 object-cover rounded-lg shadow-lg mb-4"
               />
@@ -67,7 +88,7 @@ const Index = () => {
             </div>
             <div className="text-center">
               <img 
-                src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&h=300&fit=crop" 
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" 
                 alt="Indian handicrafts"
                 className="w-full h-48 object-cover rounded-lg shadow-lg mb-4"
               />
@@ -79,7 +100,7 @@ const Index = () => {
       </div>
 
       {/* Quick Start Options with Enhanced Theme */}
-      <div className="py-16 bg-white">
+      <div id="demo" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-4 text-gray-800">त्वरित शुरुआत | Quick Start</h2>
           <p className="text-lg text-gray-600 text-center mb-12">अपने व्यापारिक सफर की शुरुआत करें | Begin Your Business Journey</p>
@@ -265,7 +286,7 @@ const Index = () => {
       </div>
 
       {/* Technology Showcase with Indian Context */}
-      <div className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <div id="poster" className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">तकनीकी नवाचार | Technology Innovation</h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -345,7 +366,7 @@ const Index = () => {
       </div>
 
       {/* Featured SHG Stories */}
-      <div className="py-16 bg-white">
+      <div id="about" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">सफलता की कहानियां | Success Stories</h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -379,8 +400,6 @@ const Index = () => {
           </div>
         </div>
       </div>
-
-      <SakhiCopilotApp />
     </div>
   );
 };

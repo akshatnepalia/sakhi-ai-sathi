@@ -30,6 +30,15 @@ const Navigation = ({ currentLanguage, onLanguageChange, isDarkMode, onThemeTogg
     ]
   };
 
+  const scrollToSection = (href: string) => {
+    const sectionId = href.replace('#', '');
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
       <div className="container mx-auto px-4">
@@ -47,13 +56,13 @@ const Navigation = ({ currentLanguage, onLanguageChange, isDarkMode, onThemeTogg
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems[currentLanguage].map((item) => (
-              <a
+              <button
                 key={item.href}
-                href={item.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium"
+                onClick={() => scrollToSection(item.href)}
+                className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium cursor-pointer"
               >
                 {item.label}
-              </a>
+              </button>
             ))}
           </div>
 
@@ -97,14 +106,13 @@ const Navigation = ({ currentLanguage, onLanguageChange, isDarkMode, onThemeTogg
           <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-800">
             <div className="flex flex-col space-y-3">
               {navItems[currentLanguage].map((item) => (
-                <a
+                <button
                   key={item.href}
-                  href={item.href}
-                  className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => scrollToSection(item.href)}
+                  className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium py-2 text-left cursor-pointer"
                 >
                   {item.label}
-                </a>
+                </button>
               ))}
               <div className="flex items-center space-x-3 pt-3 border-t border-gray-200 dark:border-gray-800">
                 <MicrosoftButton
