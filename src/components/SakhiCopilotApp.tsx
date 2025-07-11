@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import GovernmentWelcomePage from './GovernmentWelcomePage';
 import Navigation from './Navigation';
@@ -20,8 +19,12 @@ import MarketingGenerator from './MarketingGenerator';
 import { ArrowLeft } from 'lucide-react';
 import { MicrosoftButton } from '@/components/ui/microsoft-button';
 
-const SakhiCopilotApp = () => {
-  const [currentView, setCurrentView] = useState<'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc' | 'gov-schemes' | 'community' | 'achievements' | 'poster' | 'education' | 'instant-select' | 'marketplace' | 'marketing'>('welcome');
+interface SakhiCopilotAppProps {
+  initialView?: 'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc' | 'gov-schemes' | 'community' | 'achievements' | 'poster' | 'education' | 'instant-select' | 'marketplace' | 'marketing';
+}
+
+const SakhiCopilotApp = ({ initialView = 'welcome' }: SakhiCopilotAppProps) => {
+  const [currentView, setCurrentView] = useState<'welcome' | 'chat' | 'settings' | 'business-plan' | 'financial-calc' | 'gov-schemes' | 'community' | 'achievements' | 'poster' | 'education' | 'instant-select' | 'marketplace' | 'marketing'>(initialView);
   const [language, setLanguage] = useState<'hi' | 'en'>('en');
   const [isDarkMode, setIsDarkMode] = useState(false);
 

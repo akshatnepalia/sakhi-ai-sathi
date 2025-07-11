@@ -1,8 +1,20 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import SakhiCopilotApp from "@/components/SakhiCopilotApp";
 
 const Index = () => {
+  const [showApp, setShowApp] = useState(false);
+  const [initialView, setInitialView] = useState<'welcome' | 'chat' | 'business-plan' | 'poster' | 'financial-calc' | 'gov-schemes' | 'marketplace' | 'marketing'>('welcome');
+
+  const handleQuickStart = (view: 'chat' | 'business-plan' | 'poster' | 'financial-calc' | 'gov-schemes' | 'marketplace' | 'marketing') => {
+    setInitialView(view);
+    setShowApp(true);
+  };
+
+  if (showApp) {
+    return <SakhiCopilotApp initialView={initialView} />;
+  }
+
   return (
     <div className="min-h-screen">
       {/* Hero Banner with Indian Background */}
@@ -74,7 +86,7 @@ const Index = () => {
           
           <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
             {/* AI Chat */}
-            <div className="group">
+            <div className="group cursor-pointer" onClick={() => handleQuickStart('chat')}>
               <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                 <div className="relative mb-4">
                   <img 
@@ -96,7 +108,7 @@ const Index = () => {
             </div>
 
             {/* Business Plan */}
-            <div className="group">
+            <div className="group cursor-pointer" onClick={() => handleQuickStart('business-plan')}>
               <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                 <div className="relative mb-4">
                   <img 
@@ -118,7 +130,7 @@ const Index = () => {
             </div>
 
             {/* Poster Generator */}
-            <div className="group">
+            <div className="group cursor-pointer" onClick={() => handleQuickStart('poster')}>
               <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                 <div className="relative mb-4">
                   <img 
@@ -140,7 +152,7 @@ const Index = () => {
             </div>
 
             {/* Financial Calculator */}
-            <div className="group">
+            <div className="group cursor-pointer" onClick={() => handleQuickStart('financial-calc')}>
               <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                 <div className="relative mb-4">
                   <img 
@@ -162,7 +174,7 @@ const Index = () => {
             </div>
 
             {/* Government Schemes */}
-            <div className="group">
+            <div className="group cursor-pointer" onClick={() => handleQuickStart('gov-schemes')}>
               <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                 <div className="relative mb-4">
                   <img 
@@ -184,7 +196,7 @@ const Index = () => {
             </div>
 
             {/* SHG Marketplace */}
-            <div className="group">
+            <div className="group cursor-pointer" onClick={() => handleQuickStart('marketplace')}>
               <div className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                 <div className="relative mb-4">
                   <img 
@@ -206,7 +218,7 @@ const Index = () => {
             </div>
 
             {/* WhatsApp Marketing */}
-            <div className="group">
+            <div className="group cursor-pointer" onClick={() => handleQuickStart('marketing')}>
               <div className="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                 <div className="relative mb-4">
                   <img 
@@ -228,7 +240,7 @@ const Index = () => {
             </div>
 
             {/* Voice Assistant */}
-            <div className="group">
+            <div className="group cursor-pointer" onClick={() => handleQuickStart('chat')}>
               <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                 <div className="relative mb-4">
                   <img 
