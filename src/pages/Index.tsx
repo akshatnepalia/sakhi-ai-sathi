@@ -57,41 +57,41 @@ const Index = () => {
       {/* Indian Cultural Showcase */}
       <div id="use-cases" className="py-16 bg-gradient-to-br from-orange-100 to-green-100 border-y-4 border-orange-300">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-gray-800 bg-white/80 backdrop-blur-sm rounded-2xl py-6 shadow-lg">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-800 bg-white/90 backdrop-blur-sm rounded-2xl py-6 shadow-lg border-2 border-orange-200">
             भारतीय संस्कृति में महिला सशक्तिकरण | Women Empowerment in Indian Culture
           </h2>
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <div className="text-center bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-orange-200">
               <img 
-                src="https://images.unsplash.com/photo-1609220136736-443140cffec6?w=400&h=300&fit=crop" 
-                alt="Indian women in traditional dress"
+                src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" 
+                alt="Indian women traditional craftsmanship"
                 className="w-full h-48 object-cover rounded-xl shadow-lg mb-4 border-4 border-orange-200"
               />
               <h3 className="text-xl font-bold mb-2 text-orange-700">पारंपरिक कारीगरी</h3>
               <p className="text-gray-700 font-medium">Traditional Craftsmanship</p>
             </div>
-            <div className="text-center bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <div className="text-center bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-green-200">
               <img 
                 src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&h=300&fit=crop" 
-                alt="Indian spices and herbs"
+                alt="Indian spices and herbs business"
                 className="w-full h-48 object-cover rounded-xl shadow-lg mb-4 border-4 border-green-200"
               />
               <h3 className="text-xl font-bold mb-2 text-green-700">मसाला व्यापार</h3>
               <p className="text-gray-700 font-medium">Spice Business</p>
             </div>
-            <div className="text-center bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <div className="text-center bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-purple-200">
               <img 
-                src="https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=400&h=300&fit=crop" 
+                src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400&h=300&fit=crop" 
                 alt="Indian textiles and fabrics"
                 className="w-full h-48 object-cover rounded-xl shadow-lg mb-4 border-4 border-purple-200"
               />
               <h3 className="text-xl font-bold mb-2 text-purple-700">वस्त्र उद्योग</h3>
               <p className="text-gray-700 font-medium">Textile Industry</p>
             </div>
-            <div className="text-center bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <div className="text-center bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-red-200">
               <img 
-                src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" 
-                alt="Indian handicrafts"
+                src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop" 
+                alt="Indian handicrafts pottery"
                 className="w-full h-48 object-cover rounded-xl shadow-lg mb-4 border-4 border-red-200"
               />
               <h3 className="text-xl font-bold mb-2 text-red-700">हस्तशिल्प</h3>
@@ -104,7 +104,7 @@ const Index = () => {
       {/* Quick Start Options with Enhanced Theme */}
       <div id="demo" className="py-16 bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+          <div className="text-center mb-12 bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border-2 border-blue-200">
             <h2 className="text-4xl font-bold mb-4 text-gray-800">त्वरित शुरुआत | Quick Start</h2>
             <p className="text-xl text-gray-700">अपने व्यापारिक सफर की शुरुआत करें | Begin Your Business Journey</p>
           </div>
@@ -292,18 +292,18 @@ const Index = () => {
       {/* Technology Showcase with Indian Context */}
       <div id="poster" className="py-16 bg-gradient-to-br from-blue-100 to-indigo-200 border-y-4 border-blue-300">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+          <div className="text-center mb-12 bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border-2 border-blue-200">
             <h2 className="text-4xl font-bold text-gray-800">तकनीकी नवाचार | Technology Innovation</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl border-2 border-blue-200">
               <img 
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop" 
                 alt="Indian women using technology"
                 className="w-full h-64 object-cover rounded-xl shadow-lg border-4 border-blue-200"
               />
             </div>
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl border-2 border-blue-200">
               <h3 className="text-3xl font-bold mb-6 text-indigo-700">AI-Powered Solutions for Rural India</h3>
               <p className="text-gray-700 mb-6 text-lg leading-relaxed">
                 Leveraging artificial intelligence to provide personalized business guidance, 
@@ -329,11 +329,11 @@ const Index = () => {
       {/* Success Metrics with Indian Visuals */}
       <div className="py-16 bg-gradient-to-br from-orange-100 to-red-200 border-y-4 border-orange-300">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+          <div className="text-center mb-12 bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border-2 border-orange-200">
             <h2 className="text-4xl font-bold text-gray-800">प्रभाव और परिणाम | Impact & Results</h2>
           </div>
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-orange-200">
+            <div className="text-center bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-orange-200">
               <img 
                 src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=300&h=200&fit=crop" 
                 alt="Indian women entrepreneurs"
@@ -342,7 +342,7 @@ const Index = () => {
               <h3 className="text-3xl font-bold text-orange-600 mb-2">10,000+</h3>
               <p className="text-gray-700 font-medium">महिलाएं सशक्त | Women Empowered</p>
             </div>
-            <div className="text-center bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-green-200">
+            <div className="text-center bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-green-200">
               <img 
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop" 
                 alt="Business documents"
@@ -351,7 +351,7 @@ const Index = () => {
               <h3 className="text-3xl font-bold text-green-600 mb-2">5,000+</h3>
               <p className="text-gray-700 font-medium">व्यापारिक योजनाएं | Business Plans Created</p>
             </div>
-            <div className="text-center bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-purple-200">
+            <div className="text-center bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-purple-200">
               <img 
                 src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=300&h=200&fit=crop" 
                 alt="Indian cities"
@@ -360,7 +360,7 @@ const Index = () => {
               <h3 className="text-3xl font-bold text-purple-600 mb-2">50+</h3>
               <p className="text-gray-700 font-medium">शहर कवर किए गए | Cities Covered</p>
             </div>
-            <div className="text-center bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-indigo-200">
+            <div className="text-center bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-indigo-200">
               <img 
                 src="https://images.unsplash.com/photo-1559526324-c1f275fbfa32?w=300&h=200&fit=crop" 
                 alt="Indian currency and business growth"
@@ -376,14 +376,14 @@ const Index = () => {
       {/* Featured SHG Stories */}
       <div id="about" className="py-16 bg-gradient-to-br from-pink-50 via-white to-rose-100">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+          <div className="text-center mb-12 bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border-2 border-pink-200">
             <h2 className="text-4xl font-bold text-gray-800">सफलता की कहानियां | Success Stories</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-gradient-to-br from-pink-100 to-rose-200 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-pink-200">
               <img 
-                src="https://images.unsplash.com/photo-1494790108755-2616c0763264?w=400&h=250&fit=crop" 
-                alt="Indian woman entrepreneur"
+                src="https://images.unsplash.com/photo-1594736797933-d0c86ba252bb?w=400&h=250&fit=crop" 
+                alt="Indian woman entrepreneur from Rajasthan"
                 className="w-full h-40 object-cover rounded-xl mb-4 border-2 border-white shadow-lg"
               />
               <h3 className="text-xl font-bold text-gray-800 mb-2">रानी देवी - राजस्थान</h3>
